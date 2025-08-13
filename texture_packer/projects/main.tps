@@ -214,6 +214,7 @@
             </struct>
             <key type="filename">../sources_belot/common/ButtonGreen.png</key>
             <key type="filename">../sources_belot/common/ButtonRed.png</key>
+            <key type="filename">../sources_belot/deposit/check_tx_bg.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
@@ -791,6 +792,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../sources_belot/deposit/renew_icon.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>14,13,29,26</rect>
+                <key>scale9Paddings</key>
+                <rect>14,13,29,26</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../sources_belot/deposit/right_arrow_icon.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -806,6 +822,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../sources_belot/deposit/time_icon.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,10,19,19</rect>
+                <key>scale9Paddings</key>
+                <rect>9,10,19,19</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../sources_belot/deposit/ton_btn_bg.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -815,7 +846,7 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>24,24,47,47</rect>
+                <rect>24,24,33,47</rect>
                 <key>scale9Paddings</key>
                 <rect>24,24,47,47</rect>
                 <key>scale9FromFile</key>

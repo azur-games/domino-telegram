@@ -1,4 +1,4 @@
-import {CoreSocketService, SocketController, SocketPayload} from "@azur-games/pixi-vip-framework";
+import {CoreSocketService, FacebookTransaction, GameType, LocalStorageService, SocketController, SocketMessageType, SocketPayload, StringUtils, XsollaInitResponse} from "@azur-games/pixi-vip-framework";
 import {DominoGame} from "../app";
 import {ActiveData} from "../data/ActiveData";
 import {ScreenType} from "../domino_game/root/screens/ScreenType";
@@ -11,10 +11,8 @@ import {WebSocketMessageType} from "../dynamic_data/WebSocketMessageType";
 import {DynamicData} from "../DynamicData";
 import {GameEvents} from "../GameEvents";
 import {Settings} from "../Settings";
-import {StringUtils} from "@azur-games/pixi-vip-framework";
 import {ChatMessagesService} from "./ChatMessagesService";
-import {LocalStorageService} from "@azur-games/pixi-vip-framework";
-import {FacebookTransaction} from "@azur-games/pixi-vip-framework";
+import {NotificationService} from "./NotificationService";
 import {SettingsService} from "./SettingsService";
 import {AuthNetworkType} from "./socket_service/AuthNetworkType";
 import {AuthResponse} from "./socket_service/AuthResponse";
@@ -22,16 +20,15 @@ import {FriendData} from "./socket_service/socket_message_data/FriendData";
 import {FullProfileData} from "./socket_service/socket_message_data/profile_data/FullProfileData";
 import {ProfileData} from "./socket_service/socket_message_data/ProfileData";
 import {GameMode} from "./socket_service/socket_message_data/socket_game_config/GameMode";
+import {TonPurchasedData} from "./socket_service/socket_message_data/TonPurchasedData";
 import {ChatEventMessage} from "./socket_service/socket_message_data/user_events_message/ChatEventMessage";
 import {UserEventMessage} from "./socket_service/socket_message_data/UserEventMessage";
 import {UserMessagesStatusById} from "./socket_service/socket_message_data/UserMessagesStatusById";
 import {WheelSector} from "./socket_service/socket_message_data/wheel_config/WheelSector";
 import {WheelConfig} from "./socket_service/socket_message_data/WheelConfig";
 import {SocketMessageData} from "./socket_service/SocketMessageData";
-import {SocketMessageType} from "./socket_service/SocketMessageType";
 import {UserOnlineStatus} from "./socket_service/UserOnlineStatus";
 import {UserEventsService} from "./UserEventsService";
-import {XsollaInitResponse, GameType} from "@azur-games/pixi-vip-framework";
 
 
 export class SocketService extends CoreSocketService {
@@ -105,6 +102,9 @@ export class SocketService extends CoreSocketService {
                 break;
             case SocketMessageType.USER_MESSAGES_STATUS:
                 ChatMessagesService.setStatuses(messageData as UserMessagesStatusById);
+                break;
+            case SocketMessageType.TON_PURCHASED:
+                NotificationService.showDepositSuccess(messageData as TonPurchasedData);
                 break;
         }
 

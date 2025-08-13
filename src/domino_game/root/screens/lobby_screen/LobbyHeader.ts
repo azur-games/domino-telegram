@@ -4,6 +4,7 @@ import {Button} from "../../../../../../pixi-vip-framework";
 import {DynamicData} from "../../../../DynamicData";
 import {GameEvents} from "../../../../GameEvents";
 import {AvatarService} from "../../../../services/AvatarService";
+import {SocketService} from "../../../../services/SocketService";
 import {LobbyHeaderAvatar} from "./lobby_header/LobbyHeaderAvatar";
 import {LobbyHeaderBalance} from "./lobby_header/LobbyHeaderBalance";
 import {DominoGame} from "../../../../app";

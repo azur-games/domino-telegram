@@ -24,10 +24,10 @@ export class InfoPopupContent extends Sprite {
     }
 
     createChildren(): void {
-        this.background = DisplayObjectFactory.createNineSlicePlane("common/frame_window_2", 68, 250, 68, 250);
-        this.infoTextBackground = DisplayObjectFactory.createNineSlicePlane("common/frame_window_inner", 64, 64, 64, 64);
-        this.title = new LanguageText({key: this.data.titleText, fontSize: 60, fill: 0xab8e70, autoFitWidth: 800});
-        this.info = new LanguageText({key: this.data.infoText, fontSize: 40, fill: 0x8f6942, autoFitWidth: 740});
+        this.background = DisplayObjectFactory.createNineSlicePlane("deposit/qr_bg", 20, 20, 20, 20);
+        this.infoTextBackground = DisplayObjectFactory.createNineSlicePlane("lobby/avatar_bg", 36, 36, 36, 36);
+        this.title = new LanguageText({key: this.data.titleText, fontSize: 60, fill: 0xffffff, autoFitWidth: 800});
+        this.info = new LanguageText({key: this.data.infoText, fontSize: 40, fill: 0x7BA2FF, autoFitWidth: 740});
     }
 
     addChildren(): void {
@@ -48,7 +48,7 @@ export class InfoPopupContent extends Sprite {
         Pivot.center(this.title);
         Pivot.center(this.info);
 
-        this.title.y = -120;
+        this.title.y = -140;
         this.info.y = this.infoTextBackground.y = 40;
     }
 

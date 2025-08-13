@@ -1,6 +1,7 @@
 import {Button, DisplayObjectFactory, Pivot, PreloaderService, StageResizeListening, TonRates} from "@azur-games/pixi-vip-framework";
 import {NineSlicePlane} from "pixi.js";
 import {DominoGame} from "../../../../app";
+import {DynamicData} from "../../../../DynamicData";
 import {DepositCurrencyChosen} from "../../../../game_events/DepositCurrencyChosen";
 import {GameEvents} from "../../../../GameEvents";
 import {SocketService} from "../../../../services/SocketService";
@@ -30,6 +31,7 @@ export class DepositPopupContent extends StageResizeListening {
     async init() {
         let id = PreloaderService.show();
         this.rates = await SocketService.tonRates();
+        DynamicData.tonRates = this.rates;
         PreloaderService.hide(id);
         this.createChildren();
         this.addChildren();

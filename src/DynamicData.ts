@@ -1,3 +1,4 @@
+import {TonRates} from "@azur-games/pixi-vip-framework";
 import {ISocketGameState} from "./dynamic_data/ISocketGameState";
 import {Profiles} from "./dynamic_data/Profiles";
 import {SitPlace} from "./dynamic_data/SitPlace";
@@ -10,6 +11,7 @@ import {WheelConfig} from "./services/socket_service/socket_message_data/WheelCo
 
 
 export class DynamicData {
+    static tonRates: TonRates;
     static socketGameRequest: SocketGameRequest;
     static socketGameState: ISocketGameState;
     static myFriends: FriendData[];

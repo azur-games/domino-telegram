@@ -117,7 +117,7 @@ export class LobbyRooms extends DraggableObject {
         this.bgGradient.width = DominoGame.instance.screenW;
         this.bgGradient.height = 300;
         this.background.width = DominoGame.instance.screenW;
-        this.background.height = this.minListHeight + 90;
+        this.background.height = this.listHeight + 90;
 
         Pivot.center(this.bgGradient);
         Pivot.center(this.background);

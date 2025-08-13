@@ -1,6 +1,7 @@
 import {Sprite, NineSlicePlane} from "pixi.js";
 import {DisplayObjectFactory, TonRates, LanguageText, Button, Pivot, NumberUtils} from "@azur-games/pixi-vip-framework";
 import {DepositCurrencyChosen} from "../../../../../../game_events/DepositCurrencyChosen";
+import {CurrencyConverter} from "../../../../../../utils/CurrencyConverter";
 import {CurrencyItemDetail} from "./selection_item/CurrencyItemDetail";
 import {CurrencyNameValues} from "./CurrencyName";
 
@@ -30,10 +31,9 @@ export class DepositCurrencySelectionItem extends Button {
     createChildren() {
         this.background = DisplayObjectFactory.createNineSlicePlane("deposit/currency_item_bg", 150, 50, 50, 50);
         this.divider = DisplayObjectFactory.createNineSlicePlane("deposit/currency_item_divider", 1, 1, 1, 1);
-        console.log("LOG:this.currencyName ", this.currencyName);
         this.currencyIcon = DisplayObjectFactory.createSprite(`deposit/${this.currencyName}_symbol`);
         this.currencyNameText = new LanguageText({key: this.currencyName.toUpperCase(), fontSize: 40});
-        this.minAmount = new CurrencyItemDetail("Min deposit: ", "$" + NumberUtils.shortPriceFormat(this.rates.minTransactionUsd));
+        this.minAmount = new CurrencyItemDetail("Min deposit: ", CurrencyConverter.usdToTon(this.rates.minTransactionUsd));
         this.arrowIcon = DisplayObjectFactory.createSprite("deposit/right_arrow_icon");
     }
 
@@ -70,7 +70,6 @@ export class DepositCurrencySelectionItem extends Button {
     }
 
     destroy() {
-
         this.removeChild(this.background);
         this.removeChild(this.divider);
         this.removeChild(this.currencyIcon);

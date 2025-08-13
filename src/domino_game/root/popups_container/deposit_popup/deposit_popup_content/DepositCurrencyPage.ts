@@ -1,5 +1,6 @@
 import {DisplayObjectFactory, LanguageText, LoaderService, NumberUtils, Pivot, TonRates} from "@azur-games/pixi-vip-framework";
 import {NineSlicePlane, Sprite} from "pixi.js";
+import {CurrencyConverter} from "../../../../../utils/CurrencyConverter";
 import {AddressBlock} from "./currency_page/AddressBlock";
 import {CurrencyInput} from "./currency_page/CurrencyInput";
 import {QRCodeBlock} from "./currency_page/QRCodeBlock";
@@ -67,9 +68,9 @@ export class DepositCurrencyPage extends Sprite {
 
         this.currencyIcon.scale.set(.8);
         this.currencyIcon.x = -80;
-        this.currencyIcon.y = 90;
+        this.currencyIcon.y = 95;
         this.currencyTitle.x = -10;
-        this.currencyTitle.y = 90;
+        this.currencyTitle.y = 95;
 
         this.warningText.style.wordWrap = true;
         this.warningText.style.wordWrapWidth = 900;
@@ -106,7 +107,7 @@ export class DepositCurrencyPage extends Sprite {
         this.input.applyData(rates);
         this.qrCodeBlock.applyData(rates.addr);
         this.addressBlock.applyData(rates.addr);
-        this.minAmount.applyData("$" + NumberUtils.shortPriceFormat(rates.minTransactionUsd));
+        this.minAmount.applyData(CurrencyConverter.usdToTon(this.rates.minTransactionUsd) + " TON");
         this.estimatedRate.applyData("0 coins");
         this.initChildren();
     }
