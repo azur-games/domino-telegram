@@ -26,7 +26,7 @@ export class AddressBlock extends Sprite {
             fontWeight: "400",
             textPosition: new Point(40, -6),
             iconTextureName: "deposit/copy_icon",
-            iconPosition: new Point(-140, -4)
+            iconPosition: new Point(-120, -4)
         });
         this.checkTxButton = new CheckTxButton();
     }
