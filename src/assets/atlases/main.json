@@ -92,7 +92,7 @@
 },
 "common/active_button.png":
 {
-	"frame": {"x":679,"y":1884,"w":84,"h":84},
+	"frame": {"x":930,"y":1857,"w":84,"h":84},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":84,"h":84},
@@ -101,7 +101,7 @@
 },
 "common/back_button.png":
 {
-	"frame": {"x":321,"y":1955,"w":88,"h":84},
+	"frame": {"x":535,"y":1944,"w":88,"h":84},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":84},
@@ -129,7 +129,7 @@
 },
 "common/blue_btn.png":
 {
-	"frame": {"x":408,"y":1952,"w":86,"h":86},
+	"frame": {"x":752,"y":1884,"w":86,"h":86},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":86,"h":86},
@@ -138,7 +138,7 @@
 },
 "common/button_close.png":
 {
-	"frame": {"x":766,"y":1884,"w":84,"h":84},
+	"frame": {"x":1017,"y":1846,"w":84,"h":84},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":84,"h":84},
@@ -183,7 +183,7 @@
 },
 "common/ButtonRed.png":
 {
-	"frame": {"x":1117,"y":1726,"w":102,"h":102},
+	"frame": {"x":1117,"y":1734,"w":102,"h":102},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":102,"h":102},
@@ -192,7 +192,7 @@
 },
 "common/ButtonViolet.png":
 {
-	"frame": {"x":1244,"y":1583,"w":124,"h":124},
+	"frame": {"x":1244,"y":1589,"w":124,"h":124},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":124},
@@ -201,7 +201,7 @@
 },
 "common/currency_soft_crown.png":
 {
-	"frame": {"x":1109,"y":1589,"w":134,"h":132},
+	"frame": {"x":1109,"y":1597,"w":134,"h":132},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":134,"h":132},
@@ -238,7 +238,7 @@
 },
 "common/green_button.png":
 {
-	"frame": {"x":1019,"y":1846,"w":78,"h":78},
+	"frame": {"x":622,"y":1977,"w":78,"h":78},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
@@ -266,7 +266,7 @@
 },
 "common/icon_apple.png":
 {
-	"frame": {"x":1705,"y":1722,"w":42,"h":42},
+	"frame": {"x":887,"y":1961,"w":42,"h":42},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":42,"h":42},
@@ -275,7 +275,7 @@
 },
 "common/icon_facebook.png":
 {
-	"frame": {"x":1426,"y":1845,"w":51,"h":51},
+	"frame": {"x":304,"y":1895,"w":51,"h":51},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":51,"h":51},
@@ -284,8 +284,8 @@
 },
 "common/icon_google.png":
 {
-	"frame": {"x":1451,"y":1802,"w":39,"h":40},
-	"rotated": true,
+	"frame": {"x":887,"y":2006,"w":39,"h":40},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":39,"h":40},
 	"sourceSize": {"w":39,"h":40},
@@ -302,7 +302,7 @@
 },
 "common/notification_badge.png":
 {
-	"frame": {"x":1368,"y":1762,"w":80,"h":80},
+	"frame": {"x":1104,"y":1846,"w":80,"h":80},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":80},
@@ -374,7 +374,7 @@
 },
 "common/profiles.png":
 {
-	"frame": {"x":1237,"y":1534,"w":58,"h":46},
+	"frame": {"x":1300,"y":1534,"w":58,"h":46},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":58,"h":46},
@@ -383,7 +383,7 @@
 },
 "common/static_button.png":
 {
-	"frame": {"x":1371,"y":1678,"w":80,"h":81},
+	"frame": {"x":1371,"y":1684,"w":80,"h":81},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":81},
@@ -393,7 +393,7 @@
 },
 "common/white_btn.png":
 {
-	"frame": {"x":497,"y":1944,"w":86,"h":86},
+	"frame": {"x":841,"y":1872,"w":86,"h":86},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":86,"h":86},
@@ -411,7 +411,7 @@
 },
 "deposit/check_tx_bg.png":
 {
-	"frame": {"x":1222,"y":1726,"w":102,"h":102},
+	"frame": {"x":1222,"y":1734,"w":102,"h":102},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":102,"h":102},
@@ -448,7 +448,7 @@
 },
 "deposit/deposit_input_bg.png":
 {
-	"frame": {"x":588,"y":1904,"w":88,"h":88},
+	"frame": {"x":353,"y":1952,"w":88,"h":88},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":88},
@@ -457,7 +457,7 @@
 },
 "deposit/deposit_stages_frame.png":
 {
-	"frame": {"x":853,"y":1872,"w":80,"h":80},
+	"frame": {"x":1187,"y":1839,"w":80,"h":80},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":80},
@@ -467,7 +467,7 @@
 },
 "deposit/deposit_stages_step_icon.png":
 {
-	"frame": {"x":1480,"y":1844,"w":44,"h":44},
+	"frame": {"x":840,"y":1973,"w":44,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":44,"h":44},
@@ -485,7 +485,7 @@
 },
 "deposit/green_bg.png":
 {
-	"frame": {"x":1298,"y":1534,"w":46,"h":46},
+	"frame": {"x":304,"y":1949,"w":46,"h":46},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":46,"h":46},
@@ -495,7 +495,7 @@
 },
 "deposit/qr_bg.png":
 {
-	"frame": {"x":936,"y":1857,"w":80,"h":80},
+	"frame": {"x":1017,"y":1933,"w":80,"h":80},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":80},
@@ -523,7 +523,7 @@
 },
 "deposit/red_bg.png":
 {
-	"frame": {"x":1347,"y":1534,"w":46,"h":46},
+	"frame": {"x":1270,"y":1839,"w":46,"h":46},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":46,"h":46},
@@ -532,8 +532,8 @@
 },
 "deposit/renew_icon.png":
 {
-	"frame": {"x":304,"y":1895,"w":57,"h":52},
-	"rotated": true,
+	"frame": {"x":1361,"y":1534,"w":57,"h":52},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":57,"h":52},
 	"sourceSize": {"w":57,"h":52},
@@ -550,7 +550,7 @@
 },
 "deposit/time_icon.png":
 {
-	"frame": {"x":1494,"y":1802,"w":37,"h":38},
+	"frame": {"x":1368,"y":1768,"w":37,"h":38},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":38},
@@ -568,7 +568,7 @@
 },
 "deposit/ton_symbol.png":
 {
-	"frame": {"x":1454,"y":1709,"w":90,"h":90},
+	"frame": {"x":1327,"y":1809,"w":90,"h":90},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":90,"h":90},
@@ -577,7 +577,7 @@
 },
 "deposit/usdt_trc20_symbol.png":
 {
-	"frame": {"x":1117,"y":1831,"w":90,"h":90},
+	"frame": {"x":659,"y":1884,"w":90,"h":90},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":90,"h":90},
@@ -586,7 +586,7 @@
 },
 "deposit/yellow_bg.png":
 {
-	"frame": {"x":1396,"y":1534,"w":46,"h":46},
+	"frame": {"x":1270,"y":1888,"w":46,"h":46},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":46,"h":46},
@@ -595,7 +595,7 @@
 },
 "lobby/arrow.png":
 {
-	"frame": {"x":1371,"y":1583,"w":72,"h":92},
+	"frame": {"x":1371,"y":1589,"w":72,"h":92},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":72,"h":92},
@@ -604,7 +604,7 @@
 },
 "lobby/avatar_bg.png":
 {
-	"frame": {"x":230,"y":1961,"w":88,"h":88},
+	"frame": {"x":230,"y":2032,"w":88,"h":88},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":88},
@@ -631,7 +631,7 @@
 },
 "lobby/balance_bg.png":
 {
-	"frame": {"x":1368,"y":1845,"w":56,"h":55},
+	"frame": {"x":782,"y":1973,"w":56,"h":55},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":56,"h":55},
@@ -677,7 +677,7 @@
 },
 "lobby/dark_blue_frame.png":
 {
-	"frame": {"x":588,"y":1833,"w":68,"h":68},
+	"frame": {"x":230,"y":1961,"w":68,"h":68},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":68,"h":68},
@@ -686,7 +686,7 @@
 },
 "lobby/deposit_icon.png":
 {
-	"frame": {"x":1327,"y":1710,"w":39,"h":44},
+	"frame": {"x":1327,"y":1716,"w":39,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":39,"h":44},
@@ -695,7 +695,7 @@
 },
 "lobby/edit_icon.png":
 {
-	"frame": {"x":1547,"y":1788,"w":56,"h":56},
+	"frame": {"x":558,"y":2035,"w":56,"h":56},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":56,"h":56},
@@ -704,7 +704,7 @@
 },
 "lobby/green_bar.png":
 {
-	"frame": {"x":1048,"y":1534,"w":52,"h":60},
+	"frame": {"x":1111,"y":1534,"w":52,"h":60},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":52,"h":60},
@@ -714,7 +714,7 @@
 },
 "lobby/history_icon.png":
 {
-	"frame": {"x":1327,"y":1757,"w":38,"h":43},
+	"frame": {"x":1327,"y":1763,"w":38,"h":43},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":43},
@@ -732,7 +732,7 @@
 },
 "lobby/orange_bar.png":
 {
-	"frame": {"x":1111,"y":1534,"w":52,"h":60},
+	"frame": {"x":1174,"y":1534,"w":52,"h":60},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":52,"h":60},
@@ -741,7 +741,7 @@
 },
 "lobby/purple_bar.png":
 {
-	"frame": {"x":1174,"y":1534,"w":52,"h":60},
+	"frame": {"x":1237,"y":1534,"w":52,"h":60},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":52,"h":60},
@@ -806,7 +806,7 @@
 },
 "lobby/tab_blue.png":
 {
-	"frame": {"x":1210,"y":1831,"w":76,"h":76},
+	"frame": {"x":321,"y":2043,"w":76,"h":76},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":76},
@@ -816,7 +816,7 @@
 },
 "lobby/tab_green.png":
 {
-	"frame": {"x":1289,"y":1831,"w":76,"h":76},
+	"frame": {"x":400,"y":2043,"w":76,"h":76},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":76},
@@ -825,7 +825,7 @@
 },
 "lobby/tab_orange.png":
 {
-	"frame": {"x":1547,"y":1709,"w":76,"h":76},
+	"frame": {"x":479,"y":2043,"w":76,"h":76},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":76},
@@ -834,7 +834,7 @@
 },
 "lobby/tab_purple.png":
 {
-	"frame": {"x":1626,"y":1722,"w":76,"h":76},
+	"frame": {"x":703,"y":1977,"w":76,"h":76},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":76},
@@ -843,7 +843,7 @@
 },
 "lobby/withdraw_icon.png":
 {
-	"frame": {"x":1748,"y":1621,"w":36,"h":36},
+	"frame": {"x":1409,"y":1768,"w":36,"h":36},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":36,"h":36},
@@ -885,6 +885,43 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
 	"sourceSize": {"w":4,"h":4},
 	"anchor": {"x":0,"y":0}
+},
+"withdraw/currency_selection_bg.png":
+{
+	"frame": {"x":444,"y":1952,"w":88,"h":88},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":88},
+	"sourceSize": {"w":88,"h":88},
+	"anchor": {"x":0,"y":0},
+	"borders": {"left":40,"top":40,"right":40,"bottom":45}
+},
+"withdraw/max_amount_bg.png":
+{
+	"frame": {"x":588,"y":1833,"w":68,"h":68},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":68,"h":68},
+	"sourceSize": {"w":68,"h":68},
+	"anchor": {"x":0,"y":0}
+},
+"withdraw/selected_currency_icon.png":
+{
+	"frame": {"x":1048,"y":1534,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"anchor": {"x":0,"y":0}
+},
+"withdraw/ton_symbol_shadow.png":
+{
+	"frame": {"x":1454,"y":1709,"w":98,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":98,"h":98},
+	"sourceSize": {"w":98,"h":98},
+	"anchor": {"x":0,"y":0}
 }},
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
@@ -893,6 +930,6 @@
 	"format": "RGBA8888",
 	"size": {"w":4096,"h":4096},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:7cb171708662dd25a9353cfde8d29413:0f5049e76cd26af0b2f379f6cab8ddbe:6a9f103d27e61189ac8e58749d6f3c22$"
+	"smartupdate": "$TexturePacker:SmartUpdate:6ea9974a05643dfc1d1d12744755f52f:a110a0ea076464d5922d4d2217e65769:6a9f103d27e61189ac8e58749d6f3c22$"
 }
 }

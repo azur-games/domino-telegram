@@ -1,7 +1,6 @@
 import {Sprite} from "pixi.js";
 import {GameEvents} from "../../GameEvents";
 import {ProfileData} from "../../services/socket_service/socket_message_data/ProfileData";
-import {ChatEventMessage} from "../../services/socket_service/socket_message_data/user_events_message/ChatEventMessage";
 import {LevelUpEventMessage} from "../../services/socket_service/socket_message_data/user_events_message/LevelUpEventMessage";
 import {DialogPopupData} from "./popups_container/dialog_popup/DialogPopupData";
 import {DialogPopup} from "./popups_container/DialogPopup";
@@ -16,6 +15,7 @@ import {ProfilePopup} from "./popups_container/ProfilePopup";
 import {SettingsPopup} from "./popups_container/SettingsPopup";
 import {TutorialPopup} from "./popups_container/TutorialPopup";
 import {DepositPopup} from "./popups_container/DepositPopup";
+import {WithdrawPopup} from "./popups_container/WithdrawPopup";
 
 
 export class PopupsContainer extends Sprite {
@@ -29,6 +29,7 @@ export class PopupsContainer extends Sprite {
     private inputPopup: InputPopup;
     private maintenancePopup: MaintenancePopup;
     private depositPopup: DepositPopup;
+    private withdrawPopup: WithdrawPopup;
 
     constructor() {
         super();
@@ -52,6 +53,9 @@ export class PopupsContainer extends Sprite {
         addEventListener(GameEvents.CLOSE_MAINTENANCE_POPUP, this.onCloseMaintenancePopup.bind(this));
         addEventListener(GameEvents.OPEN_DEPOSIT_POPUP, this.onOpenDepositPopup.bind(this));
         addEventListener(GameEvents.CLOSE_DEPOSIT_POPUP, this.onCloseDepositPopup.bind(this));
+        addEventListener(GameEvents.OPEN_WITHDRAW_POPUP, this.onOpenWithdrawPopup.bind(this));
+        addEventListener(GameEvents.CLOSE_WITHDRAW_POPUP, this.onCloseWithdrawPopup.bind(this));
+        setTimeout(() => this.onOpenWithdrawPopup(), 300);
     }
 
     onOpenMaintenancePopup(): void {
@@ -246,6 +250,24 @@ export class PopupsContainer extends Sprite {
         this.removeChild(this.depositPopup);
         this.depositPopup.destroy();
         this.depositPopup = null;
+    }
+
+    onOpenWithdrawPopup(): void {
+        if (this.withdrawPopup) {
+            return;
+        }
+        this.withdrawPopup = new WithdrawPopup();
+        this.addChild(this.withdrawPopup);
+    }
+
+    async onCloseWithdrawPopup(): Promise<void> {
+        if (!this.withdrawPopup) {
+            return;
+        }
+        await this.withdrawPopup.show(false);
+        this.removeChild(this.withdrawPopup);
+        this.withdrawPopup.destroy();
+        this.withdrawPopup = null;
     }
 
 }

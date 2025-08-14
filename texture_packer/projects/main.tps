@@ -612,6 +612,7 @@
                 <false/>
             </struct>
             <key type="filename">../sources_belot/deposit/attention_sign.png</key>
+            <key type="filename">../sources_belot/withdraw/selected_currency_icon.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
@@ -1006,6 +1007,7 @@
                 <false/>
             </struct>
             <key type="filename">../sources_belot/lobby/dark_blue_frame.png</key>
+            <key type="filename">../sources_belot/withdraw/max_amount_bg.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
@@ -1278,6 +1280,36 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../sources_belot/withdraw/currency_selection_bg.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <true/>
+                <key>scale9Borders</key>
+                <rect>40,40,8,3</rect>
+                <key>scale9Paddings</key>
+                <rect>22,22,44,44</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sources_belot/withdraw/ton_symbol_shadow.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>25,25,49,49</rect>
+                <key>scale9Paddings</key>
+                <rect>25,25,49,49</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
         </map>
         <key>fileLists</key>
         <map type="SpriteSheetMap">
@@ -1290,6 +1322,7 @@
                     <filename>../sources_belot/common</filename>
                     <filename>../sources_belot/maintenance</filename>
                     <filename>../sources_belot/deposit</filename>
+                    <filename>../sources_belot/withdraw</filename>
                 </array>
             </struct>
         </map>

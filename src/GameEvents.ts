@@ -68,6 +68,8 @@ export class GameEvents extends FrameworkEvents {
     static CLOSE_INPUT_POPUP: string = "CLOSE_INPUT_POPUP";
     static OPEN_DEPOSIT_POPUP: string = "OPEN_DEPOSIT_POPUP";
     static CLOSE_DEPOSIT_POPUP: string = "CLOSE_DEPOSIT_POPUP";
+    static OPEN_WITHDRAW_POPUP: string = "OPEN_WITHDRAW_POPUP";
+    static CLOSE_WITHDRAW_POPUP: string = "CLOSE_WITHDRAW_POPUP";
     static FILTER_LOBBY_ROOMS: string = "FILTER_LOBBY_ROOMS";
     static LOBBY_ROOMS_TAB_CLICKED: string = "LOBBY_ROOMS_TAB_CLICKED";
     static DEPOSIT_CURRENCY_CHOSEN: string = "DEPOSIT_CURRENCY_CHOSEN";

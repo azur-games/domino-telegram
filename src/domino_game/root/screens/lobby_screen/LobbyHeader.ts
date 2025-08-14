@@ -101,7 +101,7 @@ export class LobbyHeader extends Sprite {
     }
 
     onWithdrawClick(): void {
-        console.log("withdraw clicked");
+        dispatchEvent(new MessageEvent(GameEvents.OPEN_WITHDRAW_POPUP));
     }
 
     onHistoryClick(): void {

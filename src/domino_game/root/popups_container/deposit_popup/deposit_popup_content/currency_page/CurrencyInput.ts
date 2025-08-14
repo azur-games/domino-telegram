@@ -80,7 +80,7 @@ export class CurrencyInput extends Sprite {
 
     tryToInput(value: string): void {
         const [digits, decimals] = value.split(".");
-        if (digits.length > this.maxDigitsLength || decimals.length > this.maxDecimalLength) {
+        if (digits?.length > this.maxDigitsLength || decimals?.length > this.maxDecimalLength) {
             let inputText = this.input.children.find(child => child instanceof Text) as Text;
             //@ts-ignore
             this.input.text = inputText.text.substr(0, value.length - 1);

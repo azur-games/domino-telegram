@@ -30,7 +30,8 @@ export class DepositPopupContent extends StageResizeListening {
 
     async init() {
         let id = PreloaderService.show();
-        this.rates = await SocketService.tonRates();
+        this.rates = {"ton2usdt": 3.45181717, "inUsdtToCoin": 75, "outUsdtToCoin": 100, "minTransactionUsd": 1, "addr": "EQAjSUug6JFtle0q14wO_oWT6xCLd8VAwqyWeM98r4pkOiS6"} as TonRates;
+        // this.rates = await SocketService.tonRates();
         DynamicData.tonRates = this.rates;
         PreloaderService.hide(id);
         this.createChildren();
