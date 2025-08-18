@@ -7,8 +7,12 @@ export class CurrencyConverter {
         return (usd / DynamicData.tonRates.ton2usdt).toFixed(2);
     }
 
-    static nanotonToUsd(nanoTon: number): string {
+    static nanotonToUSD(nanoTon: number): string {
         const nanoTonsBigJs = new Big(nanoTon);
         return nanoTonsBigJs.div(new Big(1000000000)).mul(new Big(DynamicData.tonRates.ton2usdt)).toFixed(2);
+    }
+
+    static coinsToUSD(coins: number): string {
+        return (DynamicData.myProfile.coins / DynamicData.tonRates.outUsdtToCoin).toFixed(2);
     }
 }

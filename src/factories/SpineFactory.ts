@@ -1,8 +1,5 @@
 import {ISkeletonData, Spine} from "pixi-spine";
-import {CatAnimation} from "@azur-games/pixi-vip-framework";
-import {LoaderService} from "@azur-games/pixi-vip-framework";
-import {LobbySpineName} from "./spine_factory/LobbySpineName";
-import {WheelAnimation} from "./spine_factory/WheelAnimation";
+import {CatAnimation, LoaderService} from "@azur-games/pixi-vip-framework";
 
 
 export class SpineFactory {
@@ -19,7 +16,7 @@ export class SpineFactory {
     }
 
     static createCat(animation: CatAnimation): Spine {
-        let spineData: ISkeletonData = LoaderService.loader.resources["all_cats"]!.spineData;
+        let spineData: ISkeletonData = LoaderService.loader.resources["cats"]!.spineData;
         let spine: Spine = new Spine(spineData);
         spine.state.setAnimation(0, animation, true);
         return spine;

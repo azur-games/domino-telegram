@@ -1,8 +1,8 @@
 import {BaseScreen} from "./BaseScreen";
 import {LobbyBackground} from "./lobby_screen/LobbyBackground";
 import {LobbyHeader} from "./lobby_screen/LobbyHeader";
-import {ScreenType} from "./ScreenType";
 import {LobbyRooms} from "./lobby_screen/LobbyRooms";
+import {ScreenType} from "./ScreenType";
 
 
 export class LobbyScreen extends BaseScreen {

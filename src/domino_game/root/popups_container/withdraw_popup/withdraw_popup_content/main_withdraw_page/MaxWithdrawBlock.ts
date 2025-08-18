@@ -1,56 +1,22 @@
-import {DisplayObjectFactory, LanguageText, NumberUtils, Pivot} from "@azur-games/pixi-vip-framework";
-import {NineSlicePlane, Sprite} from "pixi.js";
+import {Button, NumberUtils} from "@azur-games/pixi-vip-framework";
+import {Point} from "pixi.js";
 
 
-export class MaxWithdrawBlock extends Sprite {
-    private background: NineSlicePlane;
-    private maxText: LanguageText;
+export class MaxWithdrawBlock extends Button {
 
-    constructor() {
-        super();
-        this.createChildren();
-        this.addChildren();
-        this.initChildren();
-    }
-
-    createChildren() {
-        this.background = DisplayObjectFactory.createNineSlicePlane("withdraw/max_amount_bg", 33, 33, 33, 33);
-        this.maxText = new LanguageText({
-            key: "",
+    constructor(callback: Function) {
+        super({
+            callback,
+            bgTextureName: "withdraw/max_amount_bg",
+            bgCornersSize: 33,
+            bgSizes: new Point(208, 72),
             fontSize: 28,
             fontWeight: "400",
-            fill: 0xFFFFFF
+            textKey: "MAX:"
         });
     }
 
-    addChildren() {
-        this.addChild(this.background);
-        this.addChild(this.maxText);
-    }
-
-    initChildren() {
-        this.background.width = 208;
-        this.background.height = 72;
-
-        Pivot.center(this.background);
-        Pivot.center(this.maxText);
-    }
-
-    updateMaxAmount(maxAmount: string) {
-        console.log("LOG: updateMaxAmount", maxAmount);
-        this.maxText.changeText(`MAX: $${NumberUtils.shortPriceFormat(parseInt(maxAmount), 2)}`);
-    }
-
-    destroy() {
-        this.removeChild(this.background);
-        this.removeChild(this.maxText);
-
-        this.background.destroy();
-        this.maxText.destroy();
-
-        this.background = null;
-        this.maxText = null;
-
-        super.destroy();
+    updateMaxAmount(maxAmount: number) {
+        this.languageText.changeText(`MAX: $${NumberUtils.shortPriceFormat(maxAmount, 2)}`);
     }
 }

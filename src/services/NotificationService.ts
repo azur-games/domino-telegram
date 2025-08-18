@@ -5,7 +5,7 @@ import {TonPurchasedData} from "./socket_service/socket_message_data/TonPurchase
 
 export class NotificationService {
     static showDepositSuccess(data: TonPurchasedData) {
-        dispatchEvent(new MessageEvent(GameEvents.OPEN_INFO_POPUP, {data: {titleText: "Success", infoText: "You have received a $" + CurrencyConverter.nanotonToUsd(parseInt(data.nanotons))}}));
+        dispatchEvent(new MessageEvent(GameEvents.OPEN_INFO_POPUP, {data: {titleText: "Success", infoText: "You have received a $" + CurrencyConverter.nanotonToUSD(parseInt(data.nanotons))}}));
     }
 
     static showNoTxFound() {

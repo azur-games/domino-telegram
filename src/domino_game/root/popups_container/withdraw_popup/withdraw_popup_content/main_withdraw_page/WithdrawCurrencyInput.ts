@@ -1,20 +1,25 @@
 import {DisplayObjectFactory, Pivot, LanguageText, TonRates, NumberUtils} from "@azur-games/pixi-vip-framework";
 import {TextInput} from "pixi-textinput-v5";
 import {NineSlicePlane, Sprite, Text} from "pixi.js";
+import {DynamicData} from "../../../../../../DynamicData";
+import {WithdrawInputAmountChange} from "../../../../../../game_events/WithdrawInputAmountChange";
 import {Settings} from "../../../../../../Settings";
+import {CurrencyConverter} from "../../../../../../utils/CurrencyConverter";
 import {MaxWithdrawBlock} from "./MaxWithdrawBlock";
 
 
 export class WithdrawCurrencyInput extends Sprite {
     private maxDigitsLength: number = 5;
-    private maxDecimalLength: number = 8;
+    private maxDecimalLength: number = 2;
     private background: NineSlicePlane;
     private dollarSign: LanguageText;
     private input: TextInput;
     private minAmountText: LanguageText;
     private maxWithdrawBlock: MaxWithdrawBlock;
+    private maxAmount: number;
+    private minAmount: number;
 
-    constructor(private callback: (inputValue: number) => void) {
+    constructor() {
         super();
         this.createChildren();
         this.addChildren();
@@ -52,7 +57,7 @@ export class WithdrawCurrencyInput extends Sprite {
             fill: 0x475F9B
         });
 
-        this.maxWithdrawBlock = new MaxWithdrawBlock();
+        this.maxWithdrawBlock = new MaxWithdrawBlock(this.onMaxClick.bind(this));
     }
 
     addChildren(): void {
@@ -85,27 +90,38 @@ export class WithdrawCurrencyInput extends Sprite {
         this.maxWithdrawBlock.x = 330;
     }
 
+    onMaxClick(): void {
+        //@ts-ignore
+        this.input.text = this.maxAmount.toString();
+        this.tryToInput(this.maxAmount.toString());
+    }
+
     tryToInput(value: string): void {
-        const [digits, decimals] = value.split(".");
+        let cleanValue = value.replace(/[^\d+\.?\d*$]/, '');
+        const cleanValueNumber = parseFloat(cleanValue);
+        const [digits, decimals] = cleanValue.split(".");
         if (digits?.length > this.maxDigitsLength || decimals?.length > this.maxDecimalLength) {
+            cleanValue = cleanValue.substring(0, cleanValue.length - 1);
             let inputText = this.input.children.find(child => child instanceof Text) as Text;
             //@ts-ignore
             this.input.text = inputText.text.substr(0, value.length - 1);
         }
-        const cleanValue = value.replace(/[^\d+\.?\d*$]/, '');
         //@ts-ignore
         this.input.text = cleanValue;
-        console.log(cleanValue);
-        this.callback(parseFloat(cleanValue));
+        if (isNaN(cleanValueNumber) || cleanValueNumber > this.maxAmount || this.minAmount > cleanValueNumber) {
+            dispatchEvent(new WithdrawInputAmountChange({amount: ""}));
+            return;
+        }
+
+        const coins = Math.trunc(parseFloat(cleanValue) * DynamicData.tonRates.outUsdtToCoin);
+        dispatchEvent(new WithdrawInputAmountChange({amount: coins.toString()}));
     }
 
     applyData(rates: TonRates) {
-        this.maxWithdrawBlock.updateMaxAmount(rates.minTransactionUsd.toString());
+        this.maxAmount = parseFloat(CurrencyConverter.coinsToUSD(DynamicData.myProfile.coins));
+        this.minAmount = rates.minTransactionUsd;
+        this.maxWithdrawBlock.updateMaxAmount(this.maxAmount);
         this.minAmountText.changeText("Min amount: $" + NumberUtils.shortPriceFormat(rates.minTransactionUsd, 2), false);
-    }
-
-    getValue(): number {
-        return parseFloat(this.input.text.toString()) || 0;
     }
 
     destroy(): void {
