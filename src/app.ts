@@ -9,6 +9,7 @@ import {DynamicData} from "./DynamicData";
 import {GameEvents} from "./GameEvents";
 import {LilGui} from "./LilGui";
 import {LazyLoader} from "./services/loader_service/LazyLoader";
+import {SentryService} from "./services/SentryService";
 import {ServerService} from "./services/ServerService";
 import {SocketService} from "./services/SocketService";
 import {Settings} from "./Settings";
@@ -127,6 +128,7 @@ export class DominoGame implements IGame {
 
     private appCreate(): void {
         console.log("version 4");
+        SentryService.init();
         DominoGame.instance.app = new PIXI.Application({
             autoDensity: true,
             //backgroundColor: 0x0,
