@@ -8,7 +8,7 @@ import {InfoPopupData} from "./InfoPopupData";
 
 export class InfoPopupContent extends Sprite {
     private background: NineSlicePlane;
-    private infoTextBackground: NineSlicePlane;
+    private titleBackground: NineSlicePlane;
     private title: LanguageText;
     private info: LanguageText;
 
@@ -24,49 +24,50 @@ export class InfoPopupContent extends Sprite {
     }
 
     createChildren(): void {
-        this.background = DisplayObjectFactory.createNineSlicePlane("deposit/qr_bg", 20, 20, 20, 20);
-        this.infoTextBackground = DisplayObjectFactory.createNineSlicePlane("lobby/avatar_bg", 36, 36, 36, 36);
-        this.title = new LanguageText({key: this.data.titleText, fontSize: 60, fill: 0xffffff, autoFitWidth: 800});
-        this.info = new LanguageText({key: this.data.infoText, fontSize: 40, fill: 0x7BA2FF, autoFitWidth: 740});
+        this.background = DisplayObjectFactory.createNineSlicePlane("common/notification_bg", 47, 47, 47, 47);
+        this.titleBackground = DisplayObjectFactory.createNineSlicePlane("common/notification_header_bg", 50, 50, 50, 50);
+        this.title = new LanguageText({key: this.data.titleText, fontSize: 56, fill: 0xffffff, autoFitWidth: 550});
+        this.info = new LanguageText({key: this.data.infoText, fontSize: 40, fill: 0x83A1F8, autoFitWidth: 550});
     }
 
     addChildren(): void {
         this.addChild(this.background);
-        this.addChild(this.infoTextBackground);
+        this.addChild(this.titleBackground);
         this.addChild(this.title);
         this.addChild(this.info);
     }
 
     initChildren(): void {
-        this.background.width = 960;
-        this.background.height = 440;
-        this.infoTextBackground.width = 800;
-        this.infoTextBackground.height = 200;
+        this.background.width = 600;
+        this.background.height = 530;
+        this.titleBackground.width = 600;
+        this.titleBackground.height = 112;
 
         Pivot.center(this.background);
-        Pivot.center(this.infoTextBackground);
+        Pivot.center(this.titleBackground);
         Pivot.center(this.title);
         Pivot.center(this.info);
 
-        this.title.y = -140;
-        this.info.y = this.infoTextBackground.y = 40;
+        this.titleBackground.y = this.title.y = -208;
+
+        this.info.y = 56 - (this.info.height);
     }
 
     destroy(): void {
         this.data = null;
 
         this.removeChild(this.background);
-        this.removeChild(this.infoTextBackground);
+        this.removeChild(this.titleBackground);
         this.removeChild(this.title);
         this.removeChild(this.info);
 
         this.background.destroy();
-        this.infoTextBackground.destroy();
+        this.titleBackground.destroy();
         this.title.destroy();
         this.info.destroy();
 
         this.background = null;
-        this.infoTextBackground = null;
+        this.titleBackground = null;
         this.title = null;
         this.info = null;
 

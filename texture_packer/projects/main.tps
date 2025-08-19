@@ -350,6 +350,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../sources_belot/common/check_icon.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>22,15,43,30</rect>
+                <key>scale9Paddings</key>
+                <rect>22,15,43,30</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../sources_belot/common/currency_soft_crown.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -531,6 +546,36 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../sources_belot/common/notification_bg.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <true/>
+                <key>scale9Borders</key>
+                <rect>47,25,6,50</rect>
+                <key>scale9Paddings</key>
+                <rect>25,25,50,50</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sources_belot/common/notification_header_bg.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>50,50,12,11</rect>
+                <key>scale9Paddings</key>
+                <rect>28,28,56,56</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../sources_belot/common/preloader/0.png</key>
             <key type="filename">../sources_belot/common/preloader/1.png</key>
             <key type="filename">../sources_belot/common/preloader/3.png</key>
@@ -608,21 +653,6 @@
                 <rect>22,40,43,6</rect>
                 <key>scale9Paddings</key>
                 <rect>22,22,43,43</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../sources_belot/deposit/Withdraw_3.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0,0</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>270,480,540,960</rect>
-                <key>scale9Paddings</key>
-                <rect>270,480,540,960</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

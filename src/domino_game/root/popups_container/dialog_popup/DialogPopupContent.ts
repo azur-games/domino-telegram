@@ -6,10 +6,9 @@ import {DialogPopupData} from "./DialogPopupData";
 
 export class DialogPopupContent extends Sprite {
     private background: NineSlicePlane;
-    private promptTextBackground: NineSlicePlane;
+    private titleBackground: NineSlicePlane;
     private title: LanguageText;
-    private closeButton: Button;
-    private prompt: Sprite;
+    private content: Sprite;
     private yesButton: Button;
     private noButton: Button;
 
@@ -35,20 +34,20 @@ export class DialogPopupContent extends Sprite {
     }
 
     createChildren(): void {
-        this.background = DisplayObjectFactory.createNineSlicePlane("common/frame_window_2", 68, 250, 68, 250);
-        this.promptTextBackground = DisplayObjectFactory.createNineSlicePlane("common/frame_window_inner", 64, 64, 64, 64);
-        this.title = new LanguageText({key: this.data.titleText, fontSize: 60, fill: 0xab8e70, autoFitWidth: 800});
-        this.closeButton = new Button({callback: this.onCancel.bind(this)});
-        this.prompt = this.data.prompt;
+        this.background = DisplayObjectFactory.createNineSlicePlane("common/notification_bg", 47, 47, 47, 47);
+        this.titleBackground = DisplayObjectFactory.createNineSlicePlane("common/notification_header_bg", 50, 50, 50, 50);
+        this.title = new LanguageText({key: this.data.titleText, fontSize: 56, fill: 0xffffff, autoFitWidth: 550});
+        this.content = this.data.content;
         this.yesButton = new Button({
             callback: this.onConfirm.bind(this),
             textKey: this.data.yesText,
-            bgTextureName: "common/ButtonGreen",
-            bgCornersSize: 52,
-            bgSizes: new Point(370, 75),
-            fontSize: 32,
-            textPosition: new Point(0, -4),
-            autoFitWidth: 250
+            bgTextureName: "common/green_button",
+            bgCornersSize: 34,
+            bgSizes: new Point(203, 96),
+            fontSize: 40,
+            fontWeight: "400",
+            textPosition: new Point(0, -6),
+            autoFitWidth: 180
         });
         if (this.data.okButtonOnly) {
             return;
@@ -66,35 +65,27 @@ export class DialogPopupContent extends Sprite {
 
     addChildren(): void {
         this.addChild(this.background);
-        this.addChild(this.promptTextBackground);
+        this.addChild(this.titleBackground);
         this.addChild(this.title);
-        this.addChild(this.closeButton);
-        this.addChild(this.prompt);
+        this.addChild(this.content);
         this.addChild(this.yesButton);
         this.data.okButtonOnly || this.addChild(this.noButton);
     }
 
     initChildren(): void {
-        this.background.width = 960;
-        this.background.height = 580;
-        this.promptTextBackground.width = 800;
-        this.promptTextBackground.height = 200;
+        this.background.width = 600;
+        this.background.height = 530;
+        this.titleBackground.width = 600;
+        this.titleBackground.height = 112;
 
         Pivot.center(this.background);
-        Pivot.center(this.promptTextBackground);
+        Pivot.center(this.titleBackground);
         Pivot.center(this.title);
-        Pivot.center(this.closeButton);
-        Pivot.center(this.prompt);
+        Pivot.center(this.content);
 
-        this.background.y = 30;
-        this.title.y = -150;
-        this.prompt.y = this.promptTextBackground.y = 20;
-        this.closeButton.y = -175;
-        this.closeButton.x = 360;
+        this.titleBackground.y = this.title.y = -208;
 
         this.yesButton.y = 200;
-        this.yesButton.languageText.style.stroke = 0x168742;
-        this.yesButton.languageText.style.strokeThickness = 6;
         this.yesButton.backgroundImage.width = Math.max(this.yesButton.languageText.width + 40, this.yesButton.backgroundImage.width);
         Pivot.center(this.yesButton.backgroundImage);
 
@@ -117,22 +108,19 @@ export class DialogPopupContent extends Sprite {
 
         this.removeChild(this.background);
         this.removeChild(this.title);
-        this.removeChild(this.closeButton);
-        this.removeChild(this.prompt);
+        this.removeChild(this.content);
         this.removeChild(this.yesButton);
         this.removeChild(this.noButton);
 
         this.background.destroy();
         this.title.destroy();
-        this.closeButton.destroy();
-        this.prompt.destroy();
+        this.content.destroy();
         this.yesButton.destroy();
         this.noButton?.destroy();
 
         this.background = null;
         this.title = null;
-        this.closeButton = null;
-        this.prompt = null;
+        this.content = null;
         this.yesButton = null;
         this.noButton = null;
 

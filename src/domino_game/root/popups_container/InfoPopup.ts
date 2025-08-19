@@ -6,7 +6,7 @@ import {InfoPopupData} from "./info_popup/InfoPopupData";
 
 export class InfoPopup extends BasePopup<InfoPopupContent> {
     constructor(data: InfoPopupData) {
-        super({overlayAlpha: .8, animationType: PopupAnimation.FADE_IN});
+        super({overlayAlpha: .85, animationType: PopupAnimation.FADE_IN});
         this.content = new InfoPopupContent(data);
         this.addChild(this.content);
         this.initChildren();

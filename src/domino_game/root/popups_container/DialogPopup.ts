@@ -5,7 +5,7 @@ import {DialogPopupData} from "./dialog_popup/DialogPopupData";
 
 export class DialogPopup extends BasePopup<DialogPopupContent> {
     constructor(data: DialogPopupData) {
-        super({overlayAlpha: .2, clickable: data.closable});
+        super({overlayAlpha: .85, clickable: data.closable});
         this.content = new DialogPopupContent(data);
         this.addChild(this.content);
         this.initChildren();
