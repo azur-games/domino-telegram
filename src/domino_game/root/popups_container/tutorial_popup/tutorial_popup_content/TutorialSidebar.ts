@@ -19,7 +19,7 @@ export class TutorialSidebar extends Sprite {
 
     createChildren(): void {
         this.howToPlayText = new LanguageText({key: "TutorialWindow/how-to-play", fontSize: 36, fill: 0xDFC1FF});
-        this.background = DisplayObjectFactory.createSprite("friends/bg_menu");
+        this.background = DisplayObjectFactory.createSprite("common/bg_menu");
         this.tabs = new TutorialSidebarTabs();
     }
 

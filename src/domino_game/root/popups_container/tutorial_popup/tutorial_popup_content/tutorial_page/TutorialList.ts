@@ -1,9 +1,8 @@
 import {NineSlicePlane, Point} from "pixi.js";
 import {ScrollContainer} from "@azur-games/pixi-vip-framework";
-import {DisplayObjectFactory} from "@azur-games/pixi-vip-framework"
+import {DisplayObjectFactory} from "@azur-games/pixi-vip-framework";
 
-
-import {Pivot} from "@azur-games/pixi-vip-framework"
+import {Pivot} from "@azur-games/pixi-vip-framework";
 import {TutorialListItem} from "./TutorialListItem";
 
 
@@ -16,7 +15,7 @@ export class TutorialList extends ScrollContainer<TutorialListItem> {
             maskSizes: new Point(960, 595),
             maskPosition: new Point(0, 278),
             bottomMargin: 60,
-            scrollBarTexture: "messages/scrollbar_bg"
+            scrollBarTexture: "common/scrollbar_bg"
         });
         this.createChildren();
         this.addChildren();
@@ -25,7 +24,7 @@ export class TutorialList extends ScrollContainer<TutorialListItem> {
 
     createChildren(): void {
         this.topGradient = DisplayObjectFactory.createNineSlicePlane("tutorial/top_list_gradient", 40, 24, 40, 24);
-        this.bottomGradient = DisplayObjectFactory.createNineSlicePlane("messages/bottom_gradient", 25, 45, 25, 25);
+        this.bottomGradient = DisplayObjectFactory.createNineSlicePlane("common/bottom_gradient", 25, 45, 25, 25);
     }
 
     addChildren(): void {

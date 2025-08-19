@@ -114,7 +114,7 @@ export class TutorialPage extends Sprite {
     }
 
     createChildren(): void {
-        this.background = DisplayObjectFactory.createNineSlicePlane("friends/page_bg", 30, 30, 30, 30);
+        this.background = DisplayObjectFactory.createNineSlicePlane("common/page_bg", 30, 30, 30, 30);
         this.list = new TutorialList();
     }
 

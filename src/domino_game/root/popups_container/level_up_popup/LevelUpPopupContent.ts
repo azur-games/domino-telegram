@@ -57,7 +57,7 @@ export class LevelUpPopupContent extends AppearanceContainer {
         this.levelText = new LanguageText({key: this.eventMessageData.body.level.toString(), fontSize: 122});
         this.levelUpTextBg = DisplayObjectFactory.createNineSlicePlane("level_up/gradient", 600, 18, 600, 18);
         this.levelUpText = new LanguageText({key: "LevelUpWindow/title", fontSize: 120, fill: [0xFEFFC6, 0xFCFF62, 0xFFC708, 0xF08801]});
-        this.shine = new Shine("wheel/blue_light", "wheel/reward_star");
+        this.shine = new Shine("level_up/blue_light", "level_up/reward_star");
         this.shineMask = GraphicsFactory.createRect(-450, 0, 900, 600);
         this.rewardText = new LanguageText({key: "LevelUpWindow/reward", fontSize: 40});
         this.coinsAmountText = new LanguageText({key: this.eventMessageData.body.coins.toString(), fontSize: 92, fill: [0xFFF500, 0xFF9B05]});

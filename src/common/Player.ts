@@ -27,8 +27,8 @@ export class Player extends ButtonBase {
     createChildren(): void {
         this.background = DisplayObjectFactory.createNineSlicePlane("lobby/avatar_frame", 50, 50, 50, 50);
         this.avatarMask = GraphicsFactory.createRoundedRect(0, 0, this.avatarSize, this.avatarSize, 32);
-        this.onlineIcon = DisplayObjectFactory.createSprite("friends/icon_online");
-        this.facebookIcon = DisplayObjectFactory.createSprite("friends/icon_facebook_round");
+        this.onlineIcon = DisplayObjectFactory.createSprite("common/icon_online");
+        this.facebookIcon = DisplayObjectFactory.createSprite("common/icon_facebook_round");
         this.level = new PlayerLevel();
     }
 
@@ -90,7 +90,7 @@ export class Player extends ButtonBase {
     }
 
     updateOnlineIcon(online: boolean) {
-        this.onlineIcon.texture = LoaderService.getTexture("friends/icon_" + (online ? "online" : "offline"));
+        this.onlineIcon.texture = LoaderService.getTexture("common/icon_" + (online ? "online" : "offline"));
     }
 
     get totalWidth(): number {

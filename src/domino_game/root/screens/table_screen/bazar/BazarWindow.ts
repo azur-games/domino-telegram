@@ -33,7 +33,7 @@ export class BazarWindow extends ScreenCovering {
     createChildren(): void {
         this.title = new LanguageText({key: "Boneyard/title", fontSize: 28, placeholders: []});
         this.bottomBackground = DisplayObjectFactory.createNineSlicePlane("common/bg_violet", 48, 48, 48, 48);
-        this.topBackground = DisplayObjectFactory.createNineSlicePlane("friends/page_bg", 30, 30, 30, 30);
+        this.topBackground = DisplayObjectFactory.createNineSlicePlane("common/page_bg", 30, 30, 30, 30);
         this.bazarItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((i) => new BazarItem(i));
         this.bazarAbsentVals = new BazarAbsentVals();
     }

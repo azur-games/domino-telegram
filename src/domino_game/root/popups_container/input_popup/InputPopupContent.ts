@@ -54,7 +54,7 @@ export class InputPopupContent extends Sprite {
     createChildren() {
         this.background = DisplayObjectFactory.createNineSlicePlane("common/frame_window_2", 68, 250, 68, 250);
         this.title = new LanguageText({key: this.data.titleText, fontSize: 60, fill: 0xab8e70, autoFitWidth: 800});
-        this.inputBackground = DisplayObjectFactory.createNineSlicePlane("friends/input_bg", 34, 34, 34, 34);
+        this.inputBackground = DisplayObjectFactory.createNineSlicePlane("common/input_bg", 34, 34, 34, 34);
         this.input = new TextInput({
             multiline: false,
             input: {
