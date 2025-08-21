@@ -95,7 +95,7 @@ export class DepositCurrencyPage extends Sprite {
             this.estimatedRate.applyData("0 coins");
             return;
         }
-        const rate = (inputValue * this.rates.inUsdtToCoin * this.rates.ton2usdt).toFixed(0);
+        const rate = (inputValue * this.rates.inUsdtToCoin).toFixed(0);
         this.estimatedRate.applyData(rate + " coins");
     }
 
@@ -107,7 +107,7 @@ export class DepositCurrencyPage extends Sprite {
         this.input.applyData(rates);
         this.qrCodeBlock.applyData(rates.addr);
         this.addressBlock.applyData(rates.addr);
-        this.minAmount.applyData(CurrencyConverter.usdToTon(this.rates.minTransactionUsd) + " TON");
+        this.minAmount.applyData("$" + this.rates.minTransactionUsd);
         this.estimatedRate.applyData("0 coins");
         this.initChildren();
     }

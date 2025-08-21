@@ -14,7 +14,7 @@ import {ServerService} from "./services/ServerService";
 import {SocketService} from "./services/SocketService";
 import {Settings} from "./Settings";
 import {Settings3D} from "./utils/Settings3D";
-import {Framework, IGame, FrameworkConfig, Device, LocalStorageService, FrameworkLocalStorageNames} from "@azur-games/pixi-vip-framework";
+import {Framework, IGame, FrameworkConfig, Device, LocalStorageService, FrameworkLocalStorageNames, TonRates} from "@azur-games/pixi-vip-framework";
 import {BlurFilter} from "@pixi/filter-blur";
 
 
@@ -127,7 +127,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 4");
+        console.log("version 10");
         SentryService.init();
         DominoGame.instance.app = new PIXI.Application({
             autoDensity: true,
@@ -159,6 +159,7 @@ export class DominoGame implements IGame {
 
         await Framework.mainAuthLoop();
 
+        await DynamicData.init();
         await DominoGame.instance.root.screens.gameSync(DynamicData.socketGameRequest);
         DominoGame.instance.hideMainPreloader();
         LilGui.init();

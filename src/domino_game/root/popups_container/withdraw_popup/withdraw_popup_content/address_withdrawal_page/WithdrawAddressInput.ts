@@ -1,4 +1,4 @@
-import {DisplayObjectFactory, Pivot, LanguageText, TonRates, NumberUtils, Button} from "@azur-games/pixi-vip-framework";
+import {DisplayObjectFactory, Pivot, LanguageText, TonRates, NumberUtils, Button, PlatformService, TelegramApi} from "@azur-games/pixi-vip-framework";
 import {TextInput} from "pixi-textinput-v5";
 import {NineSlicePlane, Sprite, Text} from "pixi.js";
 import {WithdrawInputAddressChange} from "../../../../../../game_events/WithdrawInputAddressChange";
@@ -68,8 +68,9 @@ export class WithdrawAddressInput extends Sprite {
         this.qrButton.x = 430;
     }
 
-    onQrButtonClick(): void {
-
+    async onQrButtonClick(): Promise<void> {
+        let result = await (PlatformService.platformApi as TelegramApi).scanQR();
+        this.tryToInput(result);
     }
 
     tryToInput(value: string): void {

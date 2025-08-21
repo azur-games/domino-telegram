@@ -1,5 +1,6 @@
 import {Point} from "pixi.js";
 import {ScrollContainer} from "@azur-games/pixi-vip-framework";
+import {DynamicData} from "../../../../../DynamicData";
 import {FilterLobbyRooms, FilterLobbyRoomsPayload} from "../../../../../game_events/FilterLobbyRooms";
 import {GameEvents} from "../../../../../GameEvents";
 import {SocketGameConfig} from "../../../../../services/socket_service/socket_message_data/SocketGameConfig";
@@ -8,6 +9,10 @@ import {RoomsListItem} from "./rooms_list/RoomsListItem";
 
 
 export class RoomsList extends ScrollContainer<RoomsListItem> {
+    static isThisRoomAvailable(room: SocketGameConfig): boolean {
+        return room.minLevel <= DynamicData.myProfile.level && room.minBalanceCoins <= DynamicData.myProfile.coins;
+    }
+
     private onRoomsFilterBindThis: (e: FilterLobbyRooms) => void;
 
     constructor() {
@@ -24,13 +29,21 @@ export class RoomsList extends ScrollContainer<RoomsListItem> {
 
     onRoomsFilter(e: FilterLobbyRooms): void {
         const {isSitNow, gameType}: FilterLobbyRoomsPayload = e.detail;
-        const filteredRooms: SocketGameConfig[] = gameType ? StaticData.gamesConfig.filter(room => room.gameType === gameType) : StaticData.gamesConfig;
+
+        let filteredRooms: SocketGameConfig[] = !!gameType
+            ? StaticData.gamesConfig.filter((room) => room.gameType === gameType)
+            : StaticData.gamesConfig;
+
+        if (isSitNow) {
+            filteredRooms = filteredRooms.filter(RoomsList.isThisRoomAvailable);
+        }
+
         this.createRooms(filteredRooms);
         this.scrollToTop();
     }
 
     createRooms(roomsConfig: SocketGameConfig[]): void {
-        this.createList(roomsConfig.map(data => new RoomsListItem(data)), 90);
+        this.createList(roomsConfig.map(data => new RoomsListItem(data, RoomsList.isThisRoomAvailable(data))), 90);
         this.list.scrollable = false;
     }
 

@@ -8,6 +8,7 @@ import {ProfileData} from "./services/socket_service/socket_message_data/Profile
 import {GameMode} from "./services/socket_service/socket_message_data/socket_game_config/GameMode";
 import {UserEventMessage} from "./services/socket_service/socket_message_data/UserEventMessage";
 import {WheelConfig} from "./services/socket_service/socket_message_data/WheelConfig";
+import {SocketService} from "./services/SocketService";
 
 
 export class DynamicData {
@@ -22,6 +23,10 @@ export class DynamicData {
     static wheelResponseTime: number;
     static userEventsMessages: UserEventMessage[];
     static exitPlayer: SitPlace;
+
+    static async init() {
+        DynamicData.tonRates = await SocketService.tonRates();
+    }
 
     static get fives(): boolean {
         return DynamicData.socketGameRequest.mode == GameMode.FIVES;

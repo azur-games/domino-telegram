@@ -11,9 +11,9 @@ export class LilGui {
     private static gui: GUI;
 
     static async init(): Promise<void> {
-        if (GameConfig.environment != Environment.DEV) {
-            return;
-        }
+        // if (GameConfig.environment != Environment.DEV) {
+        //     return;
+        // }
         CommandService.init();
         LilGui.gui = new GUI();
         Player.addToGui(LilGui.gui);

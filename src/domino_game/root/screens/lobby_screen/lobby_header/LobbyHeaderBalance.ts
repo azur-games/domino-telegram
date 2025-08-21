@@ -1,5 +1,7 @@
 import {Sprite} from "pixi.js";
 import {LanguageText} from "@azur-games/pixi-vip-framework";
+import {DynamicData} from "../../../../../DynamicData";
+import {CurrencyConverter} from "../../../../../utils/CurrencyConverter";
 
 
 export class LobbyHeaderBalance extends Sprite {
@@ -37,7 +39,7 @@ export class LobbyHeaderBalance extends Sprite {
     }
 
     setBalance(coins: number) {
-        this.balanceText.text = coins.toString();
+        this.balanceText.text = CurrencyConverter.coinsToUSD(coins);
     }
 
     destroy(): void {

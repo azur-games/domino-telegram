@@ -63,7 +63,7 @@ export class CurrencyInput extends Sprite {
 
     initChildren(): void {
         //@ts-ignore
-        this.input.placeholder = "Enter TON amount";
+        this.input.placeholder = "Enter amount";
         this.input._placeholderColor = 0x38508C;
         this.background.width = this.focusBackground.width = 960;
         this.background.height = this.focusBackground.height = 94;
@@ -93,8 +93,8 @@ export class CurrencyInput extends Sprite {
     }
 
     deposit() {
-        console.log("deposit --> ", this.input.text.toString());
-        const coins = (parseFloat(this.input.text.toString()) * this.rates.inUsdtToCoin * this.rates.ton2usdt).toFixed();
+        const coins = (parseFloat(this.input.text.toString()) * this.rates.inUsdtToCoin).toFixed();
+        console.log("deposit --> ", coins);
         (PlatformService.platformApi as TelegramApi).tonDeposit(coins);
     }
 

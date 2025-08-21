@@ -6,6 +6,7 @@ import {DisplayObjectFactory} from "@azur-games/pixi-vip-framework";
 import {GameEvents} from "../../../../GameEvents";
 import {NumberUtils} from "@azur-games/pixi-vip-framework";
 import {Pivot} from "@azur-games/pixi-vip-framework";
+import {CurrencyConverter} from "../../../../utils/CurrencyConverter";
 
 
 export class Balance extends Sprite {
@@ -41,7 +42,7 @@ export class Balance extends Sprite {
         });
         this.balanceText = new LanguageText({
             //key: NumberUtils.priceFormat(DynamicData?.myProfile?.coins || 0),
-            key: NumberUtils.coinsKiloFormat(DynamicData?.myProfile?.coins || 0),
+            key: NumberUtils.coinsKiloFormat(parseFloat(CurrencyConverter.coinsToUSD(DynamicData?.myProfile?.coins || 0))),
             fontSize: 33,
             autoFitWidth: 115
         });
@@ -79,7 +80,8 @@ export class Balance extends Sprite {
     }
 
     update(amount: number): void {
-        this.balanceText.changeText(NumberUtils.coinsKiloFormat(amount));
+
+        this.balanceText.changeText(NumberUtils.coinsKiloFormat(parseFloat(CurrencyConverter.coinsToUSD(amount))));
     }
 
     set skipBalanceUpdate(value: boolean) {

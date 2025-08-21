@@ -3,17 +3,16 @@ import {NineSlicePlane, Point, Sprite, Text} from "pixi.js";
 import {DynamicData} from "../../../../../../DynamicData";
 import {SocketGameConfig} from "../../../../../../services/socket_service/socket_message_data/SocketGameConfig";
 import {SocketService} from "../../../../../../services/SocketService";
+import {CurrencyConverter} from "../../../../../../utils/CurrencyConverter";
 
 
 export class RoomsListItem extends ScrollItem {
     private typeToColor: Partial<Record<GameType, string>> = {
         [GameType.HARD1]: "green",
         [GameType.HARD2]: "blue",
-        [GameType.HARD3]: "green",
+        [GameType.HARD3]: "purple",
         [GameType.HARD4]: "orange"
     };
-
-    private available: boolean;
     private background: NineSlicePlane;
     private leftColorBar: NineSlicePlane;
     private betLabel: LanguageText;
@@ -23,7 +22,7 @@ export class RoomsListItem extends ScrollItem {
     private playersCount: Text;
     private sitButton: Button;
 
-    constructor(private gameConfig: SocketGameConfig) {
+    constructor(private gameConfig: SocketGameConfig, private available: boolean) {
         super();
         this.createChildren();
         this.addChildren();
@@ -34,9 +33,9 @@ export class RoomsListItem extends ScrollItem {
 
     createChildren(): void {
         this.background = DisplayObjectFactory.createNineSlicePlane("lobby/room_bg", 46, 46, 46, 46);
-        this.leftColorBar = DisplayObjectFactory.createNineSlicePlane(`lobby/green_bar`, 35, 28, 3, 30);
+        this.leftColorBar = DisplayObjectFactory.createNineSlicePlane(`lobby/${this.typeToColor[this.gameConfig.gameType]}_bar`, 35, 28, 3, 30);
         this.betLabel = new LanguageText({key: "Bet", fontSize: 28, fontWeight: "400"});
-        this.betAmount = new LanguageText({key: `$${NumberUtils.coinsKiloFormat(this.gameConfig.bet || this.gameConfig.cost || 0)}`, fontSize: 48,});
+        this.betAmount = new LanguageText({key: `$${NumberUtils.coinsKiloFormat(parseFloat(CurrencyConverter.coinsToUSD(this.gameConfig.bet || this.gameConfig.cost || 0)))}`, fontSize: 48,});
         this.divider = DisplayObjectFactory.createNineSlicePlane("lobby/room_item_divider", 1, 5, 1, 5);
         this.playersIcon = DisplayObjectFactory.createSprite("common/profiles");
         this.playersCount = new LanguageText({key: `${this.gameConfig.minPlayers}/${this.gameConfig.maxPlayers}`, fontSize: 36});
