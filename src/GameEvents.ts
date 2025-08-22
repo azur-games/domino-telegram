@@ -75,5 +75,7 @@ export class GameEvents extends FrameworkEvents {
     static DEPOSIT_CURRENCY_CHOSEN: string = "DEPOSIT_CURRENCY_CHOSEN";
     static WITHDRAW_INPUT_AMOUNT_CHANGE: string = "WITHDRAW_INPUT_AMOUNT_CHANGE";
     static WITHDRAW_INPUT_ADDRESS_CHANGE: string = "WITHDRAW_INPUT_ADDRESS_CHANGE";
+    static OPEN_HISTORY_POPUP: string = "OPEN_HISTORY_POPUP";
+    static CLOSE_HISTORY_POPUP: string = "CLOSE_HISTORY_POPUP";
 }
 

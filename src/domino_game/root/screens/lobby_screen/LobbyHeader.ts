@@ -105,7 +105,7 @@ export class LobbyHeader extends Sprite {
     }
 
     onHistoryClick(): void {
-        console.log("history clicked");
+        dispatchEvent(new MessageEvent(GameEvents.OPEN_HISTORY_POPUP));
     }
 
     destroy(): void {

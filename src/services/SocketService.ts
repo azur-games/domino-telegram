@@ -1,4 +1,4 @@
-import {CoreSocketService, FacebookTransaction, GameType, LocalStorageService, SocketController, SocketMessageType, SocketPayload, StringUtils, XsollaInitResponse} from "@azur-games/pixi-vip-framework";
+import {CoreSocketService, FacebookTransaction, GameType, LocalStorageService, SocketController, SocketMessageType, SocketPayload, StringUtils, TxData, XsollaInitResponse} from "@azur-games/pixi-vip-framework";
 import {DominoGame} from "../app";
 import {ActiveData} from "../data/ActiveData";
 import {ScreenType} from "../domino_game/root/screens/ScreenType";
@@ -20,7 +20,6 @@ import {FriendData} from "./socket_service/socket_message_data/FriendData";
 import {FullProfileData} from "./socket_service/socket_message_data/profile_data/FullProfileData";
 import {ProfileData} from "./socket_service/socket_message_data/ProfileData";
 import {GameMode} from "./socket_service/socket_message_data/socket_game_config/GameMode";
-import {TonPurchasedData} from "./socket_service/socket_message_data/TonPurchasedData";
 import {ChatEventMessage} from "./socket_service/socket_message_data/user_events_message/ChatEventMessage";
 import {UserEventMessage} from "./socket_service/socket_message_data/UserEventMessage";
 import {UserMessagesStatusById} from "./socket_service/socket_message_data/UserMessagesStatusById";
@@ -104,7 +103,7 @@ export class SocketService extends CoreSocketService {
                 ChatMessagesService.setStatuses(messageData as UserMessagesStatusById);
                 break;
             case SocketMessageType.TON_PURCHASED:
-                NotificationService.showDepositSuccess(messageData as TonPurchasedData);
+                NotificationService.showDepositSuccess(messageData as TxData);
                 break;
         }
 

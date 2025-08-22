@@ -16,6 +16,7 @@ import {SettingsPopup} from "./popups_container/SettingsPopup";
 import {TutorialPopup} from "./popups_container/TutorialPopup";
 import {DepositPopup} from "./popups_container/DepositPopup";
 import {WithdrawPopup} from "./popups_container/WithdrawPopup";
+import {HistoryPopup} from "./popups_container/HistoryPopup";
 
 
 export class PopupsContainer extends Sprite {
@@ -30,6 +31,7 @@ export class PopupsContainer extends Sprite {
     private maintenancePopup: MaintenancePopup;
     private depositPopup: DepositPopup;
     private withdrawPopup: WithdrawPopup;
+    private historyPopup: HistoryPopup;
 
     constructor() {
         super();
@@ -55,6 +57,8 @@ export class PopupsContainer extends Sprite {
         addEventListener(GameEvents.CLOSE_DEPOSIT_POPUP, this.onCloseDepositPopup.bind(this));
         addEventListener(GameEvents.OPEN_WITHDRAW_POPUP, this.onOpenWithdrawPopup.bind(this));
         addEventListener(GameEvents.CLOSE_WITHDRAW_POPUP, this.onCloseWithdrawPopup.bind(this));
+        addEventListener(GameEvents.OPEN_HISTORY_POPUP, this.onOpenHistoryPopup.bind(this));
+        addEventListener(GameEvents.CLOSE_HISTORY_POPUP, this.onCloseHistoryPopup.bind(this));
         // setTimeout(() => this.onOpenWithdrawPopup(), 4000);
     }
 
@@ -268,6 +272,24 @@ export class PopupsContainer extends Sprite {
         this.removeChild(this.withdrawPopup);
         this.withdrawPopup.destroy();
         this.withdrawPopup = null;
+    }
+
+    onOpenHistoryPopup(): void {
+        if (this.historyPopup) {
+            return;
+        }
+        this.historyPopup = new HistoryPopup();
+        this.addChild(this.historyPopup);
+    }
+
+    async onCloseHistoryPopup(): Promise<void> {
+        if (!this.historyPopup) {
+            return;
+        }
+        await this.historyPopup.show(false);
+        this.removeChild(this.historyPopup);
+        this.historyPopup.destroy();
+        this.historyPopup = null;
     }
 
 }

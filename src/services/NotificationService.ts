@@ -1,13 +1,11 @@
-import {Sprite} from "pixi.js";
+import {TxData} from "@azur-games/pixi-vip-framework";
 import {DialogPopupData} from "../domino_game/root/popups_container/dialog_popup/DialogPopupData";
 import {GameEvents} from "../GameEvents";
-import {CurrencyConverter} from "../utils/CurrencyConverter";
 import {DepositSuccessContent} from "./notification_service/DepositSuccessContent";
-import {TonPurchasedData} from "./socket_service/socket_message_data/TonPurchasedData";
 
 
 export class NotificationService {
-    static showDepositSuccess(txData: TonPurchasedData) {
+    static showDepositSuccess(txData: TxData) {
         const data: DialogPopupData = {
             resolve: () => dispatchEvent(new MessageEvent(GameEvents.CLOSE_DIALOG_POPUP)),
             titleText: "Success!",

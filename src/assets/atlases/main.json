@@ -291,6 +291,15 @@
 	"sourceSize": {"w":1385,"h":162},
 	"anchor": {"x":0,"y":0}
 },
+"common/history_bg.png":
+{
+	"frame": {"x":4079,"y":92,"w":10,"h":10},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":10,"h":10},
+	"sourceSize": {"w":10,"h":10},
+	"anchor": {"x":0,"y":0}
+},
 "common/icon_apple.png":
 {
 	"frame": {"x":4048,"y":1148,"w":42,"h":42},
@@ -850,7 +859,7 @@
 },
 "lobby/lobby_bg.png":
 {
-	"frame": {"x":4079,"y":92,"w":5,"h":5},
+	"frame": {"x":4079,"y":105,"w":5,"h":5},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":5,"h":5},
@@ -1006,7 +1015,7 @@
 },
 "maintenance/spacer.png":
 {
-	"frame": {"x":4087,"y":92,"w":4,"h":4},
+	"frame": {"x":4087,"y":105,"w":4,"h":4},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
@@ -1067,6 +1076,6 @@
 	"format": "RGBA8888",
 	"size": {"w":4096,"h":4096},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:d20d1b59741a9a1d4d9a5dfa2cfe74c2:7b3548d03e106986f29c715f79a16b5a:6a9f103d27e61189ac8e58749d6f3c22$"
+	"smartupdate": "$TexturePacker:SmartUpdate:1b03d4f259a67d0766ab8bf534207645:6ec7d0fdb5b268f718d6b49c975af738:6a9f103d27e61189ac8e58749d6f3c22$"
 }
 }

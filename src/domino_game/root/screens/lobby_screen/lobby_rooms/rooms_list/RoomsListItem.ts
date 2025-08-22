@@ -1,4 +1,4 @@
-import {DisplayObjectFactory, LanguageText, NumberUtils, Pivot, ScrollItem, GameType, Button} from "@azur-games/pixi-vip-framework";
+import {Button, DisplayObjectFactory, GameType, LanguageText, NumberUtils, Pivot, ScrollItem} from "@azur-games/pixi-vip-framework";
 import {NineSlicePlane, Point, Sprite, Text} from "pixi.js";
 import {DynamicData} from "../../../../../../DynamicData";
 import {SocketGameConfig} from "../../../../../../services/socket_service/socket_message_data/SocketGameConfig";
@@ -33,7 +33,7 @@ export class RoomsListItem extends ScrollItem {
 
     createChildren(): void {
         this.background = DisplayObjectFactory.createNineSlicePlane("lobby/room_bg", 46, 46, 46, 46);
-        this.leftColorBar = DisplayObjectFactory.createNineSlicePlane(`lobby/${this.typeToColor[this.gameConfig.gameType]}_bar`, 35, 28, 3, 30);
+        this.leftColorBar = DisplayObjectFactory.createNineSlicePlane(`lobby/${this.barColor}_bar`, 35, 28, 3, 30);
         this.betLabel = new LanguageText({key: "Bet", fontSize: 28, fontWeight: "400"});
         this.betAmount = new LanguageText({key: `$${NumberUtils.coinsKiloFormat(parseFloat(CurrencyConverter.coinsToUSD(this.gameConfig.bet || this.gameConfig.cost || 0)))}`, fontSize: 48,});
         this.divider = DisplayObjectFactory.createNineSlicePlane("lobby/room_item_divider", 1, 5, 1, 5);
@@ -91,6 +91,13 @@ export class RoomsListItem extends ScrollItem {
         this.available = this.gameConfig.minLevel <= DynamicData.myProfile.level && this.gameConfig.minBalanceCoins <= DynamicData.myProfile.coins;
         this.alpha = this.available ? 1 : 0.2;
         this.sitButton.enabled = this.available;
+    }
+
+    get barColor(): string {
+        if ([GameType.HARD1, GameType.HARD2, GameType.HARD3, GameType.HARD4].includes(this.gameConfig.gameType)) {
+            return this.typeToColor[this.gameConfig.gameType];
+        }
+        return this.typeToColor[GameType.HARD1];
     }
 
     private onSitButtonClick(): void {
