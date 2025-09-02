@@ -5,6 +5,7 @@ import {DynamicData} from "../../../../DynamicData";
 import {WithdrawInputAddressChange, WithdrawInputAddressChangePayload} from "../../../../game_events/WithdrawInputAddressChange";
 import {WithdrawInputAmountChange, WithdrawInputAmountChangePayload} from "../../../../game_events/WithdrawInputAmountChange";
 import {GameEvents} from "../../../../GameEvents";
+import {NotificationService} from "../../../../services/NotificationService";
 import {SocketService} from "../../../../services/SocketService";
 import {AddressWithdrawalPage} from "./withdraw_popup_content/AddressWithdrawalPage";
 import {MainWithdrawPage} from "./withdraw_popup_content/MainWithdrawPage";
@@ -112,14 +113,22 @@ export class WithdrawPopupContent extends StageResizeListening {
         this.reviewWithdrawalButton.alpha = enabled ? 1 : .5;
     }
 
-    onReviewWithdrawalButtonClick() {
+    reset() {
+        this.inputAmountInCoins = null;
+        this.addressValue = null;
+        this.checkReviewWithdrawalButtonState();
+    }
+
+    async onReviewWithdrawalButtonClick() {
         console.log("this.inputAmount", this.inputAmountInCoins);
         console.log("onReviewWithdrawalButtonClick");
         if (this.currentStage == "main") {
             this.currentStage = "address";
             this.changeStage();
         } else {
-            SocketService.tonPayout(parseInt(this.inputAmountInCoins), this.addressValue);
+            await SocketService.tonPayout(parseInt(this.inputAmountInCoins), this.addressValue);
+            this.reset();
+            NotificationService.showWithdrawSubmitted();
         }
     }
 

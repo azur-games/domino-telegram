@@ -21,4 +21,8 @@ export class NotificationService {
         dispatchEvent(new MessageEvent(GameEvents.OPEN_INFO_POPUP, {data: {titleText: "Result", infoText: "New transactions not found"}}));
     }
 
+    static showWithdrawSubmitted() {
+        dispatchEvent(new MessageEvent(GameEvents.OPEN_INFO_POPUP, {data: {titleText: "Result", infoText: "Withdraw request is submitted"}}));
+    }
+
 }
