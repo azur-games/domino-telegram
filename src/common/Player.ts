@@ -7,16 +7,15 @@ import {PlayerLevel} from "./player/PlayerLevel";
 
 
 export class Player extends ButtonBase {
-    avatarSize: number = 125;
     private data: PlayerData;
-    private background: NineSlicePlane;
+    background: NineSlicePlane;
     private avatarMask: Graphics;
     private avatar: Sprite;
     private onlineIcon: Sprite;
     private facebookIcon: Sprite;
     private level: PlayerLevel;
 
-    constructor(private config: PlayerConfig = {callback: null, showLevel: true}) {
+    constructor(private config: PlayerConfig = {callback: null, showLevel: true}, public avatarSize: number = 125) {
         super(config.callback, undefined, true);
         this.createChildren();
         this.addChildren();
@@ -26,7 +25,7 @@ export class Player extends ButtonBase {
 
     createChildren(): void {
         this.background = DisplayObjectFactory.createNineSlicePlane("lobby/avatar_frame", 50, 50, 50, 50);
-        this.avatarMask = GraphicsFactory.createRoundedRect(0, 0, this.avatarSize, this.avatarSize, 32);
+        this.avatarMask = GraphicsFactory.createRoundedRect(0, 0, this.avatarSize, this.avatarSize, 30);
         this.onlineIcon = DisplayObjectFactory.createSprite("common/icon_online");
         this.facebookIcon = DisplayObjectFactory.createSprite("common/icon_facebook_round");
         this.level = new PlayerLevel();

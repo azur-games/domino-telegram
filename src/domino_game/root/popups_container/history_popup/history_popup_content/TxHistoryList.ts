@@ -17,7 +17,7 @@ export class TxHistoryList extends ScrollContainer<TxHistoryListItem> {
     }
 
     async init() {
-        const txs = await SocketService.tonFetch();
+        const txs = await SocketService.tonTransactions();
         this.createRooms(txs);
     }
 

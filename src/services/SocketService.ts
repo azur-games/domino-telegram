@@ -360,4 +360,10 @@ export class SocketService extends CoreSocketService {
             resolve(!error);
         }));
     }
+
+    static async tonTransactions(): Promise<any> {
+        return new Promise<boolean>(resolve => SocketService.mainConnection.send("tonTransactions", [], (error: any, data: any) => {
+            resolve(data);
+        }));
+    }
 }

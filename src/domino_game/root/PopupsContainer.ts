@@ -17,6 +17,7 @@ import {TutorialPopup} from "./popups_container/TutorialPopup";
 import {DepositPopup} from "./popups_container/DepositPopup";
 import {WithdrawPopup} from "./popups_container/WithdrawPopup";
 import {HistoryPopup} from "./popups_container/HistoryPopup";
+import {ProfileEditPopup} from "./popups_container/ProfileEditPopup";
 
 
 export class PopupsContainer extends Sprite {
@@ -32,6 +33,7 @@ export class PopupsContainer extends Sprite {
     private depositPopup: DepositPopup;
     private withdrawPopup: WithdrawPopup;
     private historyPopup: HistoryPopup;
+    private profileEditPopup: ProfileEditPopup;
 
     constructor() {
         super();
@@ -59,7 +61,9 @@ export class PopupsContainer extends Sprite {
         addEventListener(GameEvents.CLOSE_WITHDRAW_POPUP, this.onCloseWithdrawPopup.bind(this));
         addEventListener(GameEvents.OPEN_HISTORY_POPUP, this.onOpenHistoryPopup.bind(this));
         addEventListener(GameEvents.CLOSE_HISTORY_POPUP, this.onCloseHistoryPopup.bind(this));
-        // setTimeout(() => this.onOpenWithdrawPopup(), 4000);
+        addEventListener(GameEvents.OPEN_EDIT_PROFILE_POPUP, this.onOpenProfileEditPopup.bind(this));
+        addEventListener(GameEvents.CLOSE_EDIT_PROFILE_POPUP, this.onCloseProfileEditPopup.bind(this));
+        // setTimeout(() => this.onOpenProfileEditPopup(), 4000);
     }
 
     onOpenMaintenancePopup(): void {
@@ -290,6 +294,26 @@ export class PopupsContainer extends Sprite {
         this.removeChild(this.historyPopup);
         this.historyPopup.destroy();
         this.historyPopup = null;
+    }
+
+    onOpenProfileEditPopup(): void {
+        if (this.profileEditPopup) {
+            return;
+        }
+        dispatchEvent(new MessageEvent(GameEvents.SET_SCREEN_BLUR));
+        this.profileEditPopup = new ProfileEditPopup();
+        this.addChild(this.profileEditPopup);
+    }
+
+    async onCloseProfileEditPopup(): Promise<void> {
+        if (!this.profileEditPopup) {
+            return;
+        }
+        dispatchEvent(new MessageEvent(GameEvents.CLEAR_SCREEN_BLUR));
+        await this.profileEditPopup.show(false);
+        this.removeChild(this.profileEditPopup);
+        this.profileEditPopup.destroy();
+        this.profileEditPopup = null;
     }
 
 }

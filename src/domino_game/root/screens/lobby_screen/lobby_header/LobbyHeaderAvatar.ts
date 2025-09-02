@@ -56,6 +56,10 @@ export class LobbyHeaderAvatar extends Button {
         this.avatarImage = null;
     }
 
+    processClick() {
+        dispatchEvent(new MessageEvent(GameEvents.OPEN_EDIT_PROFILE_POPUP));
+    }
+
     destroy(): void {
         this.tryDestroyAvatar();
         this.removeChild(this.avatarMask);
