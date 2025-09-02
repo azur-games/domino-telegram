@@ -1,8 +1,7 @@
 import {DisplayObjectFactory, LanguageText, LoaderService, NumberUtils, Pivot, TonRates} from "@azur-games/pixi-vip-framework";
 import {NineSlicePlane, Sprite} from "pixi.js";
-import {CurrencyConverter} from "../../../../../utils/CurrencyConverter";
 import {AddressBlock} from "./currency_page/AddressBlock";
-import {CurrencyInput} from "./currency_page/CurrencyInput";
+import {DepositCurrencyInput} from "./currency_page/DepositCurrencyInput";
 import {QRCodeBlock} from "./currency_page/QRCodeBlock";
 import {WarningBlock} from "./currency_page/WarningBlock";
 import {DepositCurrencyInfo} from "./currency_page/DepositCurrencyInfo";
@@ -17,7 +16,7 @@ export class DepositCurrencyPage extends Sprite {
     private warningBlock: WarningBlock;
     private qrCodeBlock: QRCodeBlock;
     private addressBlock: AddressBlock;
-    private input: CurrencyInput;
+    private input: DepositCurrencyInput;
     private minAmount: DepositCurrencyInfo;
     private divider: NineSlicePlane;
     private estimatedRate: DepositCurrencyInfo;
@@ -37,7 +36,7 @@ export class DepositCurrencyPage extends Sprite {
         this.warningBlock = new WarningBlock();
         this.qrCodeBlock = new QRCodeBlock();
         this.addressBlock = new AddressBlock();
-        this.input = new CurrencyInput(this.onInput.bind(this));
+        this.input = new DepositCurrencyInput(this.onInput.bind(this));
         this.minAmount = new DepositCurrencyInfo("Minimum amount:");
 
         this.divider = DisplayObjectFactory.createNineSlicePlane("deposit/currency_item_divider", 1, 1, 1, 1);

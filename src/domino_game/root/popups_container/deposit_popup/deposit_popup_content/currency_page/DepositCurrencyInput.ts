@@ -4,7 +4,7 @@ import {NineSlicePlane, Point, Sprite, Text} from "pixi.js";
 import {Settings} from "../../../../../../Settings";
 
 
-export class CurrencyInput extends Sprite {
+export class DepositCurrencyInput extends Sprite {
     private maxDigitsLength: number = 5;
     private maxDecimalLength: number = 8;
     private rates: TonRates;
@@ -88,18 +88,26 @@ export class CurrencyInput extends Sprite {
         const cleanValue = value.replace(/[^\d+\.?\d*$]/, '');
         //@ts-ignore
         this.input.text = cleanValue;
-        console.log(cleanValue);
         this.callback(parseFloat(cleanValue));
+        this.tryToEnableDepositButton();
+    }
+
+    tryToEnableDepositButton(): void {
+        let inputValue = this.input.text as unknown as string;
+        let minAmountIsEnough = parseFloat(inputValue) >= (this.rates.minTransactionUsd / this.rates.ton2usdt);
+        let active = !!inputValue && minAmountIsEnough;
+        this.depositButton.enabled = active;
+        this.depositButton.alpha = active ? 1 : .4;
     }
 
     deposit() {
         const coins = (parseFloat(this.input.text.toString()) * this.rates.inUsdtToCoin).toFixed();
-        console.log("deposit --> ", coins);
         (PlatformService.platformApi as TelegramApi).tonDeposit(coins);
     }
 
     applyData(rates: TonRates) {
         this.rates = rates;
+        this.tryToEnableDepositButton();
     }
 
     destroy(): void {

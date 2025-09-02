@@ -15,4 +15,8 @@ export class CurrencyConverter {
     static coinsToUSD(coins: number): string {
         return (coins / DynamicData?.tonRates?.outUsdtToCoin).toFixed(2);
     }
+
+    static tonToUSD(ton: number): string {
+        return (ton * DynamicData?.tonRates?.ton2usdt).toFixed(2);
+    }
 }
