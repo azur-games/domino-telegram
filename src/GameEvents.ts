@@ -77,5 +77,6 @@ export class GameEvents extends FrameworkEvents {
     static WITHDRAW_INPUT_ADDRESS_CHANGE: string = "WITHDRAW_INPUT_ADDRESS_CHANGE";
     static OPEN_HISTORY_POPUP: string = "OPEN_HISTORY_POPUP";
     static CLOSE_HISTORY_POPUP: string = "CLOSE_HISTORY_POPUP";
+    static SHOW_LOBBY_SETTINGS: string = "SHOW_LOBBY_SETTINGS";
 }
 

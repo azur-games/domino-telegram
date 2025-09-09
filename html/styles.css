@@ -175,4 +175,8 @@ body::before {
     -2px 0 0 #631FF5;
 }
 
+.lil-gui.autoPlace {
+    left: 0;
+}
+
 

@@ -1,4 +1,4 @@
-import {TonRates} from "@azur-games/pixi-vip-framework";
+import {ScreenType, TonRates} from "@azur-games/pixi-vip-framework";
 import {ISocketGameState} from "./dynamic_data/ISocketGameState";
 import {Profiles} from "./dynamic_data/Profiles";
 import {SitPlace} from "./dynamic_data/SitPlace";
@@ -12,6 +12,7 @@ import {SocketService} from "./services/SocketService";
 
 
 export class DynamicData {
+    static currentScreen: ScreenType;
     static tonRates: TonRates;
     static socketGameRequest: SocketGameRequest;
     static socketGameState: ISocketGameState;

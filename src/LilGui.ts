@@ -15,7 +15,7 @@ export class LilGui {
         //     return;
         // }
         CommandService.init();
-        LilGui.gui = new GUI();
+        LilGui.gui = new GUI({width: 100});
         Player.addToGui(LilGui.gui);
         // Game.addToGui(LilGui.gui);
         // Skins.addToGui(LilGui.gui);
