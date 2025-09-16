@@ -20,6 +20,7 @@ import {FriendData} from "./socket_service/socket_message_data/FriendData";
 import {FullProfileData} from "./socket_service/socket_message_data/profile_data/FullProfileData";
 import {ProfileData} from "./socket_service/socket_message_data/ProfileData";
 import {GameMode} from "./socket_service/socket_message_data/socket_game_config/GameMode";
+import {TonTransactionData} from "./socket_service/socket_message_data/TonTransactionData";
 import {ChatEventMessage} from "./socket_service/socket_message_data/user_events_message/ChatEventMessage";
 import {UserEventMessage} from "./socket_service/socket_message_data/UserEventMessage";
 import {UserMessagesStatusById} from "./socket_service/socket_message_data/UserMessagesStatusById";
@@ -361,8 +362,8 @@ export class SocketService extends CoreSocketService {
         }));
     }
 
-    static async tonTransactions(): Promise<any> {
-        return new Promise<boolean>(resolve => SocketService.mainConnection.send("tonTransactions", [], (error: any, data: any) => {
+    static async tonTransactions(): Promise<TonTransactionData[]> {
+        return new Promise<TonTransactionData[]>(resolve => SocketService.mainConnection.send("tonTransactions", [], (error: any, data: any) => {
             resolve(data);
         }));
     }

@@ -26,6 +26,7 @@ export class DynamicData {
     static exitPlayer: SitPlace;
 
     static async init() {
+        // DynamicData.tonRates = {"ton2usdt": 3.17267787, "inUsdtToCoin": 75, "outUsdtToCoin": 100, "minTransactionUsd": 1, "addr": "UQAjSUug6JFtle0q14wO_oWT6xCLd8VAwqyWeM98r4pkOnl_"};
         DynamicData.tonRates = await SocketService.tonRates();
     }
 
