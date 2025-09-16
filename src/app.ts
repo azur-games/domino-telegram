@@ -1,6 +1,8 @@
+import {Device, Framework, FrameworkConfig, IGame, ScreenType} from "@azur-games/pixi-vip-framework";
+import {BlurFilter} from "@pixi/filter-blur";
 import {Linear, TweenMax} from "gsap";
 import * as PIXI from "pixi.js";
-import {Loader, SimpleRope, InteractionManager} from "pixi.js";
+import {InteractionManager, Loader, SimpleRope} from "pixi.js";
 import {Camera} from "pixi3d";
 import {ActiveData} from "./data/ActiveData";
 import {Root} from "./domino_game/Root";
@@ -14,8 +16,6 @@ import {ServerService} from "./services/ServerService";
 import {SocketService} from "./services/SocketService";
 import {Settings} from "./Settings";
 import {Settings3D} from "./utils/Settings3D";
-import {Framework, IGame, FrameworkConfig, Device, LocalStorageService, FrameworkLocalStorageNames, TonRates} from "@azur-games/pixi-vip-framework";
-import {BlurFilter} from "@pixi/filter-blur";
 
 
 export class DominoGame implements IGame {
@@ -57,9 +57,11 @@ export class DominoGame implements IGame {
     }
 
     onWindowResize(): void {
-        let windowWidth: number = Device.info.device.type == "smartphone" ? screen.width : window.innerWidth;
-        let windowHeight: number = Device.info.device.type == "smartphone" ? screen.height : window.innerHeight;
+        // let windowWidth: number = Device.info.device.type == "smartphone" ? screen.width : window.innerWidth;
+        // let windowHeight: number = Device.info.device.type == "smartphone" ? screen.height : window.innerHeight;
 
+        let windowWidth = window.innerWidth;
+        let windowHeight = window.innerHeight;
         let transform = `rotate(${DominoGame.instance.isPortraitMode ? "0" : "90"}deg)`;
         document.documentElement.style.setProperty('transform', transform);
 
@@ -108,6 +110,7 @@ export class DominoGame implements IGame {
             DominoGame.instance.root.scale.set(DominoGame.instance.scale);
             DominoGame.instance.root.resize();
             DominoGame.instance.scale3D = moreThanRatio ? 1 : DominoGame.instance.scale / (DominoGame.instance.height / Settings.RESOURCES_HEIGHT);
+            DominoGame.instance.scale3D = DominoGame.instance.scale3D / 1.5;
             console.log("DominoGame.scale3D", DominoGame.instance.scale3D);
             dispatchEvent(new MessageEvent(GameEvents.GAME_SCALE_CHANGED, {data: null}));
         }
@@ -127,7 +130,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 19");
+        console.log("version 24");
         SentryService.init();
         DominoGame.instance.app = new PIXI.Application({
             autoDensity: true,

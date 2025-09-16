@@ -161,8 +161,8 @@ export class EndGamePopup extends ScreenFilterContainer {
         this.vignette.width = DominoGame.instance.screenW + 2;
         this.vignette.height = DominoGame.instance.screenH + 2;
 
-        this.exitButton.x = -DominoGame.instance.screenW / 2 + 200;
-        this.exitButton.y = DominoGame.instance.screenH / 2 - 200;
+        this.exitButton.x = -DominoGame.instance.screenW / 2 + 100;
+        this.exitButton.y = DominoGame.instance.screenH / 2 - 100;
         this.graphics.x = -DominoGame.instance.screenW / 2;
         this.graphics.y = -DominoGame.instance.screenH / 2;
 

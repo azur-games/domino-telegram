@@ -299,7 +299,7 @@ export class Sits extends StageResizeListening {
     }
 
     onGameScaleChanged() {
-        let propsMinX: number = Math.min(DominoGame.instance.screenW / 2, 1600);
+        let propsMinX: number = Math.min(DominoGame.instance.screenW / 2, 800);
         let propsMinY: number = Math.min(DominoGame.instance.screenH / 2, 1400);
 
         this.sits.forEach(sit => {
@@ -309,21 +309,23 @@ export class Sits extends StageResizeListening {
                     sit.y = -DominoGame.instance.screenH / 2 + 130;
                     break;
                 case SitPlace.LEFT:
-                    sit.x = -propsMinX + 135;
+                    sit.x = -propsMinX + 100;
                     sit.y = -100;
                     break;
                 case SitPlace.RIGHT:
-                    sit.x = propsMinX - 135;
+                    sit.x = propsMinX - 100;
                     break;
                 case SitPlace.BOTTOM:
-                    let left: number = 1500;
-                    if (DominoGame.instance.screenW > left) {
-                        sit.x = -820;
-                        sit.y = DominoGame.instance.screenH / 2 - 200;
-                    } else {
-                        sit.x = -820 - (DominoGame.instance.screenW - left) / 2;
-                        sit.y = DominoGame.instance.screenH / 2 - 200 + (DominoGame.instance.screenW - left) / 2;
-                    }
+                    // let left: number = 1500;
+                    // if (DominoGame.instance.screenW > left) {
+                    //     sit.x = -820;
+                    //     sit.y = DominoGame.instance.screenH / 2 - 200;
+                    // } else {
+                    //     sit.x = -820 - (DominoGame.instance.screenW - left) / 2;
+                    //     sit.y = DominoGame.instance.screenH / 2 - 200 + (DominoGame.instance.screenW - left) / 2;
+                    // }
+                    sit.x = -propsMinX + 100;
+                    sit.y = DominoGame.instance.screenH / 2 - 400;
 
                     break;
             }

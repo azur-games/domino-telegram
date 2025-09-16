@@ -55,10 +55,10 @@ export class TableChat extends ScreenCovering {
         if (!this.smilesButton) {
             return;
         }
-        this.smilesButton.x = DominoGame.instance.screenW / 2 - 300;
-        this.smilesButton.y = DominoGame.instance.screenH / 2 - 100;
-        this.phrasesButton.x = DominoGame.instance.screenW / 2 - 150;
-        this.phrasesButton.y = DominoGame.instance.screenH / 2 - 200;
+        this.smilesButton.x = DominoGame.instance.screenW / 2 - 100;
+        this.smilesButton.y = DominoGame.instance.screenH / 2 - 250;
+        this.phrasesButton.x = DominoGame.instance.screenW / 2 - 100;
+        this.phrasesButton.y = DominoGame.instance.screenH / 2 - 400;
         this.phrasesPanel.resize();
         this.smilesPanel.resize();
     }

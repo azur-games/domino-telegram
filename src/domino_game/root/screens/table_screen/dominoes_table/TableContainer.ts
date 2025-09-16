@@ -10,7 +10,7 @@ import {DominoesTable} from "../DominoesTable";
 
 export class TableContainer extends Sprite3D {
     private moveTween: TweenMax;
-    zoom: number = 1;//для портрета ставить 3-4
+    zoom: number = 1.5;//для портрета ставить 3-4
 
     constructor() {
         super();
@@ -22,13 +22,14 @@ export class TableContainer extends Sprite3D {
     }
 
     set scaling(value: number) {
+        console.log("LOG: scaling", value);
         this.scale.set(value * this.zoom);
     }
 
     async move(minX: number, maxX: number, minY: number, maxY: number, fast: boolean = !WindowFocusController.documentVisible): Promise<void> {
         let width: number = Math.abs(maxX - minX);
         let height: number = Math.abs(maxY - minY);
-        let maxWidth: number = DominoCalculator.getMaxWidthAndHeight(DynamicData.socketGameRequest.mode).x
+        let maxWidth: number = DominoCalculator.getMaxWidthAndHeight(DynamicData.socketGameRequest.mode).x;
         let tableGoScale: number = Math.min(maxWidth / width, 1);
         let tableGoX: number = (minX + width / 2) * tableGoScale * this.zoom;
         let tableGoY: number = (minY + height / 2) * tableGoScale * this.zoom * Settings3D.cosCorner;

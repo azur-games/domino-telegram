@@ -64,12 +64,12 @@ export class Screens extends AppearanceContainer {
         this.addChild(this.currentScreen);
         callback && callback();
 
-        Device.info.device.type == "smartphone" && DominoGame.instance.switchToPortraitMode(newScreenType != ScreenType.TABLE);
-
         if ([ScreenType.LOBBY].includes(newScreenType)) {
             SoundsPlayer.stopMusic();
             SoundsPlayer.playLobbyMusic();
         }
+        DynamicData.currentScreen = newScreenType;
+        DominoGame.instance.onWindowResize();
     }
 
     async gameSync(socketGameRequest: SocketGameRequest): Promise<void> {

@@ -52,8 +52,7 @@ export class EndGamePlayer extends Sprite {
         this.player.applyData(this.playerData);
         this.nameText.text = iRoundUser.name;
         Pivot.center(this.nameText);
-        this.nameText.y = -50;
-        this.nameText.x = (this.nameText.width / 2 + 135) * (this.my ? -1 : 1);
+        this.nameText.y = -250;
     }
 
     private createChildren() {
@@ -79,8 +78,7 @@ export class EndGamePlayer extends Sprite {
 
     private initChildren() {
         this.player.scale.set(1.5);
-        this.score.y = 20;
-        this.score.x = 230 * (this.my ? -1 : 1);
+        this.score.y = -167;
 
         this.score.setValue(this.my ? DynamicData.socketGameRequest.myScore : DynamicData.socketGameRequest.otherScore);
     }
