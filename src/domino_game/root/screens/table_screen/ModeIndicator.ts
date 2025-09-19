@@ -94,7 +94,7 @@ export class ModeIndicator extends StageResizeListening {
         this.addChild(this.bgBig);
         this.addChild(this.bgSmall);
         this.addChild(this.dominoText);
-        this.addChild(this.modeText);
+        // this.addChild(this.modeText);
         this.addChild(this.betBlock);
         this.addChild(this.pointsBlock);
         this.addChild(this.roundBlock);

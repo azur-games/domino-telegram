@@ -1,6 +1,7 @@
 import {TweenMax} from "gsap";
 import {NineSlicePlane, Rectangle, Sprite} from "pixi.js";
 import {LanguageService, ShineParticles, Pivot, DisplayObjectFactory} from "@azur-games/pixi-vip-framework";
+import {Settings} from "../../../../../Settings";
 import {Letters} from "./state_label/Letters";
 
 
@@ -109,6 +110,8 @@ export class StateLabel extends Sprite {
 
         this.shineParticlesLeft.x = -10;
         this.shineParticlesRight.x = -this.shineParticlesLeft.x;
+
+        this.scale.set(Math.min(1, (Settings.RESOURCES_WIDTH - 100) / this.letters.lettersWidth));
     }
 }
 

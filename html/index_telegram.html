@@ -29,7 +29,7 @@
     <meta content="Now you can play domino online without downloading mobile app!" property="og:description">
     <meta content="https://domino-king.com/images/deeplink_logo.png" property="og:image">
 </head>
-<body style="overflow: hidden;">
+<body>
 <!--<div style="color: white; height: 300px; overflow-y: scroll; " id="debug">123123</div>-->
 <div class="overflow_wrapper" id="wrapper">
     <div class="logo_container" id="logo_container">
@@ -87,6 +87,17 @@
     });
 
     window.htmlPlatform = "TELEGRAM"
+
+    function resize() {
+        // We execute the same script as before
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        let vl = window.innerWidth * 0.01;
+        document.documentElement.style.setProperty('--vl', `${vl}px`);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
 
     window.noWebGL = function () {
         document.getElementById("no_webgl").style.display = "flex";

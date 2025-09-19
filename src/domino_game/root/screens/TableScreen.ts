@@ -371,8 +371,8 @@ export class TableScreen extends BaseScreen {
         this.addChild(this.modeIndicator);
         this.addChild(this.dominoesTable);
         this.addChild(this.bazar);
-        this.addChild(this.stateLabels);
         this.addChild(this.sits);
+        this.addChild(this.stateLabels);
         this.addChild(this.menu);
         this.addChild(this.giftsPanel).visible = false;
         this.addChild(this.chat);

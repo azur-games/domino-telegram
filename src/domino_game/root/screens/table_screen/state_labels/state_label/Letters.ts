@@ -7,6 +7,7 @@ import {Pivot} from "@azur-games/pixi-vip-framework";
 export class Letters extends Sprite {
     private letters: Text[];
     private animateTweens: TweenMax[] = [];
+    public lettersWidth: number;
 
     constructor(private text: string, private textStrokeColor: number, private extShadowColor: number) {
         super();
@@ -64,8 +65,8 @@ export class Letters extends Sprite {
     }
 
     private initChildren() {
-        let width: number = this.letters.reduce((prev: number, currentValue: Text) => prev + currentValue.width, 0);
-        let startX: number = -width / 2;
+        this.lettersWidth = this.letters.reduce((prev: number, currentValue: Text) => prev + currentValue.width, 0);
+        let startX: number = -this.lettersWidth / 2;
         this.letters.forEach(letter => {
             Pivot.center(letter);
             startX += letter.width / 2;

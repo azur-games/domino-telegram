@@ -62,7 +62,7 @@ export class AbsentVals extends Sprite {
     }
 
     private addChildren() {
-        this.vals.forEach(val => this.addChild(val).alpha = .4);
+        this.vals.forEach(val => this.addChild(val).alpha = .7);
     }
 
     private onAbsentValsChanged() {

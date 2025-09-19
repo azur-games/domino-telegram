@@ -39,7 +39,7 @@ export class Menu extends StageResizeListening {
         let propsMinX: number = Math.min(DominoGame.instance.screenW / 2, 1600);
         let propsMinY: number = Math.min(DominoGame.instance.screenH / 2, 1400);
 
-        this.button.x = propsMinX - 135;
+        this.button.x = propsMinX - 124;
         this.button.y = -propsMinY + 135;
         this.container.x = propsMinX - 190;
         this.container.y = -propsMinY + 203;

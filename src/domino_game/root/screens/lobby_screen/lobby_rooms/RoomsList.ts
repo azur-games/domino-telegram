@@ -24,7 +24,7 @@ export class RoomsList extends ScrollContainer<RoomsListItem> {
         });
         this.onRoomsFilterBindThis = this.onRoomsFilter.bind(this);
         addEventListener(GameEvents.FILTER_LOBBY_ROOMS, this.onRoomsFilterBindThis);
-        this.createRooms(StaticData.gamesConfig);
+        this.createRooms(StaticData.gamesConfig.filter(room => room.gameMode === "pro"));
     }
 
     onRoomsFilter(e: FilterLobbyRooms): void {

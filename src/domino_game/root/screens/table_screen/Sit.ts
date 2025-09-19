@@ -504,13 +504,14 @@ export class Sit extends Sprite {
         this.nameText.style.strokeThickness = 4;
 
         this.money.y = 130;
+        this.giftButton.y = 35;
         switch (this.sitPlace) {
             case SitPlace.LEFT:
                 this.playerScore.x = 0;
                 this.playerScore.y = -160;
                 this.bubble.x = 170;
                 this.bubble.y = -110;
-                this.giftButton.x = 120;
+                this.giftButton.y = 195;
                 this.leavingIcon.x = 120;
                 break;
             case SitPlace.RIGHT:
@@ -518,7 +519,7 @@ export class Sit extends Sprite {
                 this.playerScore.y = -160;
                 this.bubble.x = -170;
                 this.bubble.y = -110;
-                this.giftButton.x = -120;
+                this.giftButton.y = 195;
                 this.leavingIcon.x = -120;
                 break;
             case SitPlace.TOP:
@@ -537,7 +538,6 @@ export class Sit extends Sprite {
                 break;
         }
         this.leavingIcon.y = -20;
-        this.giftButton.y = 35;
         this.showWinner(false);
         Pivot.center(this.bankrupt);
         Pivot.center(this.magnate);

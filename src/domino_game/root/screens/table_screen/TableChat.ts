@@ -45,8 +45,8 @@ export class TableChat extends ScreenCovering {
 
     addChildren(): void {
         this.addChild(this.smilesButton);
-        this.addChild(this.phrasesButton);
-        this.addChild(this.phrasesPanel);
+        // this.addChild(this.phrasesButton);
+        // this.addChild(this.phrasesPanel);
         this.addChild(this.smilesPanel);
     }
 

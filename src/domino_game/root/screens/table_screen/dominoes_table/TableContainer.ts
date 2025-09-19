@@ -10,7 +10,7 @@ import {DominoesTable} from "../DominoesTable";
 
 export class TableContainer extends Sprite3D {
     private moveTween: TweenMax;
-    zoom: number = 1.5;//для портрета ставить 3-4
+    zoom: number = 1.85;//для портрета ставить 3-4
 
     constructor() {
         super();
