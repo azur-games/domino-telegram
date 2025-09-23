@@ -151,8 +151,8 @@ export class FlyCoins extends Sprite {
                 await new Promise(resolve =>
                     this.tweens.push(tween = TweenMax.to(coin2.scale, {
                         duration: duration / 10,
-                        x: 1.4,
-                        y: 1.4,
+                        x: this.coinScale * 1.4,
+                        y: this.coinScale * 1.4,
                         yoyo: true,
                         repeat: 1,
                         onComplete: resolve,

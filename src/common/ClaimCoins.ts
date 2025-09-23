@@ -2,6 +2,7 @@ import {Point} from "pixi.js";
 import {DominoGame} from "../app";
 import {Balance} from "../domino_game/root/screens/lobby_screen/Balance";
 import {DynamicData} from "../DynamicData";
+import {OnClaimCoins} from "../game_events/OnClaimCoins";
 import {GameEvents} from "../GameEvents";
 import {SoundsPlayer} from "../services/SoundsPlayer";
 import {FlyCoins} from "./claim_coins/FlyCoins";
@@ -15,9 +16,10 @@ export class ClaimCoins extends StageResizeListening {
     private flyCoins: FlyCoins;
     private endPosition: Point;
     private startPosition: Point;
-    private onClaimCoinsBindThis: (e: MessageEvent) => void;
+    private onClaimCoinsBindThis: (e: OnClaimCoins) => void;
+    private balanceHidden: boolean = false;
 
-    constructor(initialLockBalance: number = DynamicData.myProfile.coins) {
+    constructor(initialLockBalance: number = DynamicData.myProfile.coins, private coinsScale: number = .5) {
         super();
         this.createChildren();
         this.addChildren();
@@ -29,7 +31,7 @@ export class ClaimCoins extends StageResizeListening {
 
     createChildren(): void {
         this.balance = new Balance();
-        this.flyCoins = new FlyCoins("common/currency_soft_crown", .5);
+        this.flyCoins = new FlyCoins("common/currency_soft_crown", this.coinsScale);
     }
 
     addChildren(): void {
@@ -42,10 +44,12 @@ export class ClaimCoins extends StageResizeListening {
         this.balance.skipBalanceUpdate = true;
     }
 
-    onClaimCoins(e: MessageEvent): void {
-        let startPosition: Point = e.data.startPosition;
-        let coinsAmount: number = e.data.coinsAmount;
-        let onComplete: Function = e.data.onComplete;
+    onClaimCoins(e: OnClaimCoins): void {
+        let startPosition: Point = e.detail.startPosition;
+        let endPosition: Point = e.detail.endPosition;
+        let coinsAmount: number = e.detail.coinsAmount;
+        let onComplete: Function = e.detail.onComplete;
+        endPosition && (this.endPosition = endPosition);
         this.claimCoins(startPosition, coinsAmount, onComplete);
     }
 
@@ -82,7 +86,12 @@ export class ClaimCoins extends StageResizeListening {
     onGameScaleChanged(): void {
         this.balance.x = -DominoGame.instance.screenW / 2 + 200;
         this.balance.y = -DominoGame.instance.screenH / 2 + 70;
-        this.endPosition = new Point(this.balance.x - 90, this.balance.y);
+        this.balanceHidden || (this.endPosition = new Point(this.balance.x - 90, this.balance.y));
+    }
+
+    hideBalance() {
+        this.balance.visible = false;
+        this.balanceHidden = true;
     }
 
     destroy(): void {

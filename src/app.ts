@@ -1,4 +1,4 @@
-import {Device, Framework, FrameworkConfig, IGame, ScreenType} from "@azur-games/pixi-vip-framework";
+import {Device, Framework, FrameworkConfig, FrameworkLocalStorageNames, IGame, Language, LocalStorageService, ScreenType} from "@azur-games/pixi-vip-framework";
 import {BlurFilter} from "@pixi/filter-blur";
 import {Linear, TweenMax} from "gsap";
 import * as PIXI from "pixi.js";
@@ -130,7 +130,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 24");
+        console.log("version 33");
         SentryService.init();
         DominoGame.instance.app = new PIXI.Application({
             autoDensity: true,

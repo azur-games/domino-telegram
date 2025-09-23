@@ -1,7 +1,9 @@
 import {GiftConfig, ItemsService, LanguageService, Timeout, WindowFocusController} from "@azur-games/pixi-vip-framework";
 import {DiffPatcher} from "jsondiffpatch";
 import * as jsonPatchFormatter from "jsondiffpatch/formatters/jsonpatch";
+import {Point} from "pixi.js";
 import {Sprite3D} from "pixi3d";
+import {ClaimCoins} from "../../../common/ClaimCoins";
 import {GameStateData, GameStateEvents} from "../../../data/active_data/GameStateData";
 import {ActiveData} from "../../../data/ActiveData";
 import {ChatMessageType} from "../../../dynamic_data/game_message/ChatMessageType";
@@ -13,6 +15,7 @@ import {SitPlace} from "../../../dynamic_data/SitPlace";
 import {SocketPhrase} from "../../../dynamic_data/SocketPhrase";
 import {SocketQueueData} from "../../../dynamic_data/SocketQueueData";
 import {DynamicData} from "../../../DynamicData";
+import {OnClaimCoins} from "../../../game_events/OnClaimCoins";
 import {GameEvents} from "../../../GameEvents";
 import {GameMode} from "../../../services/socket_service/socket_message_data/socket_game_config/GameMode";
 import {SocketMessageType} from "../../../services/socket_service/SocketMessageType";
@@ -72,6 +75,7 @@ export class TableScreen extends BaseScreen {
     private stateTime: number;
     private onCloseMenuAndBazarBindThis: (e: MessageEvent) => void;
     private chat: TableChat;
+    private coins: ClaimCoins;
 
     constructor() {
         super(ScreenType.TABLE);
@@ -336,6 +340,7 @@ export class TableScreen extends BaseScreen {
         this.afkOverlay = new AfkOverlay();
         this.stateLabels = new StateLabels();
         this.chat = new TableChat();
+        this.coins = new ClaimCoins(undefined, .4);
     }
 
     private onDominoFromBazar(): void {
@@ -369,9 +374,10 @@ export class TableScreen extends BaseScreen {
         this.addChild(this.loader);
         this.addChild(this.clothInscription);
         this.addChild(this.modeIndicator);
+        this.addChild(this.sits);
         this.addChild(this.dominoesTable);
         this.addChild(this.bazar);
-        this.addChild(this.sits);
+        this.addChild(this.coins).hideBalance();
         this.addChild(this.stateLabels);
         this.addChild(this.menu);
         this.addChild(this.giftsPanel).visible = false;
@@ -462,30 +468,15 @@ export class TableScreen extends BaseScreen {
                 if (!sit2) {
                     debugger
                 }
-                let plotnost: number = .5;
                 let coinsCount: number = 15;
                 let currentCoinSum: number = messageData.coins / coinsCount;
-                let totalNumber: number = sit2.roundUserData.coins += messageData.coins;
                 let promise: Promise<void> = new Promise<void>(async resolve => {
-                    SoundsPlayer.play("fallingCoins");
-                    for (let i = 0; i < 5; i++) {
-                        this.sits?.flyCoin(sit1, sit2, false, currentCoinSum);
-                        await Timeout.milliseconds(30 / plotnost + Math.random() * 5);
-                        if (this.destroyed) {
-                            break;
-                        }
-                        this.sits?.flyCoin(sit1, sit2, false, currentCoinSum);
-                        await Timeout.milliseconds(30 / plotnost + Math.random() * 5);
-                        if (this.destroyed) {
-                            break;
-                        }
-                        this.sits?.flyCoin(sit1, sit2, i == 4, currentCoinSum, messageData.coins, totalNumber);
-                        await Timeout.milliseconds(30 / plotnost + Math.random() * 5);
-                        if (this.destroyed) {
-                            break;
-                        }
-                    }
-                    resolve();
+                    dispatchEvent(new OnClaimCoins({
+                        startPosition: new Point(sit1.position.x + sit1.money.position.x + sit1.money.icon.position.x, sit1.position.y + sit1.money.position.y + sit1.money.icon.position.y),
+                        endPosition: new Point(sit2.position.x + sit2.money.position.x + sit2.money.icon.position.x, sit2.position.y + sit2.money.position.y + sit2.money.icon.position.y),
+                        coinsAmount: currentCoinSum,
+                        onComplete: resolve
+                    }));
                 });
                 if (!this.roundEnded) {
                     await promise;

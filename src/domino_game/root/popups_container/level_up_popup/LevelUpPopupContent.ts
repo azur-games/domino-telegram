@@ -8,6 +8,7 @@ import {LanguageText} from "@azur-games/pixi-vip-framework";
 import {DisplayObjectFactory} from "@azur-games/pixi-vip-framework";
 import {GraphicsFactory} from "@azur-games/pixi-vip-framework";
 import {SpineFactory} from "../../../../factories/SpineFactory";
+import {OnClaimCoins} from "../../../../game_events/OnClaimCoins";
 import {GameEvents} from "../../../../GameEvents";
 import {LevelUpEventMessage} from "../../../../services/socket_service/socket_message_data/user_events_message/LevelUpEventMessage";
 import {SocketService} from "../../../../services/SocketService";
@@ -119,12 +120,10 @@ export class LevelUpPopupContent extends AppearanceContainer {
     }
 
     claimReward(): void {
-        dispatchEvent(new MessageEvent(GameEvents.ON_CLAIM_COINS, {
-            data: {
-                startPosition: new Point(this.coinIcon.x, this.coinIcon.y),
-                coinsAmount: this.eventMessageData.body.coins,
-                onComplete: this.close.bind(this)
-            }
+        dispatchEvent(new OnClaimCoins({
+            startPosition: new Point(this.coinIcon.x, this.coinIcon.y),
+            coinsAmount: this.eventMessageData.body.coins,
+            onComplete: this.close.bind(this)
         }));
     }
 
