@@ -10,7 +10,7 @@ import {RoomsListItem} from "./rooms_list/RoomsListItem";
 
 export class RoomsList extends ScrollContainer<RoomsListItem> {
     static isThisRoomAvailable(room: SocketGameConfig): boolean {
-        return room.minLevel <= DynamicData.myProfile.level && room.minBalanceCoins <= DynamicData.myProfile.coins;
+        return room.minLevel <= DynamicData.myProfile.level && room.minBalanceCoins <= DynamicData.myProfile.coins && room.maxBalanceCoins >= DynamicData.myProfile.coins;
     }
 
     private onRoomsFilterBindThis: (e: FilterLobbyRooms) => void;

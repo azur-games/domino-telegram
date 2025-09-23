@@ -130,7 +130,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 33");
+        console.log("version 34");
         SentryService.init();
         DominoGame.instance.app = new PIXI.Application({
             autoDensity: true,
@@ -150,6 +150,7 @@ export class DominoGame implements IGame {
     }
 
     async init(): Promise<void> {
+        LocalStorageService.setKeyValue(FrameworkLocalStorageNames.CURRENT_LANGUAGE, Language.EN);
         await this.frameworkInit();
 
         DominoGame.instance.root = new Root();

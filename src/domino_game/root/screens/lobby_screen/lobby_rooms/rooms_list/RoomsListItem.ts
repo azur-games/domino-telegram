@@ -88,7 +88,7 @@ export class RoomsListItem extends ScrollItem {
     }
 
     private updateButtonState(): void {
-        this.available = this.gameConfig.minLevel <= DynamicData.myProfile.level && this.gameConfig.minBalanceCoins <= DynamicData.myProfile.coins;
+        this.available = this.gameConfig.minLevel <= DynamicData.myProfile.level && this.gameConfig.minBalanceCoins <= DynamicData.myProfile.coins && this.gameConfig.maxBalanceCoins >= DynamicData.myProfile.coins;
         this.alpha = this.available ? 1 : 0.2;
         this.sitButton.enabled = this.available;
     }
