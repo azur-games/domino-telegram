@@ -1,6 +1,7 @@
 import {Button, DisplayObjectFactory, GameType, LanguageText, NumberUtils, Pivot, ScrollItem} from "@azur-games/pixi-vip-framework";
 import {NineSlicePlane, Point, Sprite, Text} from "pixi.js";
 import {DynamicData} from "../../../../../../DynamicData";
+import {GameEvents} from "../../../../../../GameEvents";
 import {SocketGameConfig} from "../../../../../../services/socket_service/socket_message_data/SocketGameConfig";
 import {SocketService} from "../../../../../../services/SocketService";
 import {CurrencyConverter} from "../../../../../../utils/CurrencyConverter";
@@ -21,6 +22,7 @@ export class RoomsListItem extends ScrollItem {
     private playersIcon: Sprite;
     private playersCount: Text;
     private sitButton: Button;
+    private onProfileUpdatedBindThis: () => void;
 
     constructor(private gameConfig: SocketGameConfig, private available: boolean) {
         super();
@@ -28,7 +30,10 @@ export class RoomsListItem extends ScrollItem {
         this.addChildren();
         this.initChildren();
         this.updateButtonState();
+        this.onProfileUpdatedBindThis = this.onProfileUpdated.bind(this);
+        addEventListener(GameEvents.PROFILE_UPDATED, this.onProfileUpdatedBindThis);
         this.cache(true);
+
     }
 
     createChildren(): void {
@@ -87,6 +92,10 @@ export class RoomsListItem extends ScrollItem {
         this.sitButton.backgroundImage.y = 7;
     }
 
+    onProfileUpdated() {
+        this.updateButtonState();
+    }
+
     private updateButtonState(): void {
         this.available = this.gameConfig.minLevel <= DynamicData.myProfile.level && this.gameConfig.minBalanceCoins <= DynamicData.myProfile.coins && this.gameConfig.maxBalanceCoins >= DynamicData.myProfile.coins;
         this.alpha = this.available ? 1 : 0.2;
@@ -118,6 +127,9 @@ export class RoomsListItem extends ScrollItem {
 
     destroy(): void {
         this.cache(false);
+
+        removeEventListener(GameEvents.PROFILE_UPDATED, this.onProfileUpdatedBindThis);
+        this.onProfileUpdatedBindThis = null;
 
         this.removeChild(this.background);
         this.removeChild(this.leftColorBar);

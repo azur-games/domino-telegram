@@ -130,7 +130,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 34");
+        console.log("version 37");
         SentryService.init();
         DominoGame.instance.app = new PIXI.Application({
             autoDensity: true,

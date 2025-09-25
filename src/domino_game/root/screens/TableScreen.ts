@@ -48,7 +48,6 @@ export class TableScreen extends BaseScreen {
     sits: Sits;
 
     private loader: TableLoader;
-    private clothInscription: ClothInscription;
     private onGameStateUpdateBindThis: (e: MessageEvent) => void;
     bazar: Bazar;
     private onHideEndRoundPopupBindThis: (e: MessageEvent) => void;
@@ -192,7 +191,6 @@ export class TableScreen extends BaseScreen {
 
         this.removeChild(this.background);
         this.removeChild(this.loader);
-        this.removeChild(this.clothInscription);
         this.removeChild(this.modeIndicator);
         this.removeChild(this.dominoesTable);
         this.removeChild(this.sits);
@@ -205,7 +203,6 @@ export class TableScreen extends BaseScreen {
 
         this.background.destroy();
         this.loader.destroy();
-        this.clothInscription.destroy();
         this.modeIndicator.destroy();
         this.dominoesTable.destroy();
         this.sits.destroy();
@@ -218,7 +215,6 @@ export class TableScreen extends BaseScreen {
 
         this.background = undefined;
         this.loader = undefined;
-        this.clothInscription = undefined;
         this.modeIndicator = undefined;
         this.dominoesTable = undefined;
         this.sits = undefined;
@@ -263,7 +259,6 @@ export class TableScreen extends BaseScreen {
 
     showLoader(show: boolean) {
         this.loader.visible = show;
-        this.clothInscription.visible = !show;
     }
 
     private async onGameStateUpdate(e: {data: SocketQueueData}) {
@@ -328,7 +323,6 @@ export class TableScreen extends BaseScreen {
     private createChildren() {
         this.background = new TableBackground(TableBackgroundType.DEFAULT);
         this.loader = new TableLoader();
-        this.clothInscription = new ClothInscription();
         this.modeIndicator = new ModeIndicator(DynamicData.socketGameRequest.mode);
         this.dragContainer = new Sprite3D();
         this.dragContainerInner = new Sprite3D();
@@ -372,7 +366,7 @@ export class TableScreen extends BaseScreen {
     private addChildren() {
         this.addChild(this.background);
         this.addChild(this.loader);
-        this.addChild(this.clothInscription);
+        // this.addChild(this.clothInscription);
         this.addChild(this.modeIndicator);
         this.addChild(this.sits);
         this.addChild(this.dominoesTable);

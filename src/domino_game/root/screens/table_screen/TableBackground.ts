@@ -93,10 +93,9 @@ export class TableBackground extends StageResizeListening {
         this.propsBottomRight.x = propsMinX;
         this.propsBottomRight.y = propsMinY;
 
-        this.hand.y = DominoGame.instance.screenH / 2 - 450;
-        this.scale.set(1.5);
-        this.hand.scale.set(0.6);
-
+        this.hand.y = DominoGame.instance.screenH / 2 - 500;
+        this.scale.set(1.7);
+        this.hand.scale.set(0.5);
     }
 
     private onDragOverTable(): void {
