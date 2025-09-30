@@ -100,7 +100,7 @@ export class BazarWindow extends ScreenCovering {
 
     onUnusedIdxChanged(unusedIdx: number): void {
         this.title.applyPlaceholders([this.gameStateData.pieces.interfaces.filter(pieceData => pieceData.place == PiecePlace.UNUSED).length.toString()]);
-        unusedIdx >= 0 && this.bazarItems[unusedIdx].setPieceData(this.gameStateData?.pieces.classes.find(pieceData => pieceData.unusedIdx == unusedIdx));
+        unusedIdx >= 0 && this.bazarItems[unusedIdx]?.setPieceData(this.gameStateData?.pieces.classes.find(pieceData => pieceData.unusedIdx == unusedIdx));
     }
 
     destroy(): void {

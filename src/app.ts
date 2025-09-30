@@ -1,9 +1,11 @@
-import {Device, Framework, FrameworkConfig, FrameworkLocalStorageNames, IGame, Language, LocalStorageService, ScreenType} from "@azur-games/pixi-vip-framework";
+import {DominoCalculator} from "@azur-games/pixi-domino-core";
+import {Framework, FrameworkConfig, FrameworkLocalStorageNames, IGame, Language, LocalStorageService} from "@azur-games/pixi-vip-framework";
 import {BlurFilter} from "@pixi/filter-blur";
 import {Linear, TweenMax} from "gsap";
 import * as PIXI from "pixi.js";
 import {InteractionManager, Loader, SimpleRope} from "pixi.js";
 import {Camera} from "pixi3d";
+import {PlatformName} from "../../pixi-domino-core/src/types/PlatformName";
 import {ActiveData} from "./data/ActiveData";
 import {Root} from "./domino_game/Root";
 import {DominoLogic} from "./domino_game/root/screens/table_screen/DominoLogic";
@@ -130,7 +132,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 37");
+        console.log("version 39");
         SentryService.init();
         DominoGame.instance.app = new PIXI.Application({
             autoDensity: true,
@@ -158,6 +160,7 @@ export class DominoGame implements IGame {
         DominoGame.instance.app.stage.addChild(DominoGame.instance.root);
 
         DominoLogic.initDomino();
+        DominoCalculator.init(PlatformName.TELEGRAM);
         ActiveData.init();
         SocketService.clientInit();
 

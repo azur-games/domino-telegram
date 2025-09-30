@@ -356,7 +356,7 @@ export class TableScreen extends BaseScreen {
     private onDomino(e: MessageEvent): void {
         DynamicData.socketGameRequest.mode == GameMode.PRO || SoundsPlayer.play("finalDomino");
         let sit: Sit = this.sits.getSitBySitPlace(e.data as SitPlace);
-        sit.bubble.showImg();
+        sit?.bubble.showImg();
     }
 
     private onOpponentFound(): void {

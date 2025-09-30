@@ -1,7 +1,6 @@
-import {DominoCalculator} from "@azur-games/pixi-domino-core";
 import gsap from "gsap";
 import {Sine, TweenMax} from "gsap/gsap-core";
-import {Point, RenderTexture, Sprite} from "pixi.js";
+import {RenderTexture, Sprite} from "pixi.js";
 import {MaterialRenderSortType, Matrix4x4, Mesh3D, PickingHitArea, Quaternion, Sprite3D, StandardMaterial, StandardMaterialAlphaMode} from "pixi3d";
 import {DominoGame} from "../../../../app";
 import {WindowFocusController} from "@azur-games/pixi-vip-framework";
@@ -10,7 +9,6 @@ import {PieceJointData} from "../../../../data/active_data/game_state/piece_data
 import {GameStateData, GameStateEvents} from "../../../../data/active_data/GameStateData";
 import {ActiveData} from "../../../../data/ActiveData";
 import {GamePhase} from "../../../../dynamic_data/GamePhase";
-import {PieceRot} from "../../../../dynamic_data/IPieceData";
 import {IPieceJointData} from "../../../../dynamic_data/IPieceJointData";
 import {IPossibleMoveData} from "../../../../dynamic_data/IPossibleMoveData";
 import {MoveAction} from "../../../../dynamic_data/MoveAction";
@@ -26,12 +24,12 @@ import {StaticData} from "../../../../StaticData";
 import {Settings3D} from "../../../../utils/Settings3D";
 import {Timeout} from "@azur-games/pixi-vip-framework";
 import {CoorsAndCorner} from "./domino_logic/CoorsAndCorner";
-import {Direction, DirectionTurn} from "./domino_logic/Direction";
+import {Direction} from "./domino_logic/Direction";
 import {DominoItem} from "./domino_logic/DominoItem";
-import {Position} from "./domino_logic/Position";
 import {PositionDirectionDirectionTurn} from "./domino_logic/PositionDirectionDirectionTurn";
 import {Vector} from "./domino_logic/Vector";
 import {BazarContainer} from "./dominoes_table/BazarContainer";
+import {DominoCalculator} from "@azur-games/pixi-domino-core";
 import {TableContainer} from "./dominoes_table/TableContainer";
 import {DominoLogic} from "./DominoLogic";
 import {ScoreRound} from "./ScoreRound";
@@ -150,6 +148,7 @@ export class DominoesTable extends Sprite3D {
     }
 
     resetDominos(): void {
+        DominoCalculator.reset();
         this.dominoItems.forEach(dominoItem => {
             this.moveToContainer(dominoItem, this.distributionContainer);
             dominoItem.reset();
@@ -847,7 +846,7 @@ export class DominoesTable extends Sprite3D {
         }
         this.dominoPlayInProgress = true;
         if (dominoItem.pieceData.side != SitPlace.BOTTOM) {
-            let sitContainer: Sprite3D;
+            let sitContainer: Sprite3D = this.myHandContainer;
             switch (dominoItem.pieceData.side) {
                 case SitPlace.TOP:
                     sitContainer = this.topHandContainer;
@@ -1212,7 +1211,7 @@ export class DominoesTable extends Sprite3D {
             minY = Math.min(minY, dominoItem.y - addingY);
             maxY = Math.max(maxY, dominoItem.y + addingY);
         });
-        lastInHand || await this.tableContainer.move(minX, maxX, minY, maxY, fast);
+        lastInHand || await this.tableContainer.move(minY, maxY, minX, maxX, fast);
         if (this._destroyed) {
             return;
         }
@@ -1291,7 +1290,14 @@ export class DominoesTable extends Sprite3D {
             .filter(possibleMove => possibleMove.joint?.piece)
             .forEach((possibleMove: IPossibleMoveData, index: number) => {
                 prevDominoItem = this.getDominoItemByNumbers(possibleMove.joint.piece);
-                let positionDirectionDirectionTurn: PositionDirectionDirectionTurn = DominoCalculator.getPositionDirectionDirectionTurn(possibleMove.joint, prevDominoItem, nextDominoItem, this.tableDominoes, DynamicData.socketGameRequest.mode);
+                let positionDirectionDirectionTurn: PositionDirectionDirectionTurn = DominoCalculator.getPositionDirectionDirectionTurn(
+                    possibleMove.joint,
+                    prevDominoItem,
+                    nextDominoItem,
+                    this.tableDominoes,
+                    DynamicData.socketGameRequest.mode,
+                    true
+                );
                 let coorsAndCorner: CoorsAndCorner = DominoCalculator.getCoorsAndCorner(nextDominoItem, prevDominoItem, positionDirectionDirectionTurn);
                 let selector: Mesh3D = this.selectors[index];
                 selector.visible = true;
@@ -1356,69 +1362,10 @@ export class DominoesTable extends Sprite3D {
         this.spinnerContainer.rotationQuaternion.setEulerAngles(90 - Settings3D.corner, 0, 0);
         this.lastInHandContainer.rotationQuaternion.setEulerAngles(Settings3D.corner, 0, 0);
         this.dragContainerInner.rotationQuaternion.setEulerAngles(Settings3D.corner, 0, 0);
-        this.tableContainer.rotationQuaternion.setEulerAngles(Settings3D.corner, 0, 180);
+        this.tableContainer.rotationQuaternion.setEulerAngles(0, Settings3D.corner, 90);
         this.singleDoubleSelector.rotationQuaternion.setEulerAngles(90, 0, 0);
         this.singleNormalSelector.rotationQuaternion.setEulerAngles(90, 90 - Settings3D.corner, 90);
     }
-
-    // static getMaxWidthAndHeight(): Point {
-    //     return DynamicData.socketGameRequest.mode == GameMode.PRO ? new Point(37, 11) : new Point(40, 9);
-    // }
-
-    // private getCoorsAndCorner(nextDominoItem: DominoItem, prevDominoItem: DominoItem, positionDirectionDirectionTurn: PositionDirectionDirectionTurn): CoorsAndCorner {
-    //     let direction: Direction = positionDirectionDirectionTurn.direction;
-    //     if (prevDominoItem) {
-    //         if (positionDirectionDirectionTurn.directionTurn != Direction.NONE) {
-    //             direction = DominoLogic.directionsSum(positionDirectionDirectionTurn.directionTurn, direction);
-    //         }
-    //         let directionsSum: Direction = DominoLogic.directionsSum(prevDominoItem.moveDirection, direction);
-    //         let finalDirectionVector: Vector = prevDominoItem.getDirectionVectorOld(positionDirectionDirectionTurn.position, direction, nextDominoItem.double).add(new Vector(prevDominoItem.moveX, prevDominoItem.moveY));
-    //         return new CoorsAndCorner(finalDirectionVector.x, finalDirectionVector.y, directionsSum);
-    //     }
-    //     return new CoorsAndCorner(0, 0, Direction.UP);
-    // }
-
-    // private getPositionDirectionDirectionTurn(joint: IPieceJointData, nextDominoItem: DominoItem): PositionDirectionDirectionTurn {
-    //     let direction: Direction;
-    //     let directionTurn: DirectionTurn = Direction.NONE;
-    //     let position: Position;
-    //     if (joint) {
-    //         let prevDominoItem: DominoItem = this.getDominoItemByNumbers([joint.piece[0], joint.piece[1]]);
-    //         if (prevDominoItem.double) {
-    //             if (this.tableDominoes.length == 1) {
-    //                 switch (joint.dir) {
-    //                     case PieceRot.RIGHT:
-    //                         direction = Direction.UP;
-    //                         break;
-    //                     case PieceRot.LEFT:
-    //                         direction = Direction.DOWN;
-    //                         break;
-    //                 }
-    //             } else {
-    //                 if (joint.additional) {
-    //                     direction = joint.dir == PieceRot.DOWN ? Direction.RIGHT : Direction.LEFT;
-    //                 } else {
-    //                     direction = prevDominoItem.topDirectionOpened ? Direction.UP : Direction.DOWN;
-    //                 }
-    //
-    //             }
-    //         } else {
-    //             switch (this.dominoItems.filter(dominoItem => dominoItem.onTable).length) {
-    //                 case 0:
-    //                     direction = Direction.UP;
-    //                     break;
-    //                 default:
-    //                     direction = prevDominoItem.top == joint.joinValue ? Direction.UP : Direction.DOWN;
-    //                     break;
-    //             }
-    //         }
-    //
-    //         directionTurn = this.getDirectionTurn(prevDominoItem, nextDominoItem);
-    //         position = prevDominoItem.double ? Position.CENTER : direction == Direction.DOWN ? Position.BOTTOM : Position.TOP;
-    //     }
-    //
-    //     return new PositionDirectionDirectionTurn(position, direction, directionTurn);
-    // }
 
     private clearSelectors() {
         let selector: Mesh3D;
@@ -1455,51 +1402,6 @@ export class DominoesTable extends Sprite3D {
         this.highlights_double.forEach(selector => selector.visible = false);
         this.possibleMoveDataBySelector.clear();
     }
-
-    // private getDirectionTurn(prevDominoItem: DominoItem, nextDominoItem: DominoItem): DirectionTurn {
-    //     let minX: number = 0;
-    //     let maxX: number = 0;
-    //     let minY: number = 0;
-    //     let maxY: number = 0;
-    //     this.tableDominoes.forEach(dominoItem => {
-    //         minX = Math.min(minX, dominoItem.x);
-    //         maxX = Math.max(maxX, dominoItem.x);
-    //         minY = Math.min(minY, dominoItem.y);
-    //         maxY = Math.max(maxY, dominoItem.y);
-    //     });
-    //
-    //     if (!nextDominoItem.double) {
-    //         if (DynamicData.fives) {
-    //             let spinner: DominoItem = this.tableDominoes.find(tableDomino => tableDomino.pieceData.pivot);
-    //             if (spinner) {
-    //                 if (Math.abs(prevDominoItem.x - spinner.x) < .1) {
-    //                     if (prevDominoItem.y < -3) {
-    //                         return Math.abs(spinner.x - minX) < Math.abs(spinner.x - maxX) ? Direction.RIGHT : Direction.LEFT;
-    //                     }
-    //                     if (prevDominoItem.y > 3) {
-    //                         return Math.abs(spinner.x - minX) < Math.abs(spinner.x - maxX) ? Direction.LEFT : Direction.RIGHT;
-    //                     }
-    //                 }
-    //             }
-    //         } else {
-    //             let maxWidthAndHeight: Point = DominoesTable.getMaxWidthAndHeight();
-    //             if (maxX - minX > maxWidthAndHeight.x) {
-    //                 if (Math.abs(prevDominoItem.y) < .1) {
-    //                     return prevDominoItem.x >= 0 ? Direction.LEFT : Direction.RIGHT;
-    //                 }
-    //                 if (prevDominoItem.y < -maxWidthAndHeight.y) {
-    //                     if (prevDominoItem.x == maxX) {
-    //                         return Direction.LEFT;
-    //                     }
-    //                     if (prevDominoItem.x == minX) {
-    //                         return Direction.RIGHT;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return Direction.NONE;
-    // }
 
     private onPossibleMovesChanged(): void {
         this.dominoItems.filter(dominoItem => dominoItem.pieceData.place == PiecePlace.WORKSET && dominoItem.pieceData.side == SitPlace.BOTTOM).forEach(dominoItem => {
