@@ -13,6 +13,7 @@ export interface IRoundUser extends PlayerData {
     moveScore: number,
     winScore: number,
     coins: number,
+    softCoins: number,
     score: number,
     absentVals: DominoNumber[],
     state: UserState

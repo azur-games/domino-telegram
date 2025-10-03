@@ -1,6 +1,7 @@
 import {DisplayObjectFactory, LoaderService, Pivot, Timeout} from "@azur-games/pixi-vip-framework";
 import {Linear, Sine, TweenMax} from "gsap/gsap-core";
 import {BLEND_MODES, IPoint, Point, SimpleRope, Sprite} from "pixi.js";
+import {CurrencyService} from "../../services/CurrencyService";
 import {SoundsPlayer} from "../../services/SoundsPlayer";
 import Tween = gsap.core.Tween;
 
@@ -10,7 +11,7 @@ export class FlyCoins extends Sprite {
     private count: number = 0;
     private tweens: Tween[] = [];
 
-    constructor(private coinTextureName: string = "table/sit/money_icon", private coinScale: number = 1) {
+    constructor(private coinScale: number = 1) {
         super();
         this.createChildren();
         this.addChildren();
@@ -24,29 +25,12 @@ export class FlyCoins extends Sprite {
         this.addChild(this.container);
     }
 
-    async flyCoins(position1: Point, position2: Point): Promise<void> {
-        let plotnost: number = .5;
-        let first: boolean = true;
-        await new Promise<void>(async resolve => {
-            for (let i = 0; i < 10 * plotnost; i++) {
-                this.flyCoin(position1, position2, first);
-                first = false;
-                await Timeout.milliseconds(30 / plotnost + Math.random() * 5);
-                this.flyCoin(position1, position2);
-                await Timeout.milliseconds(30 / plotnost + Math.random() * 5);
-                this.flyCoin(position1, position2);
-                await Timeout.milliseconds(30 / plotnost + Math.random() * 5);
-            }
-            resolve();
-        });
-    }
-
-    async flyCoin(position1: Point, position2: Point, first: boolean = false, coins: number = 0): Promise<void> {
-        let sqrt2: number = Math.sqrt(2) / 2;
+    async flyCoin(position1: Point, position2: Point): Promise<void> {
+        let coinTextureName = CurrencyService.currencyIcon;
         let coinAngle: number = 0;
-        let coin: Sprite = DisplayObjectFactory.createSprite(this.coinTextureName);
-        let coin1: Sprite = DisplayObjectFactory.createSprite(this.coinTextureName);
-        let coin2: Sprite = DisplayObjectFactory.createSprite(this.coinTextureName);
+        let coin: Sprite = DisplayObjectFactory.createSprite(coinTextureName);
+        let coin1: Sprite = DisplayObjectFactory.createSprite(coinTextureName);
+        let coin2: Sprite = DisplayObjectFactory.createSprite(coinTextureName);
         let coinContainer: Sprite = DisplayObjectFactory.createSprite();
         coin.scale.set(this.coinScale);
         coin1.scale.set(this.coinScale);

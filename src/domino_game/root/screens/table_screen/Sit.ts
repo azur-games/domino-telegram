@@ -21,8 +21,8 @@ import {AvatarService} from "../../../../services/AvatarService";
 import {GiftConfig} from "@azur-games/pixi-vip-framework";
 import {LanguageService} from "@azur-games/pixi-vip-framework";
 import {LoaderService} from "@azur-games/pixi-vip-framework";
+import {CurrencyService} from "../../../../services/CurrencyService";
 import {PlayerData} from "../../../../services/socket_service/socket_message_data/profile_data/PlayerData";
-import {ProfileData} from "../../../../services/socket_service/socket_message_data/ProfileData";
 import {GameMode} from "../../../../services/socket_service/socket_message_data/socket_game_config/GameMode";
 import {SoundsPlayer} from "../../../../services/SoundsPlayer";
 import {Pivot} from "@azur-games/pixi-vip-framework";
@@ -194,7 +194,7 @@ export class Sit extends Sprite {
         }
         this.setName(DynamicData.myProfile.name);
         this.onIconChanged();
-        this.onCoinsChanged(DynamicData.myProfile.coins);
+        this.onCoinsChanged(CurrencyService.isSoftModeNow ? DynamicData.myProfile.softCoins : DynamicData.myProfile.coins);
     }
 
     onTurnChanged(): void {
@@ -247,7 +247,8 @@ export class Sit extends Sprite {
     }
 
     updateCoins() {
-        this.onCoinsChanged((!this.roundUserData || this.roundUserData.side == SitPlace.NONE) ? -1 : this.roundUserData.coins);
+        let coins: number = CurrencyService.isSoftModeNow ? this.roundUserData.softCoins : this.roundUserData.coins;
+        this.onCoinsChanged((!this.roundUserData || this.roundUserData.side == SitPlace.NONE) ? -1 : coins);
     }
 
     updateAfkIconVisibility(): void {
@@ -280,14 +281,6 @@ export class Sit extends Sprite {
         this.timerRound.killTimer();
         this.setScale(.9);
         SoundsPlayer.stop("countdown");
-    }
-
-    async onAvatarClick(): Promise<void> {
-        if (!this.roundUserData?.id || this.roundUserData.id == -1) {
-            return;
-        }
-        let profileData: ProfileData = await DynamicData.profiles.getFullProfileById(this.roundUserData.id);
-        dispatchEvent(new MessageEvent(GameEvents.OPEN_PROFILE_POPUP, {data: {profileData, overlayAlpha: .75}}));
     }
 
     async showWinner(show: boolean = true): Promise<void> {
@@ -403,7 +396,7 @@ export class Sit extends Sprite {
 
     private createChildren() {
         this.scaleContainer = DisplayObjectFactory.createSprite();
-        this.avaContainer = new Button({callback: this.onAvatarClick.bind(this), disabledOffline: true});
+        this.avaContainer = new Button({callback: null, disabledOffline: true});
         this.avatar = DisplayObjectFactory.createSprite("table/sit/empty");
         this.avatarMask = GraphicsFactory.createRoundedRect(0, 0, this.avatarSize, this.avatarSize, 30);
         this.avaFrame = DisplayObjectFactory.createNineSlicePlane("table/sit/ava_frame", 55, 55, 55, 55);

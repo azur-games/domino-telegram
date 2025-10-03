@@ -21,7 +21,7 @@ export class GiftListItemCost extends Sprite {
     }
 
     createChildren(): void {
-        this.iconCoin = DisplayObjectFactory.createSprite("common/currency_soft_crown");
+        this.iconCoin = DisplayObjectFactory.createSprite("common/currency_soft");
         this.costText = new LanguageText({key: this.config.cost.toString(), fontSize: 26});
     }
 

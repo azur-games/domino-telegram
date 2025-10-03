@@ -1,16 +1,17 @@
 import {Point, Sprite} from "pixi.js";
-import {LanguageText} from "@azur-games/pixi-vip-framework";
+import {LanguageText, NumberUtils} from "@azur-games/pixi-vip-framework";
 import {Button} from "../../../../../../pixi-vip-framework";
 import {DynamicData} from "../../../../DynamicData";
 import {GameEvents} from "../../../../GameEvents";
 import {AvatarService} from "../../../../services/AvatarService";
+import {CurrencyService} from "../../../../services/CurrencyService";
+import {CurrencyConverter} from "../../../../utils/CurrencyConverter";
 import {LobbyHeaderAvatar} from "./lobby_header/LobbyHeaderAvatar";
 import {LobbyHeaderBalance} from "./lobby_header/LobbyHeaderBalance";
 import {DominoGame} from "../../../../app";
 
 
 export class LobbyHeader extends Sprite {
-    private settingsButton: Button;
     private avatar: LobbyHeaderAvatar;
     private playerName: LanguageText;
     private balance: LobbyHeaderBalance;
@@ -18,6 +19,7 @@ export class LobbyHeader extends Sprite {
     private withdrawButton: Button;
     private historyButton: Button;
     private onProfileUpdatedBindThis: (e: Event) => void;
+    private onCurrencyChangedBindThis: (e: Event) => void;
 
     constructor() {
         super();
@@ -27,14 +29,11 @@ export class LobbyHeader extends Sprite {
         this.onProfileUpdated();
         this.onProfileUpdatedBindThis = this.onProfileUpdated.bind(this);
         addEventListener(GameEvents.PROFILE_UPDATED, this.onProfileUpdatedBindThis);
+        this.onCurrencyChangedBindThis = this.onCurrencyChanged.bind(this);
+        addEventListener(GameEvents.CURRENCY_CHANGED, this.onCurrencyChangedBindThis);
     }
 
     createChildren(): void {
-        this.settingsButton = new Button({
-            callback: this.onSettingsButtonClick.bind(this),
-            bgTextureName: "lobby/more_button",
-
-        });
         this.avatar = new LobbyHeaderAvatar();
         this.playerName = new LanguageText({key: "", fontSize: 32, fontWeight: "500", fill: 0xDAEDFF});
         this.balance = new LobbyHeaderBalance();
@@ -75,7 +74,6 @@ export class LobbyHeader extends Sprite {
 
     addChildren(): void {
         this.addChild(this.avatar);
-        this.addChild(this.settingsButton);
         this.addChild(this.playerName);
         this.addChild(this.balance);
         this.addChild(this.depositButton);
@@ -83,14 +81,8 @@ export class LobbyHeader extends Sprite {
         this.addChild(this.historyButton);
     }
 
-    onSettingsButtonClick(): void {
-        dispatchEvent(new MessageEvent(GameEvents.SHOW_LOBBY_SETTINGS, {data: true}));
-    }
-
     resize(): void {
         this.y = -DominoGame.instance.screenH / 2;
-        this.settingsButton.y = 65;
-        this.settingsButton.x = DominoGame.instance.screenW / 2 - 75;
         this.avatar.y = 200;
         this.avatar.x = DominoGame.instance.screenW / 2 - 175;
         this.playerName.y = 120;
@@ -105,7 +97,16 @@ export class LobbyHeader extends Sprite {
     onProfileUpdated(): void {
         this.playerName.text = DynamicData.myProfile.name;
         this.avatar.setAvatar(AvatarService.getAvatarTextureNameByProfile(DynamicData.myProfile));
-        this.balance.setBalance(DynamicData.myProfile.coins);
+        this.updateBalance();
+    }
+
+    onCurrencyChanged(): void {
+        this.updateBalance();
+    }
+
+    updateBalance(): void {
+        this.balance.setBalance(CurrencyService.isHardModeNow ? NumberUtils.shortPriceFormat(CurrencyConverter.coinsToUSD(DynamicData.myProfile.coins)) : DynamicData.myProfile.softCoins.toString());
+
     }
 
     onDepositClick(): void {
@@ -122,7 +123,9 @@ export class LobbyHeader extends Sprite {
 
     destroy(): void {
         removeEventListener(GameEvents.PROFILE_UPDATED, this.onProfileUpdatedBindThis);
+        removeEventListener(GameEvents.CURRENCY_CHANGED, this.onCurrencyChangedBindThis);
         this.onProfileUpdatedBindThis = null;
+        this.onCurrencyChangedBindThis = null;
 
         this.removeChild(this.avatar);
         this.removeChild(this.playerName);
@@ -130,7 +133,6 @@ export class LobbyHeader extends Sprite {
         this.removeChild(this.depositButton);
         this.removeChild(this.withdrawButton);
         this.removeChild(this.historyButton);
-        this.removeChild(this.settingsButton);
 
         this.avatar.destroy();
         this.playerName.destroy();
@@ -138,7 +140,6 @@ export class LobbyHeader extends Sprite {
         this.depositButton.destroy();
         this.withdrawButton.destroy();
         this.historyButton.destroy();
-        this.settingsButton.destroy();
 
         this.avatar = null;
         this.playerName = null;
@@ -146,7 +147,6 @@ export class LobbyHeader extends Sprite {
         this.depositButton = null;
         this.withdrawButton = null;
         this.historyButton = null;
-        this.settingsButton = null;
 
         super.destroy();
     }

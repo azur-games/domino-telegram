@@ -78,5 +78,6 @@ export class GameEvents extends FrameworkEvents {
     static OPEN_HISTORY_POPUP: string = "OPEN_HISTORY_POPUP";
     static CLOSE_HISTORY_POPUP: string = "CLOSE_HISTORY_POPUP";
     static SHOW_LOBBY_SETTINGS: string = "SHOW_LOBBY_SETTINGS";
+    static CURRENCY_CHANGED: string = "CURRENCY_CHANGED";
 }
 

@@ -4,6 +4,7 @@ import {Stats} from "./profile_data/Stats";
 
 export interface ProfileData extends PlayerData {
     coins: number,
+    softCoins: number,
     createdAt: string,
     experience: number,
     fbConnected: boolean,

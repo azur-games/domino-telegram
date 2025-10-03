@@ -62,7 +62,7 @@ export class LevelUpPopupContent extends AppearanceContainer {
         this.shineMask = GraphicsFactory.createRect(-450, 0, 900, 600);
         this.rewardText = new LanguageText({key: "LevelUpWindow/reward", fontSize: 40});
         this.coinsAmountText = new LanguageText({key: this.eventMessageData.body.coins.toString(), fontSize: 92, fill: [0xFFF500, 0xFF9B05]});
-        this.coinIcon = DisplayObjectFactory.createSprite("common/currency_soft_crown");
+        this.coinIcon = DisplayObjectFactory.createSprite("common/currency_soft");
         this.claimCoins = new ClaimCoins();
     }
 

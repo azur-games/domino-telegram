@@ -38,6 +38,6 @@ export class UserEventsService {
             UserEventsService.wantToShowLevelUp = true;
             return;
         }
-        dispatchEvent(new MessageEvent(GameEvents.OPEN_LEVEL_UP_POPUP, {data: message}));
+        // dispatchEvent(new MessageEvent(GameEvents.OPEN_LEVEL_UP_POPUP, {data: message}));
     }
 }

@@ -2,14 +2,14 @@ import {Sprite, Text} from "pixi.js";
 import {DynamicData} from "../../../../../DynamicData";
 import {DisplayObjectFactory} from "@azur-games/pixi-vip-framework";
 import {TextFactory} from "../../../../../factories/TextFactory";
-import {GameMode} from "../../../../../services/socket_service/socket_message_data/socket_game_config/GameMode";
+import {CurrencyService} from "../../../../../services/CurrencyService";
 import {SocketGameConfig} from "../../../../../services/socket_service/socket_message_data/SocketGameConfig";
 import {StaticData} from "../../../../../StaticData";
 import {Pivot} from "@azur-games/pixi-vip-framework";
 
 
 export class BetBlock extends Sprite {
-    private coinIcon: Sprite;
+    private currencyIcon: Sprite;
     private betText: Text;
 
     constructor() {
@@ -19,12 +19,12 @@ export class BetBlock extends Sprite {
         this.addChildren();
         this.initChildren();
         let gameConfig: SocketGameConfig = StaticData.gamesConfig.find(gameConfig => gameConfig.gameMode == DynamicData.socketGameRequest.mode && gameConfig.gameType == DynamicData.socketGameRequest.type);
-        let cost: number = gameConfig.gameMode == GameMode.PRO ? gameConfig.bet : gameConfig.cost;
-        this.setBetText(cost.toString());
+        let cost: number = CurrencyService.isThisSoftCurrencyRoom(gameConfig) ? gameConfig.softBet : gameConfig.bet;
+        this.setBetText(cost?.toString());
     }
 
     private createChildren() {
-        this.coinIcon = DisplayObjectFactory.createSprite("table/mode_indicator/icon_coin");
+        this.currencyIcon = DisplayObjectFactory.createSprite(CurrencyService.currencyIcon);
         this.betText = TextFactory.createCommissioner({
             value: "",
             fontSize: 44,
@@ -32,12 +32,13 @@ export class BetBlock extends Sprite {
     }
 
     private addChildren() {
-        this.addChild(this.coinIcon);
+        this.addChild(this.currencyIcon);
         this.addChild(this.betText);
     }
 
     private initChildren() {
-        Pivot.center(this.coinIcon);
+        this.currencyIcon.scale.set(.42);
+        Pivot.center(this.currencyIcon);
 
         this.betText.style.stroke = 0x623895;
         this.betText.style.strokeThickness = 4;
@@ -52,7 +53,7 @@ export class BetBlock extends Sprite {
     private setBetText(value: string) {
         this.betText.text = value;
         Pivot.center(this.betText);
-        this.betText.x = this.coinIcon.width / 2 + 3;
-        this.coinIcon.x = -this.betText.width / 2 - 3;
+        this.betText.x = this.currencyIcon.width / 2 + 3;
+        this.currencyIcon.x = -this.betText.width / 2 - 3;
     }
 }

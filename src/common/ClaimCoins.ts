@@ -31,7 +31,7 @@ export class ClaimCoins extends StageResizeListening {
 
     createChildren(): void {
         this.balance = new Balance();
-        this.flyCoins = new FlyCoins("common/currency_soft_crown", this.coinsScale);
+        this.flyCoins = new FlyCoins(this.coinsScale);
     }
 
     addChildren(): void {
@@ -65,11 +65,9 @@ export class ClaimCoins extends StageResizeListening {
         SoundsPlayer.playWithoutFocus("fallingCoins");
         SoundsPlayer.playWithoutFocus("openCashbox");
         let density: number = .5;
-        let first: boolean = true;
         await new Promise<void>(async resolve => {
             for (let i = 0; i < this.animationTimes; i++) {
-                this.flyCoins.flyCoin(this.startPosition, this.endPosition, first);
-                first = false;
+                this.flyCoins.flyCoin(this.startPosition, this.endPosition);
                 await Timeout.milliseconds(30 / density + Math.random() * 5);
                 this.flyCoins.flyCoin(this.startPosition, this.endPosition);
                 await Timeout.milliseconds(30 / density + Math.random() * 5);

@@ -18,7 +18,6 @@ export class MenuContainer extends ScreenCovering {
     private showTween: TweenMax;
     private background: NineSlicePlane;
     private leaveItem: MenuItem;
-    private rulesItem: MenuItem;
     private vibrationItem: MenuItem;
     private musicItem: MenuItem;
     private soundItem: MenuItem;
@@ -35,7 +34,6 @@ export class MenuContainer extends ScreenCovering {
     createChildren(): void {
         this.background = DisplayObjectFactory.createNineSlicePlane("table/menu/bg", 32, 40, 143, 21);
         this.leaveItem = new MenuItem(this.onLeaveClick.bind(this), "TableSettingsWindow/leave", "table/menu/exit");
-        this.rulesItem = new MenuItem(this.onRulesClick.bind(this), "TableSettingsWindow/rules", "table/menu/help");
         this.vibrationItem = new MenuItem(null, "TableSettingsWindow/vibration", "table/menu/vibration", true, false);
         this.musicItem = new MenuItem(this.onMusicClick.bind(this), "TableSettingsWindow/music", "table/menu/music", true, SettingsService.musicIsOn);
         this.soundItem = new MenuItem(this.onSoundClick.bind(this), "TableSettingsWindow/sound", "table/menu/sound", true, SettingsService.soundIsOn);
@@ -44,7 +42,6 @@ export class MenuContainer extends ScreenCovering {
     addChildren(): void {
         this.addChild(this.background);
         this.addChild(this.leaveItem);
-        this.addChild(this.rulesItem);
         this.addChild(this.vibrationItem);
         this.addChild(this.musicItem);
         this.addChild(this.soundItem);
@@ -56,11 +53,10 @@ export class MenuContainer extends ScreenCovering {
 
         Pivot.center(this.background, true, false);
 
-        this.leaveItem.y = 70;
-        this.rulesItem.y = 150;
-        this.vibrationItem.y = 230;
-        this.musicItem.y = 310;
-        this.soundItem.y = 390;
+        this.leaveItem.y = 90;
+        this.vibrationItem.y = 180;
+        this.musicItem.y = 270;
+        this.soundItem.y = 360;
 
         let leaving: boolean = DynamicData.socketGameRequest.state == SocketGameRequestState.LEAVING;
         this.leaveItem.background.visible = leaving;
@@ -124,21 +120,18 @@ export class MenuContainer extends ScreenCovering {
 
         this.removeChild(this.background);
         this.removeChild(this.leaveItem);
-        this.removeChild(this.rulesItem);
         this.removeChild(this.vibrationItem);
         this.removeChild(this.musicItem);
         this.removeChild(this.soundItem);
 
         this.background.destroy();
         this.leaveItem.destroy();
-        this.rulesItem.destroy();
         this.vibrationItem.destroy();
         this.musicItem.destroy();
         this.soundItem.destroy();
 
         this.background = null;
         this.leaveItem = null;
-        this.rulesItem = null;
         this.vibrationItem = null;
         this.musicItem = null;
         this.soundItem = null;

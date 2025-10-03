@@ -1,22 +1,18 @@
-import {Button, DisplayObjectFactory, GameType, LanguageText, NumberUtils, Pivot, ScrollItem} from "@azur-games/pixi-vip-framework";
+import {Button, DisplayObjectFactory, LanguageText, NumberUtils, Pivot, ScrollItem} from "@azur-games/pixi-vip-framework";
 import {NineSlicePlane, Point, Sprite, Text} from "pixi.js";
-import {DynamicData} from "../../../../../../DynamicData";
 import {GameEvents} from "../../../../../../GameEvents";
+import {CurrencyService} from "../../../../../../services/CurrencyService";
 import {SocketGameConfig} from "../../../../../../services/socket_service/socket_message_data/SocketGameConfig";
 import {SocketService} from "../../../../../../services/SocketService";
 import {CurrencyConverter} from "../../../../../../utils/CurrencyConverter";
+import {RoomsList} from "../RoomsList";
 
 
 export class RoomsListItem extends ScrollItem {
-    private typeToColor: Partial<Record<GameType, string>> = {
-        [GameType.HARD1]: "green",
-        [GameType.HARD2]: "blue",
-        [GameType.HARD3]: "purple",
-        [GameType.HARD4]: "orange"
-    };
     private background: NineSlicePlane;
     private leftColorBar: NineSlicePlane;
     private betLabel: LanguageText;
+    private currencyIcon: Sprite;
     private betAmount: LanguageText;
     private divider: NineSlicePlane;
     private playersIcon: Sprite;
@@ -40,7 +36,8 @@ export class RoomsListItem extends ScrollItem {
         this.background = DisplayObjectFactory.createNineSlicePlane("lobby/room_bg", 46, 46, 46, 46);
         this.leftColorBar = DisplayObjectFactory.createNineSlicePlane(`lobby/${this.barColor}_bar`, 35, 28, 3, 30);
         this.betLabel = new LanguageText({key: "Bet", fontSize: 28, fontWeight: "400"});
-        this.betAmount = new LanguageText({key: `$${NumberUtils.coinsKiloFormat(parseFloat(CurrencyConverter.coinsToUSD(this.gameConfig.bet || this.gameConfig.cost || 0)))}`, fontSize: 48,});
+        this.currencyIcon = DisplayObjectFactory.createSprite(CurrencyService.currencyIcon);
+        this.betAmount = new LanguageText({key: `${this.bet}`, fontSize: 48,});
         this.divider = DisplayObjectFactory.createNineSlicePlane("lobby/room_item_divider", 1, 5, 1, 5);
         this.playersIcon = DisplayObjectFactory.createSprite("common/profiles");
         this.playersCount = new LanguageText({key: `${this.gameConfig.minPlayers}/${this.gameConfig.maxPlayers}`, fontSize: 36});
@@ -59,6 +56,7 @@ export class RoomsListItem extends ScrollItem {
         this.addChild(this.background);
         this.addChild(this.leftColorBar);
         this.addChild(this.betLabel);
+        this.addChild(this.currencyIcon);
         this.addChild(this.betAmount);
         this.addChild(this.divider);
         this.addChild(this.playersIcon);
@@ -72,8 +70,10 @@ export class RoomsListItem extends ScrollItem {
         this.leftColorBar.width = 52;
         this.leftColorBar.height = 170;
         this.divider.height = 138;
+        this.currencyIcon.scale.set(.4);
 
         Pivot.center(this.background);
+        Pivot.center(this.currencyIcon);
         Pivot.center(this.leftColorBar);
         Pivot.center(this.divider);
         Pivot.center(this.playersIcon);
@@ -83,8 +83,10 @@ export class RoomsListItem extends ScrollItem {
         this.leftColorBar.x = -445;
         this.betLabel.x = -390;
         this.betLabel.y = -45;
-        this.betAmount.x = -390;
+        this.betAmount.x = -353;
         this.betAmount.y = -10;
+        this.currencyIcon.y = 20;
+        this.currencyIcon.x = -377;
         this.divider.x = -130;
         this.playersIcon.x = -80;
         this.playersCount.x = -20;
@@ -97,16 +99,29 @@ export class RoomsListItem extends ScrollItem {
     }
 
     private updateButtonState(): void {
-        this.available = this.gameConfig.minLevel <= DynamicData.myProfile.level && this.gameConfig.minBalanceCoins <= DynamicData.myProfile.coins && this.gameConfig.maxBalanceCoins >= DynamicData.myProfile.coins;
+        this.available = RoomsList.isThisRoomAvailable(this.gameConfig);
         this.alpha = this.available ? 1 : 0.2;
         this.sitButton.enabled = this.available;
     }
 
+    get bet(): string {
+        return CurrencyService.isSoftModeNow
+            ? this.gameConfig.softBet.toString()
+            : NumberUtils.shortPriceFormat(CurrencyConverter.coinsToUSD(this.gameConfig.bet), 2);
+    }
+
     get barColor(): string {
-        if ([GameType.HARD1, GameType.HARD2, GameType.HARD3, GameType.HARD4].includes(this.gameConfig.gameType)) {
-            return this.typeToColor[this.gameConfig.gameType];
-        }
-        return this.typeToColor[GameType.HARD1];
+        const colorMap: {[key: string]: string} = {
+            "1": "green",
+            "2": "blue",
+            "3": "purple",
+            "4": "orange"
+        };
+
+        const matchedKey = Object.keys(colorMap).find(key =>
+            this.gameConfig.gameType.includes(key)
+        );
+        return matchedKey ? colorMap[matchedKey] : "green";
     }
 
     private onSitButtonClick(): void {
@@ -134,6 +149,7 @@ export class RoomsListItem extends ScrollItem {
         this.removeChild(this.background);
         this.removeChild(this.leftColorBar);
         this.removeChild(this.betLabel);
+        this.removeChild(this.currencyIcon);
         this.removeChild(this.betAmount);
         this.removeChild(this.playersIcon);
         this.removeChild(this.playersCount);
@@ -142,6 +158,7 @@ export class RoomsListItem extends ScrollItem {
         this.background.destroy();
         this.leftColorBar.destroy();
         this.betLabel.destroy();
+        this.currencyIcon.destroy();
         this.betAmount.destroy();
         this.playersIcon.destroy();
         this.playersCount.destroy();
@@ -150,6 +167,7 @@ export class RoomsListItem extends ScrollItem {
         this.background = null;
         this.leftColorBar = null;
         this.betLabel = null;
+        this.currencyIcon = null;
         this.betAmount = null;
         this.playersIcon = null;
         this.playersCount = null;

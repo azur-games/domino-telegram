@@ -1,4 +1,4 @@
-import {CoreSocketService, FacebookTransaction, GameType, LocalStorageService, SocketController, SocketMessageType, SocketPayload, StringUtils, TxData, XsollaInitResponse} from "@azur-games/pixi-vip-framework";
+import {CoreSocketService, FacebookTransaction, LocalStorageService, SocketController, SocketMessageType, SocketPayload, StringUtils, TxData, XsollaInitResponse} from "@azur-games/pixi-vip-framework";
 import {DominoGame} from "../app";
 import {ActiveData} from "../data/ActiveData";
 import {ScreenType} from "../domino_game/root/screens/ScreenType";
@@ -20,6 +20,7 @@ import {FriendData} from "./socket_service/socket_message_data/FriendData";
 import {FullProfileData} from "./socket_service/socket_message_data/profile_data/FullProfileData";
 import {ProfileData} from "./socket_service/socket_message_data/ProfileData";
 import {GameMode} from "./socket_service/socket_message_data/socket_game_config/GameMode";
+import {GameType} from "./socket_service/socket_message_data/socket_game_config/GameType";
 import {TonTransactionData} from "./socket_service/socket_message_data/TonTransactionData";
 import {ChatEventMessage} from "./socket_service/socket_message_data/user_events_message/ChatEventMessage";
 import {UserEventMessage} from "./socket_service/socket_message_data/UserEventMessage";
@@ -237,9 +238,7 @@ export class SocketService extends CoreSocketService {
             case SocketGameRequestState.LEAVING:
                 return;
             default:
-                request.mode == GameMode.PRO
-                    ? SocketService.leaveGame(false)
-                    : dispatchEvent(new MessageEvent(GameEvents.OPEN_LEAVE_GAME_POPUP));
+                request.mode == GameMode.PRO && SocketService.leaveGame(false);
         }
     }
 

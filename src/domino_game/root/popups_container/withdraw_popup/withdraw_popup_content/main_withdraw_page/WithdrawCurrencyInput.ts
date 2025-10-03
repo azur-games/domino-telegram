@@ -118,7 +118,7 @@ export class WithdrawCurrencyInput extends Sprite {
     }
 
     applyData(rates: TonRates) {
-        this.maxAmount = parseFloat(CurrencyConverter.coinsToUSD(DynamicData.myProfile.coins));
+        this.maxAmount = CurrencyConverter.coinsToUSD(DynamicData.myProfile.coins);
         this.minAmount = rates.minTransactionUsd;
         this.maxWithdrawBlock.updateMaxAmount(this.maxAmount);
         this.minAmountText.changeText("Min amount: $" + NumberUtils.shortPriceFormat(rates.minTransactionUsd, 2), false);

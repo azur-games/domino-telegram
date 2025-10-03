@@ -14,12 +14,6 @@ export class LobbySettings extends Sprite {
     private walletItem: LobbySettingsItem;
     private infoConfigs: any[] = [
         {
-            callback: this.onAffiliateClick.bind(this),
-            titleKey: "Affiliate program",
-            descriptionKey: "Earn with Domino King",
-            iconTextureName: "lobby/dollar_icon"
-        },
-        {
             callback: this.onNewsClick.bind(this),
             titleKey: "Domino King News",
             descriptionKey: "t.me/DominoKingRoom",

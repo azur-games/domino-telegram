@@ -29,7 +29,7 @@ export class Balance extends Sprite {
 
     createChildren(): void {
         this.background = DisplayObjectFactory.createNineSlicePlane("lobby/balance_bg", 24, 24, 24, 24);
-        this.icon = DisplayObjectFactory.createSprite("common/currency_soft_crown");
+        this.icon = DisplayObjectFactory.createSprite("common/currency_soft");
         this.plusButton = new Button({
             callback: this.callback,
             bgTextureName: "lobby/btn_hud_plus",
@@ -41,8 +41,7 @@ export class Balance extends Sprite {
             dimWhenDisabled: true
         });
         this.balanceText = new LanguageText({
-            //key: NumberUtils.priceFormat(DynamicData?.myProfile?.coins || 0),
-            key: NumberUtils.coinsKiloFormat(parseFloat(CurrencyConverter.coinsToUSD(DynamicData?.myProfile?.coins || 0))),
+            key: NumberUtils.coinsKiloFormat(CurrencyConverter.coinsToUSD(DynamicData?.myProfile?.coins || 0)),
             fontSize: 33,
             autoFitWidth: 115
         });
@@ -81,7 +80,7 @@ export class Balance extends Sprite {
 
     update(amount: number): void {
 
-        this.balanceText.changeText(NumberUtils.coinsKiloFormat(parseFloat(CurrencyConverter.coinsToUSD(amount))));
+        this.balanceText.changeText(NumberUtils.coinsKiloFormat(CurrencyConverter.coinsToUSD(amount)));
     }
 
     set skipBalanceUpdate(value: boolean) {

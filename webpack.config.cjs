@@ -1,10 +1,9 @@
 const CopyPlugin = require("copy-webpack-plugin");
 const path = require('path');
 
-module.exports = {
+module.exports = (_env, argv) => ({
     entry: './src/app.ts',
-    // devtool: "inline-source-map",
-    mode: "production",
+    devtool: argv.mode === "production" ? false : "inline-source-map",
     module: {
         rules: [
             {
@@ -35,4 +34,4 @@ module.exports = {
             ]
         })
     ]
-};
+});

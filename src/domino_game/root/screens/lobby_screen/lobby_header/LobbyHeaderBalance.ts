@@ -1,26 +1,25 @@
 import {Sprite} from "pixi.js";
-import {LanguageText} from "@azur-games/pixi-vip-framework";
-import {DynamicData} from "../../../../../DynamicData";
-import {CurrencyConverter} from "../../../../../utils/CurrencyConverter";
+import {DisplayObjectFactory, LanguageText, LoaderService, NumberUtils, Pivot} from "@azur-games/pixi-vip-framework";
+import {GameEvents} from "../../../../../GameEvents";
+import {CurrencyService} from "../../../../../services/CurrencyService";
 
 
 export class LobbyHeaderBalance extends Sprite {
-    private dollarSign: LanguageText;
+    private currencyIcon: Sprite;
     private balanceText: LanguageText;
+    private onCurrencyChangeBindThis: () => void;
 
     constructor() {
         super();
         this.createChildren();
         this.addChildren();
         this.initChildren();
+        this.onCurrencyChangeBindThis = this.onCurrencyChange.bind(this);
+        addEventListener(GameEvents.CURRENCY_CHANGED, this.onCurrencyChangeBindThis);
     }
 
     createChildren(): void {
-        this.dollarSign = new LanguageText({
-            key: "$",
-            fontSize: 64,
-            fontWeight: "500"
-        });
+        this.currencyIcon = DisplayObjectFactory.createSprite(CurrencyService.currencyIcon);
         this.balanceText = new LanguageText({
             key: "345",
             fontSize: 96,
@@ -29,25 +28,34 @@ export class LobbyHeaderBalance extends Sprite {
     }
 
     addChildren(): void {
-        this.addChild(this.dollarSign);
         this.addChild(this.balanceText);
+        this.addChild(this.currencyIcon);
     }
 
     initChildren(): void {
-        this.balanceText.x = 50;
+        this.currencyIcon.scale.set(.7);
+        Pivot.center(this.currencyIcon);
+
+        this.balanceText.x = 75;
         this.balanceText.y = -30;
+        this.currencyIcon.x = 27;
+        this.currencyIcon.y = 33;
     }
 
-    setBalance(coins: number) {
-        this.balanceText.text = CurrencyConverter.coinsToUSD(coins);
+    setBalance(coins: string) {
+        this.balanceText.text = coins;
+    }
+
+    onCurrencyChange(): void {
+        this.currencyIcon.texture = LoaderService.getTexture(CurrencyService.currencyIcon);
+        Pivot.center(this.currencyIcon);
     }
 
     destroy(): void {
-        this.removeChild(this.dollarSign);
+        removeEventListener(GameEvents.CURRENCY_CHANGED, this.onCurrencyChangeBindThis);
+        this.onCurrencyChangeBindThis = null;
         this.removeChild(this.balanceText);
-        this.dollarSign.destroy();
         this.balanceText.destroy();
-        this.dollarSign = null;
         this.balanceText = null;
         super.destroy();
     }

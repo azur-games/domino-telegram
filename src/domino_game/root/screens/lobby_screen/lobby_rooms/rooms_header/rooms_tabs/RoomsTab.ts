@@ -1,8 +1,9 @@
-import {DisplayObjectFactory, GameType, LanguageText, Pivot, Tab, TabData} from "@azur-games/pixi-vip-framework";
+import {DisplayObjectFactory, LanguageText, Pivot, Tab, TabData} from "@azur-games/pixi-vip-framework";
+import {RoomsTabNames} from "../RoomsTabs";
 
 
-export class RoomsTab extends Tab<GameType> {
-    constructor(public data: TabData<GameType>, public onTabClickEventName: string) {
+export class RoomsTab extends Tab<RoomsTabNames> {
+    constructor(public data: TabData<RoomsTabNames>, public onTabClickEventName: string) {
         super(data, onTabClickEventName);
         this.createChildren();
         this.addChildren();

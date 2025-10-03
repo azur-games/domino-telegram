@@ -1,10 +1,10 @@
-import {GameType} from "@azur-games/pixi-vip-framework/src";
+import {RoomsTabNames} from "../domino_game/root/screens/lobby_screen/lobby_rooms/rooms_header/RoomsTabs";
 import {GameEvents} from "../GameEvents";
 
 
 export type FilterLobbyRoomsPayload = {
     isSitNow: boolean;
-    gameType: GameType
+    activeTab: RoomsTabNames
 }
 
 export class FilterLobbyRooms extends CustomEvent<FilterLobbyRoomsPayload> {

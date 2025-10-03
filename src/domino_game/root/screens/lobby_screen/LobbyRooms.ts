@@ -1,4 +1,4 @@
-import {Power1, TweenMax} from "gsap";
+import {Sine, Power1, TweenMax} from "gsap";
 import {InteractionEvent, NineSlicePlane} from "pixi.js";
 import {Clamp, DisplayObjectFactory, DraggableObject, FrameworkEvents, IPoint, Pivot} from "@azur-games/pixi-vip-framework";
 import {DominoGame} from "../../../../app";
@@ -7,7 +7,7 @@ import {RoomsList} from "./lobby_rooms/RoomsList";
 
 
 export class LobbyRooms extends DraggableObject {
-    private top: number = -DominoGame.instance.screenH / 2 + 720;
+    private top: number = -DominoGame.instance.screenH / 2 + 840;
     private bottom: number = -DominoGame.instance.screenH / 2 + 60;
     private speed: number;
     private pointerStart: number;
@@ -20,6 +20,7 @@ export class LobbyRooms extends DraggableObject {
     private background: NineSlicePlane;
     private magnetizeTween: TweenMax;
     private listHeightTween: TweenMax;
+    private gradientAlphaTween: TweenMax;
     private pointerDown: boolean;
     private onMouseWheelBindThis: (e: Event) => void;
 
@@ -36,6 +37,28 @@ export class LobbyRooms extends DraggableObject {
         this.magnetizeTween = TweenMax.to(this, .3, {
             y: coor,
             ease: Power1.easeOut,
+        });
+        if (this.y === -120) {
+            return;
+        }
+        this.bgGradient.visible = true;
+        this.gradientAlphaTween?.kill();
+        this.gradientAlphaTween = TweenMax.to(this.bgGradient, .2, {
+            alpha: 1,
+            onComplete: () => {
+
+            }
+        });
+        if (this.y < -170) {
+            return;
+        }
+        this.gradientAlphaTween?.kill();
+        this.gradientAlphaTween = TweenMax.to(this.bgGradient, .3, {
+            alpha: 0,
+            ease: Sine.easeOut,
+            onComplete: () => {
+                this.bgGradient.visible = false;
+            }
         });
     }
 
@@ -108,7 +131,7 @@ export class LobbyRooms extends DraggableObject {
 
     addChildren(): void {
         this.addChild(this.background);
-        this.addChild(this.bgGradient);
+        this.addChild(this.bgGradient).visible = false;
         this.addChild(this.header);
         this.addChild(this.roomsList);
     }
@@ -119,18 +142,21 @@ export class LobbyRooms extends DraggableObject {
         this.background.width = DominoGame.instance.screenW;
         this.background.height = this.listHeight + 90;
 
+        this.bgGradient.alpha = 0;
+
         Pivot.center(this.bgGradient);
         Pivot.center(this.background);
 
-        this.y = -DominoGame.instance.screenH / 2 + 720;
-        this.bgGradient.y = -this.bgGradient.height / 2;
-        this.background.y = this.background.height / 2 - 2;
+        this.y = -DominoGame.instance.screenH / 2 + 840;
+        this.bgGradient.y = -this.bgGradient.height / 2 - 40;
+        this.background.y = this.background.height / 2 - 60;
         this.roomsList.y = 70;
     }
 
     destroy(): void {
         this.magnetizeTween?.kill();
         this.listHeightTween?.kill();
+        this.gradientAlphaTween?.kill();
 
         this.removeChild(this.header);
         this.removeChild(this.roomsList);
@@ -148,6 +174,7 @@ export class LobbyRooms extends DraggableObject {
         this.background = null;
         this.magnetizeTween = null;
         this.listHeightTween = null;
+        this.gradientAlphaTween = null;
 
         super.destroy();
     }

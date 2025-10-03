@@ -4,6 +4,7 @@ import {NineSlicePlane, Sprite, Text} from "pixi.js";
 import {DynamicData} from "../../../../../DynamicData";
 import {DisplayObjectFactory} from "@azur-games/pixi-vip-framework";
 import {TextFactory} from "../../../../../factories/TextFactory";
+import {CurrencyService} from "../../../../../services/CurrencyService";
 import {GameMode} from "../../../../../services/socket_service/socket_message_data/socket_game_config/GameMode";
 import {NumberUtils} from "@azur-games/pixi-vip-framework";
 import {Pivot} from "@azur-games/pixi-vip-framework";
@@ -89,7 +90,7 @@ export class SitMoney extends Sprite {
 
     private createChildren() {
         this.back = DisplayObjectFactory.createNineSlicePlane("table/sit/money_bg", 23, 23, 23, 23);
-        this.icon = DisplayObjectFactory.createSprite("table/sit/money_icon");
+        this.icon = DisplayObjectFactory.createSprite(CurrencyService.currencyIcon);
         this.moneyText = TextFactory.createCommissioner({fontSize: 28, value: ""});
     }
 
@@ -101,6 +102,7 @@ export class SitMoney extends Sprite {
 
     private initChildren() {
         this.back.width = 150;
+        this.icon.scale.set(.45);
         Pivot.center(this.back);
         Pivot.center(this.icon);
         this.moneyText.style.stroke = 0x333333;

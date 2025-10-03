@@ -1,15 +1,22 @@
-import {Direction, GameType, TabData, Tabs, TabsOptions} from "@azur-games/pixi-vip-framework";
+import {Direction, TabData, Tabs, TabsOptions} from "@azur-games/pixi-vip-framework";
 import {GameEvents} from "../../../../../../GameEvents";
 import {RoomsTab} from "./rooms_tabs/RoomsTab";
 
 
-export class RoomsTabs extends Tabs<RoomsTab, GameType> {
+export enum RoomsTabNames {
+    LOW = "1",
+    MID = "2",
+    HIGH = "3",
+    VIP = "4",
+}
+
+export class RoomsTabs extends Tabs<RoomsTab, RoomsTabNames> {
     constructor() {
-        let tabsConfig: TabData<GameType>[] = [
-            {titleTextKey: "Low", name: GameType.HARD1, backgroundTextureName: "lobby/tab_green"},
-            {titleTextKey: "Mid", name: GameType.HARD2, backgroundTextureName: "lobby/tab_blue"},
-            {titleTextKey: "High", name: GameType.HARD3, backgroundTextureName: "lobby/tab_purple"},
-            {titleTextKey: "VIP", name: GameType.HARD4, backgroundTextureName: "lobby/tab_orange"},
+        let tabsConfig: TabData<RoomsTabNames>[] = [
+            {titleTextKey: "Low", name: RoomsTabNames.LOW, backgroundTextureName: "lobby/tab_green"},
+            {titleTextKey: "Mid", name: RoomsTabNames.MID, backgroundTextureName: "lobby/tab_blue"},
+            {titleTextKey: "High", name: RoomsTabNames.HIGH, backgroundTextureName: "lobby/tab_purple"},
+            {titleTextKey: "VIP", name: RoomsTabNames.VIP, backgroundTextureName: "lobby/tab_orange"},
         ];
         let options: TabsOptions = {direction: Direction.HORIZONTAL, animated: false, betweenItems: 162};
         super(tabsConfig.map(config => new RoomsTab(config, GameEvents.LOBBY_ROOMS_TAB_CLICKED)), options);

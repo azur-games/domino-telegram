@@ -1,13 +1,13 @@
-import {Button, GameType} from "@azur-games/pixi-vip-framework";
+import {Button} from "@azur-games/pixi-vip-framework";
 import {Container, Point} from "pixi.js";
 import {FilterLobbyRooms} from "../../../../../game_events/FilterLobbyRooms";
 import {GameEvents} from "../../../../../GameEvents";
-import {RoomsTabs} from "./rooms_header/RoomsTabs";
+import {RoomsTabNames, RoomsTabs} from "./rooms_header/RoomsTabs";
 
 
 export class RoomsHeader extends Container {
     private sitNowToggleState: boolean = false;
-    private selectedRoomType: GameType;
+    private activeTabName: RoomsTabNames;
     private tabs: RoomsTabs;
     private sitNowToggle: Button;
     private onTabClickedBindThis: (e: MessageEvent) => void;
@@ -51,17 +51,17 @@ export class RoomsHeader extends Container {
     }
 
     onTabClicked(e: MessageEvent) {
-        if (this.selectedRoomType == e.data.name) {
-            this.selectedRoomType = null;
+        if (this.activeTabName == e.data.name) {
+            this.activeTabName = null;
             this.tabs.activeTab.active = false;
         } else {
-            this.selectedRoomType = e.data.name;
+            this.activeTabName = e.data.name;
         }
         this.filterRooms();
     }
 
     filterRooms(): void {
-        dispatchEvent(new FilterLobbyRooms({isSitNow: this.sitNowToggleState, gameType: this.selectedRoomType}));
+        dispatchEvent(new FilterLobbyRooms({isSitNow: this.sitNowToggleState, activeTab: this.activeTabName}));
     }
 
     destroy(): void {

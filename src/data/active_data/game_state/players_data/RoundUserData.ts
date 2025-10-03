@@ -141,6 +141,15 @@ export class RoundUserData extends BaseData {
         ActiveData.addEventToPool<number>(this, RoundUserDataEvent.COINS_CHANGED, this.config.coins);
     }
 
+    get softCoins(): number {
+        return this.config.softCoins || -1;
+    }
+
+    set softCoins(value: number) {
+        this.config.softCoins = value || -1;
+        ActiveData.addEventToPool<number>(this, RoundUserDataEvent.COINS_CHANGED, this.config.softCoins);
+    }
+
     get state(): UserState {
         return this.config.state || UserState.NONE;
     }

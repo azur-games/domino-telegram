@@ -6,17 +6,20 @@ import * as PIXI from "pixi.js";
 import {InteractionManager, Loader, SimpleRope} from "pixi.js";
 import {Camera} from "pixi3d";
 import {PlatformName} from "../../pixi-domino-core/src/types/PlatformName";
+import {SocketGameConfig} from "../../pixi-vip-framework";
 import {ActiveData} from "./data/ActiveData";
 import {Root} from "./domino_game/Root";
 import {DominoLogic} from "./domino_game/root/screens/table_screen/DominoLogic";
 import {DynamicData} from "./DynamicData";
 import {GameEvents} from "./GameEvents";
 import {LilGui} from "./LilGui";
+import {CurrencyService} from "./services/CurrencyService";
 import {LazyLoader} from "./services/loader_service/LazyLoader";
 import {SentryService} from "./services/SentryService";
 import {ServerService} from "./services/ServerService";
 import {SocketService} from "./services/SocketService";
 import {Settings} from "./Settings";
+import {StaticData} from "./StaticData";
 import {Settings3D} from "./utils/Settings3D";
 
 
@@ -104,7 +107,6 @@ export class DominoGame implements IGame {
         DominoGame.instance.screenH = availableHeight / DominoGame.instance.scale;
         // No Backginstance.round flickering on resize
         DominoGame.instance.app.renderer.resize(DominoGame.instance.width, DominoGame.instance.height);
-        console.log("DominoGame.scale", DominoGame.instance.scale);
 
         if (DominoGame.instance.root) {
             DominoGame.instance.root.x = DominoGame.instance.width / 2;//Math.floor((DominoGame.width - w) * .5);
@@ -113,12 +115,8 @@ export class DominoGame implements IGame {
             DominoGame.instance.root.resize();
             DominoGame.instance.scale3D = moreThanRatio ? 1 : DominoGame.instance.scale / (DominoGame.instance.height / Settings.RESOURCES_HEIGHT);
             DominoGame.instance.scale3D = DominoGame.instance.scale3D / 1.5;
-            console.log("DominoGame.scale3D", DominoGame.instance.scale3D);
             dispatchEvent(new MessageEvent(GameEvents.GAME_SCALE_CHANGED, {data: null}));
         }
-        console.log("Settings3D.tgCorner", Settings3D.tgCorner);
-        console.log("Settings3D.sinCorner", Settings3D.sinCorner);
-        console.log("Settings3D.cosCorner", Settings3D.cosCorner);
     }
 
     overridePointerCoordinates(point: any, x: any, y: any): void {
@@ -132,7 +130,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 39");
+        console.log("version 42");
         SentryService.init();
         DominoGame.instance.app = new PIXI.Application({
             autoDensity: true,
@@ -148,7 +146,6 @@ export class DominoGame implements IGame {
         InteractionManager.prototype.mapPositionToPoint = DominoGame.instance.overridePointerCoordinates;
         window.addEventListener("resize", DominoGame.instance.onWindowResize);
         DominoGame.instance.onWindowResize();
-
     }
 
     async init(): Promise<void> {
@@ -171,6 +168,7 @@ export class DominoGame implements IGame {
         DominoGame.instance.hideMainPreloader();
         LilGui.init();
         LazyLoader.loadLazyResources();
+
     }
 
     async frameworkInit(): Promise<void> {
