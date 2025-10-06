@@ -4,4 +4,5 @@ interface Window {
     FB: fb.FacebookStatic;
     AppleID: AppleSignInAPI.AppleID;
     htmlPlatform: any;
+    ym: any;
 }

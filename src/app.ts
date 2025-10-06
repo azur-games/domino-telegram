@@ -6,20 +6,18 @@ import * as PIXI from "pixi.js";
 import {InteractionManager, Loader, SimpleRope} from "pixi.js";
 import {Camera} from "pixi3d";
 import {PlatformName} from "../../pixi-domino-core/src/types/PlatformName";
-import {SocketGameConfig} from "../../pixi-vip-framework";
 import {ActiveData} from "./data/ActiveData";
 import {Root} from "./domino_game/Root";
 import {DominoLogic} from "./domino_game/root/screens/table_screen/DominoLogic";
 import {DynamicData} from "./DynamicData";
 import {GameEvents} from "./GameEvents";
 import {LilGui} from "./LilGui";
-import {CurrencyService} from "./services/CurrencyService";
 import {LazyLoader} from "./services/loader_service/LazyLoader";
+import {MetricaEvents, MetricaService} from "./services/MetricaService";
 import {SentryService} from "./services/SentryService";
 import {ServerService} from "./services/ServerService";
 import {SocketService} from "./services/SocketService";
 import {Settings} from "./Settings";
-import {StaticData} from "./StaticData";
 import {Settings3D} from "./utils/Settings3D";
 
 
@@ -130,7 +128,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 42");
+        console.log("version 45");
         SentryService.init();
         DominoGame.instance.app = new PIXI.Application({
             autoDensity: true,
@@ -149,6 +147,7 @@ export class DominoGame implements IGame {
     }
 
     async init(): Promise<void> {
+        MetricaService.sendEvent(MetricaEvents.APP_START);
         LocalStorageService.setKeyValue(FrameworkLocalStorageNames.CURRENT_LANGUAGE, Language.EN);
         await this.frameworkInit();
 
@@ -168,6 +167,7 @@ export class DominoGame implements IGame {
         DominoGame.instance.hideMainPreloader();
         LilGui.init();
         LazyLoader.loadLazyResources();
+        MetricaService.sendEvent(MetricaEvents.APP_LOADED);
 
     }
 

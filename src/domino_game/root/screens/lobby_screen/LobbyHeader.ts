@@ -1,14 +1,15 @@
-import {Point, Sprite} from "pixi.js";
 import {LanguageText, NumberUtils} from "@azur-games/pixi-vip-framework";
+import {Point, Sprite} from "pixi.js";
 import {Button} from "../../../../../../pixi-vip-framework";
+import {DominoGame} from "../../../../app";
 import {DynamicData} from "../../../../DynamicData";
 import {GameEvents} from "../../../../GameEvents";
 import {AvatarService} from "../../../../services/AvatarService";
 import {CurrencyService} from "../../../../services/CurrencyService";
+import {MetricaEvents, MetricaService} from "../../../../services/MetricaService";
 import {CurrencyConverter} from "../../../../utils/CurrencyConverter";
 import {LobbyHeaderAvatar} from "./lobby_header/LobbyHeaderAvatar";
 import {LobbyHeaderBalance} from "./lobby_header/LobbyHeaderBalance";
-import {DominoGame} from "../../../../app";
 
 
 export class LobbyHeader extends Sprite {
@@ -110,14 +111,17 @@ export class LobbyHeader extends Sprite {
     }
 
     onDepositClick(): void {
+        MetricaService.sendEvent(MetricaEvents.OPEN_DEPOSIT);
         dispatchEvent(new MessageEvent(GameEvents.OPEN_DEPOSIT_POPUP));
     }
 
     onWithdrawClick(): void {
+        MetricaService.sendEvent(MetricaEvents.OPEN_WITHDRAW);
         dispatchEvent(new MessageEvent(GameEvents.OPEN_WITHDRAW_POPUP));
     }
 
     onHistoryClick(): void {
+        MetricaService.sendEvent(MetricaEvents.OPEN_HISTORY);
         dispatchEvent(new MessageEvent(GameEvents.OPEN_HISTORY_POPUP));
     }
 

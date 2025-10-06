@@ -441,7 +441,7 @@ export class TableScreen extends BaseScreen {
                 break;
             case PhraseMsg.WIN:
                 this.roundEnded = true;
-                messageData.factor > 1 && await this.stateLabels.createLabel(LabelColor.DARK, "TableMessages/Factor" + messageData.factor);
+                // messageData.factor > 1 && await this.stateLabels.createLabel(LabelColor.DARK, "TableMessages/Factor" + messageData.factor);
                 DynamicData.kingMode && sit.showWinner();
                 break;
             case PhraseMsg.DEAD_END:

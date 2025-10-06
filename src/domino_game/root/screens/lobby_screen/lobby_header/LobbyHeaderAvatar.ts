@@ -1,7 +1,7 @@
 import {Graphics, Point, Sprite} from "pixi.js";
 import {Button, DisplayObjectFactory, GraphicsFactory, Pivot} from "../../../../../../../pixi-vip-framework";
-import {DynamicData} from "../../../../../DynamicData";
 import {GameEvents} from "../../../../../GameEvents";
+import {MetricaEvents, MetricaService} from "../../../../../services/MetricaService";
 
 
 export class LobbyHeaderAvatar extends Button {
@@ -57,6 +57,7 @@ export class LobbyHeaderAvatar extends Button {
     }
 
     processClick() {
+        MetricaService.sendEvent(MetricaEvents.OPEN_PROFILE_EDITOR);
         dispatchEvent(new MessageEvent(GameEvents.OPEN_EDIT_PROFILE_POPUP));
     }
 

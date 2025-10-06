@@ -2,6 +2,7 @@ import {Button, DisplayObjectFactory, LanguageText, NumberUtils, Pivot, ScrollIt
 import {NineSlicePlane, Point, Sprite, Text} from "pixi.js";
 import {GameEvents} from "../../../../../../GameEvents";
 import {CurrencyService} from "../../../../../../services/CurrencyService";
+import {MetricaEvents, MetricaService} from "../../../../../../services/MetricaService";
 import {SocketGameConfig} from "../../../../../../services/socket_service/socket_message_data/SocketGameConfig";
 import {SocketService} from "../../../../../../services/SocketService";
 import {CurrencyConverter} from "../../../../../../utils/CurrencyConverter";
@@ -128,6 +129,13 @@ export class RoomsListItem extends ScrollItem {
         if (this.dragged || !this.available) {
             return;
         }
+
+        if (CurrencyService.isSoftModeNow) {
+            MetricaService.sendEvent(MetricaEvents.SOFT_TABLE, this.gameConfig.softCommission.toString());
+        } else {
+            MetricaService.sendEvent(MetricaEvents.HARD_TABLE, this.gameConfig.commission.toString());
+        }
+
         SocketService.createGameRequest(this.gameConfig.gameType, this.gameConfig.gameMode);
     }
 

@@ -1,6 +1,7 @@
 import {Sprite} from "pixi.js";
 import {GameEvents} from "../../../../GameEvents";
 import {Currency, CurrencyService} from "../../../../services/CurrencyService";
+import {MetricaEvents, MetricaService} from "../../../../services/MetricaService";
 import {LobbyMenuItem} from "./lobby_menu/LobbyMenuItem";
 
 
@@ -46,6 +47,7 @@ export class LobbyMenu extends Sprite {
     }
 
     onMoreButtonClicked(): void {
+        MetricaService.sendEvent(MetricaEvents.OPEN_SETTINGS);
         dispatchEvent(new MessageEvent(GameEvents.SHOW_LOBBY_SETTINGS, {data: true}));
     }
 
