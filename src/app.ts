@@ -12,6 +12,7 @@ import {DominoLogic} from "./domino_game/root/screens/table_screen/DominoLogic";
 import {DynamicData} from "./DynamicData";
 import {GameEvents} from "./GameEvents";
 import {LilGui} from "./LilGui";
+import {CurrencyService} from "./services/CurrencyService";
 import {LazyLoader} from "./services/loader_service/LazyLoader";
 import {MetricaEvents, MetricaService} from "./services/MetricaService";
 import {SentryService} from "./services/SentryService";
@@ -128,7 +129,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 45");
+        console.log("version 46");
         SentryService.init();
         DominoGame.instance.app = new PIXI.Application({
             autoDensity: true,
@@ -162,6 +163,7 @@ export class DominoGame implements IGame {
 
         await Framework.mainAuthLoop();
 
+        await CurrencyService.init();
         await DynamicData.init();
         await DominoGame.instance.root.screens.gameSync(DynamicData.socketGameRequest);
         DominoGame.instance.hideMainPreloader();
