@@ -8,8 +8,8 @@
     "https://domino-tg1-worker-2.k8s.azurgames.dev"
   ],
   "d2BackendURLs": [
-    "https://domino-2-worker-1.k8s.azurgames.dev",
-    "https://domino-2-worker-2.k8s.azurgames.dev"
+    "https://domino-1-worker-2.k8s.azurgames.dev",
+    "https://domino-1-worker-2.k8s.azurgames.dev"
   ],
   "telegramBackendURLs": [
     "https://domino-tg1-worker-1.k8s.azurgames.dev"

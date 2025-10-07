@@ -1364,7 +1364,7 @@ export class DominoesTable extends Sprite3D {
         this.dragContainerInner.rotationQuaternion.setEulerAngles(Settings3D.corner, 0, 0);
         this.tableContainer.rotationQuaternion.setEulerAngles(0, Settings3D.corner, 90);
         this.singleDoubleSelector.rotationQuaternion.setEulerAngles(90, 0, 0);
-        this.singleNormalSelector.rotationQuaternion.setEulerAngles(90, 90 - Settings3D.corner, 90);
+        this.singleNormalSelector.rotationQuaternion.setEulerAngles(90, 0, 90);
     }
 
     private clearSelectors() {

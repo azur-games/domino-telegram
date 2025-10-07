@@ -60,6 +60,7 @@ export class RoomsList extends ScrollContainer<RoomsListItem> {
 
     filterRoomsByCurrency(room: SocketGameConfig): boolean {
         return room.gameMode === GameMode.PRO && (CurrencyService.isSoftModeNow ? CurrencyService.isThisSoftCurrencyRoom(room) : CurrencyService.isThisHardCurrencyRoom(room));
+        // return room.gameMode === GameMode.PRO;
     }
 
     onCurrencyChange() {
