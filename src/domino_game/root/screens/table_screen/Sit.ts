@@ -24,6 +24,7 @@ import {LoaderService} from "@azur-games/pixi-vip-framework";
 import {CurrencyService} from "../../../../services/CurrencyService";
 import {PlayerData} from "../../../../services/socket_service/socket_message_data/profile_data/PlayerData";
 import {GameMode} from "../../../../services/socket_service/socket_message_data/socket_game_config/GameMode";
+import {SocketGameConfig} from "../../../../services/socket_service/socket_message_data/SocketGameConfig";
 import {SoundsPlayer} from "../../../../services/SoundsPlayer";
 import {Pivot} from "@azur-games/pixi-vip-framework";
 import {Timeout} from "@azur-games/pixi-vip-framework";
@@ -600,8 +601,11 @@ export class Sit extends Sprite {
             || this.roundUserData.state == UserState.SPECTATING) {
             return;
         }
-        let bankrupt: boolean = this.roundUserData.coins < StaticData.getCurrentGameConfig().minBalanceCoins;
-        let magnate: boolean = this.roundUserData.coins > StaticData.getCurrentGameConfig().maxBalanceCoins;
+        let coinsKey: keyof RoundUserData = CurrencyService.isSoftModeNow ? "softCoins" : "coins";
+        let minBalanceKey: keyof SocketGameConfig = CurrencyService.isSoftModeNow ? "minBalanceSoftCoins" : "minBalanceCoins";
+        let maxBalanceKey: keyof SocketGameConfig = CurrencyService.isSoftModeNow ? "maxBalanceSoftCoins" : "maxBalanceCoins";
+        let bankrupt: boolean = this.roundUserData[coinsKey] < StaticData.getCurrentGameConfig()[minBalanceKey];
+        let magnate: boolean = this.roundUserData[coinsKey] > StaticData.getCurrentGameConfig()[maxBalanceKey];
         await Timeout.seconds(2);
         magnate && this.showMagnate();
         bankrupt && this.showBankrupt();
