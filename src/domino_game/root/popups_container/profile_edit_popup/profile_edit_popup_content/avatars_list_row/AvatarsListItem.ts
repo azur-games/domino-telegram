@@ -1,4 +1,4 @@
-import {DisplayObjectFactory, LoaderService, Pivot, ScrollItem} from "@azur-games/pixi-vip-framework";
+import {Device, DisplayObjectFactory, LoaderService, Pivot, ScrollItem} from "@azur-games/pixi-vip-framework";
 import {TweenMax} from "gsap";
 import {NineSlicePlane, Sprite} from "pixi.js";
 import {Player} from "../../../../../../common/Player";
@@ -65,8 +65,7 @@ export class AvatarsListItem extends ScrollItem {
             onComplete: resolve
         }));
         this.background.texture = LoaderService.getTexture("edit_profile/avatar_bg" + (selected ? "_active" : ""));
-
-        this.cacheAsBitmap = true;
+        Device.info.os.name === "Android" || (this.cacheAsBitmap = true);
     }
 
     onAvatarChoose(e: MessageEvent): void {

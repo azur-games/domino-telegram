@@ -1,5 +1,6 @@
-import {DisplayObjectFactory, LanguageText, Pivot, ScrollContainer} from "@azur-games/pixi-vip-framework";
+import {DisplayObjectFactory, Pivot, ScrollContainer} from "@azur-games/pixi-vip-framework";
 import {Point, Sprite} from "pixi.js";
+import {DominoGame} from "../../../../../app";
 import {AvatarConfig} from "../../../../../services/avatar_service/AvatarConfig";
 import {AvatarService} from "../../../../../services/AvatarService";
 import {AvatarsListRow} from "./AvatarsListRow";
@@ -40,8 +41,9 @@ export class AvatarsList extends ScrollContainer<AvatarsListRow> {
 
     initChildren(): void {
 
-        this.spriteMask.width = this.config.maskSizes.x;
+        this.spriteMask.width = DominoGame.instance.screenW * .9;
         this.spriteMask.height = this.config.maskSizes.y;
+        
         Pivot.center(this.spriteMask);
 
         this.listMask.visible = false;
