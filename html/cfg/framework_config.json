@@ -19,6 +19,15 @@
       "cfg/smiles.json"
     ],
     "images": [],
+    "preloadSounds": [
+      "buttonClick",
+      "menuOpen",
+      "menuClose",
+      "fallingCoins",
+      "coinReachBalance",
+      "distribution",
+      "openCashbox"
+    ],
     "sounds": [
       "assets/sounds/buttonClick.mp3",
       "assets/sounds/menuOpen.mp3",

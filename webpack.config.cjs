@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = (_env, argv) => ({
     entry: './src/app.ts',
+    mode: argv.mode || 'production',
     devtool: argv.mode === "production" ? false : "inline-source-map",
     module: {
         rules: [
@@ -16,10 +17,31 @@ module.exports = (_env, argv) => ({
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
     },
+    optimization: {
+        usedExports: true,
+        sideEffects: false,
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+                pixi: {
+                    test: /[\\/]node_modules[\\/](pixi\.js|@pixi|pixi-spine|pixi3d)[\\/]/,
+                    name: 'pixi',
+                    chunks: 'all',
+                    priority: 10,
+                },
+            },
+        },
+    },
     output: {
-        filename: 'bundle.js',
+        filename: 'js/[name].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
+        clean: true,
     },
     devServer: {
         static: path.join(__dirname, "dist"),

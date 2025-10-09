@@ -2,22 +2,22 @@
 <html>
 <head>
     <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () {
-                (m[i].a = m[i].a || []).push(arguments)
-            };
-            m[i].l = 1 * new Date();
-            for (var j = 0; j < document.scripts.length; j++) {
-                if (document.scripts[j].src === r) {
-                    return;
-                }
-            }
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=104253554', 'ym');
+    <!--    <script type="text/javascript">-->
+    <!--        (function (m, e, t, r, i, k, a) {-->
+    <!--            m[i] = m[i] || function () {-->
+    <!--                (m[i].a = m[i].a || []).push(arguments)-->
+    <!--            };-->
+    <!--            m[i].l = 1 * new Date();-->
+    <!--            for (var j = 0; j < document.scripts.length; j++) {-->
+    <!--                if (document.scripts[j].src === r) {-->
+    <!--                    return;-->
+    <!--                }-->
+    <!--            }-->
+    <!--            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)-->
+    <!--        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=104253554', 'ym');-->
 
-        ym(104253554, 'init', {ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", accurateTrackBounce: true, trackLinks: true});
-    </script>
+    <!--        ym(104253554, 'init', {ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", accurateTrackBounce: true, trackLinks: true});-->
+    <!--    </script>-->
     <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
     <meta content="no-cache" http-equiv="Pragma"/>
     <meta content="0" http-equiv="Expires"/>
@@ -124,28 +124,58 @@
         versionRequest.send();
     }
 
-    function loadBundle() {
-        let scriptRequest = new XMLHttpRequest();
-        let progressDiv = document.getElementById("bar");
-        let persentsText = document.getElementById("bar_percents");
-        scriptRequest.addEventListener("progress", function (event) {
-            let percentComplete = event.loaded / 2554370;
-            let persentsMax5 = Math.max(7, Math.ceil(percentComplete * 20));
-            let percentsMin20 = Math.min(persentsMax5, 20)
-            let percents = percentsMin20 + "%";// см. index.html "progressDiv.style.width"
-            progressDiv.style.width = percentsMin20 + "%";//Берем 20% за загруженный main.bundle.js
-            persentsText.innerText = percents;
-        }, false);
+    async function loadBundle() {
+        const progressDiv = document.getElementById("bar");
+        const persentsText = document.getElementById("bar_percents");
 
-        scriptRequest.addEventListener("load", function (event) {
-            let Element = document.createElement("script");
-            Element.append(event.target.response); //Element.src = "main.bundle.js";
-            Element.type = "text/javascript";
-            document.body.appendChild(Element);
-        }, false);
+        // Get list of JS files from manifest or use fallback names
+        const bundles = ['vendors', 'pixi', 'main'];
+        const totalBundles = bundles.length;
+        let loadedBundles = 0;
 
-        scriptRequest.open("GET", "bundle.js?" + window.gameBundleVersion);
-        scriptRequest.send();
+        function updateProgress(bundleProgress = 0) {
+            const overallProgress = (loadedBundles + bundleProgress) / totalBundles;
+            const percents = Math.max(7, Math.ceil(overallProgress * 20));
+            const percentsMin20 = Math.min(percents, 20);
+            progressDiv.style.width = percentsMin20 + "%";
+            persentsText.innerText = percentsMin20 + "%";
+        }
+
+        // Load bundles sequentially to maintain dependency order
+        for (const bundleName of bundles) {
+            const fileName = `js/${bundleName}.js`;
+            await loadScript(fileName, updateProgress);
+            loadedBundles++;
+            updateProgress(0);
+        }
+    }
+
+    function loadScript(fileName, progressCallback) {
+        return new Promise((resolve, reject) => {
+            const scriptRequest = new XMLHttpRequest();
+
+            scriptRequest.addEventListener("progress", function (event) {
+                if (event.lengthComputable) {
+                    const bundleProgress = event.loaded / event.total;
+                    progressCallback(bundleProgress);
+                }
+            }, false);
+
+            scriptRequest.addEventListener("load", function (event) {
+                const scriptElement = document.createElement("script");
+                scriptElement.textContent = event.target.response;
+                scriptElement.type = "text/javascript";
+                document.body.appendChild(scriptElement);
+                resolve();
+            }, false);
+
+            scriptRequest.addEventListener("error", function (event) {
+                reject(new Error(`Failed to load ${fileName}`));
+            }, false);
+
+            scriptRequest.open("GET", fileName + "?" + window.gameBundleVersion);
+            scriptRequest.send();
+        });
     }
 
     window.loadingTextDiv = document.getElementById("loading_text");

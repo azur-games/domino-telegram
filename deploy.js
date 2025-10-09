@@ -37,7 +37,7 @@ async function deployToSFTP() {
 
         console.log('🚀 Uploading files...');
         // await sftp.uploadDir(localPath, remotePath);
-        await sftp.put(path.join(localPath, 'bundle.js'), path.join(remotePath, 'bundle.js'));
+        await sftp.uploadDir(path.join(localPath, 'js'), path.join(remotePath, 'js'));
         await sftp.uploadDir(path.join(localPath, 'cfg'), path.join(remotePath, 'cfg'));
         console.log('✅ Upload completed successfully');
 
