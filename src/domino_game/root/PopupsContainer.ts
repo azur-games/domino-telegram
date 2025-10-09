@@ -11,22 +11,17 @@ import {InputPopup} from "./popups_container/InputPopup";
 import {LeaveGamePopup} from "./popups_container/LeaveGamePopup";
 import {LevelUpPopup} from "./popups_container/LevelUpPopup";
 import {MaintenancePopup} from "./popups_container/MaintenancePopup";
-import {ProfilePopup} from "./popups_container/ProfilePopup";
-import {SettingsPopup} from "./popups_container/SettingsPopup";
-import {TutorialPopup} from "./popups_container/TutorialPopup";
 import {DepositPopup} from "./popups_container/DepositPopup";
 import {WithdrawPopup} from "./popups_container/WithdrawPopup";
 import {HistoryPopup} from "./popups_container/HistoryPopup";
 import {ProfileEditPopup} from "./popups_container/ProfileEditPopup";
+import {LobbyScreen} from "./screens/LobbyScreen";
 
 
 export class PopupsContainer extends Sprite {
-    private profilePopup: ProfilePopup;
-    private settingsPopup: SettingsPopup;
     private dialogPopup: DialogPopup;
     private leaveGamePopup: LeaveGamePopup;
     private levelUpPopup: LevelUpPopup;
-    private tutorialPopup: TutorialPopup;
     private infoPopup: InfoPopup;
     private inputPopup: InputPopup;
     private maintenancePopup: MaintenancePopup;
@@ -37,18 +32,12 @@ export class PopupsContainer extends Sprite {
 
     constructor() {
         super();
-        addEventListener(GameEvents.OPEN_PROFILE_POPUP, this.onOpenProfilePopup.bind(this));
-        addEventListener(GameEvents.CLOSE_PROFILE_POPUP, this.onCloseProfilePopup.bind(this));
-        addEventListener(GameEvents.OPEN_SETTINGS_POPUP, this.onOpenSettingsPopup.bind(this));
-        addEventListener(GameEvents.CLOSE_SETTINGS_POPUP, this.onCloseSettingsPopup.bind(this));
         addEventListener(GameEvents.OPEN_DIALOG_POPUP, this.onOpenDialogPopup.bind(this));
         addEventListener(GameEvents.CLOSE_DIALOG_POPUP, this.onCloseDialogPopup.bind(this));
         addEventListener(GameEvents.OPEN_LEAVE_GAME_POPUP, this.onOpenLeaveGamePopup.bind(this));
         addEventListener(GameEvents.CLOSE_LEAVE_GAME_POPUP, this.onCloseLeaveGamePopup.bind(this));
         addEventListener(GameEvents.OPEN_LEVEL_UP_POPUP, this.onOpenLevelUpPopup.bind(this));
         addEventListener(GameEvents.CLOSE_LEVEL_UP_POPUP, this.onCloseLevelUpPopup.bind(this));
-        addEventListener(GameEvents.OPEN_TUTORIAL_POPUP, this.onOpenTutorialPopup.bind(this));
-        addEventListener(GameEvents.CLOSE_TUTORIAL_POPUP, this.onCloseTutorialPopup.bind(this));
         addEventListener(GameEvents.OPEN_INFO_POPUP, this.onOpenInfoPopup.bind(this));
         addEventListener(GameEvents.CLOSE_INFO_POPUP, this.onCloseInfoPopup.bind(this));
         addEventListener(GameEvents.OPEN_INPUT_POPUP, this.onOpenInputPopup.bind(this));
@@ -123,24 +112,6 @@ export class PopupsContainer extends Sprite {
         this.infoPopup = null;
     }
 
-    onOpenTutorialPopup(): void {
-        if (this.tutorialPopup) {
-            return;
-        }
-        this.tutorialPopup = new TutorialPopup();
-        this.addChild(this.tutorialPopup);
-    }
-
-    async onCloseTutorialPopup(): Promise<void> {
-        if (!this.tutorialPopup) {
-            return;
-        }
-        await this.tutorialPopup.show(false);
-        this.removeChild(this.tutorialPopup);
-        this.tutorialPopup.destroy();
-        this.tutorialPopup = null;
-    }
-
     onOpenLevelUpPopup(e: MessageEvent): void {
         if (this.levelUpPopup) {
             return;
@@ -200,52 +171,11 @@ export class PopupsContainer extends Sprite {
         this.dialogPopup = null;
     }
 
-    onOpenSettingsPopup(): void {
-        if (this.settingsPopup) {
-            return;
-        }
-        dispatchEvent(new MessageEvent(GameEvents.SET_SCREEN_BLUR));
-        this.settingsPopup = new SettingsPopup();
-        this.addChild(this.settingsPopup);
-    }
-
-    async onCloseSettingsPopup(): Promise<void> {
-        if (!this.settingsPopup) {
-            return;
-        }
-        dispatchEvent(new MessageEvent(GameEvents.CLEAR_SCREEN_BLUR));
-        await this.settingsPopup.show(false);
-        this.removeChild(this.settingsPopup);
-        this.settingsPopup.destroy();
-        this.settingsPopup = null;
-    }
-
-    onOpenProfilePopup(e: MessageEvent): void {
-        if (this.profilePopup) {
-            return;
-        }
-        dispatchEvent(new MessageEvent(GameEvents.SET_SCREEN_BLUR));
-        let profileData: ProfileData = e.data.profileData;
-        let overlayAlpha: number = e.data.overlayAlpha;
-        this.profilePopup = new ProfilePopup(profileData, overlayAlpha);
-        this.addChild(this.profilePopup);
-    }
-
-    async onCloseProfilePopup(): Promise<void> {
-        if (!this.profilePopup) {
-            return;
-        }
-        dispatchEvent(new MessageEvent(GameEvents.CLEAR_SCREEN_BLUR));
-        await this.profilePopup.show(false);
-        this.removeChild(this.profilePopup);
-        this.profilePopup.destroy();
-        this.profilePopup = null;
-    }
-
     onOpenDepositPopup(): void {
         if (this.depositPopup) {
             return;
         }
+        LobbyScreen.roomsListVisible = false;
         this.depositPopup = new DepositPopup();
         this.addChild(this.depositPopup);
     }
@@ -254,6 +184,7 @@ export class PopupsContainer extends Sprite {
         if (!this.depositPopup) {
             return;
         }
+        LobbyScreen.roomsListVisible = true;
         await this.depositPopup.show(false);
         this.removeChild(this.depositPopup);
         this.depositPopup.destroy();
@@ -264,6 +195,7 @@ export class PopupsContainer extends Sprite {
         if (this.withdrawPopup) {
             return;
         }
+        LobbyScreen.roomsListVisible = false;
         this.withdrawPopup = new WithdrawPopup();
         this.addChild(this.withdrawPopup);
     }
@@ -272,6 +204,7 @@ export class PopupsContainer extends Sprite {
         if (!this.withdrawPopup) {
             return;
         }
+        LobbyScreen.roomsListVisible = true;
         await this.withdrawPopup.show(false);
         this.removeChild(this.withdrawPopup);
         this.withdrawPopup.destroy();
@@ -282,6 +215,7 @@ export class PopupsContainer extends Sprite {
         if (this.historyPopup) {
             return;
         }
+        LobbyScreen.roomsListVisible = false;
         this.historyPopup = new HistoryPopup();
         this.addChild(this.historyPopup);
     }
@@ -290,6 +224,7 @@ export class PopupsContainer extends Sprite {
         if (!this.historyPopup) {
             return;
         }
+        LobbyScreen.roomsListVisible = true;
         await this.historyPopup.show(false);
         this.removeChild(this.historyPopup);
         this.historyPopup.destroy();
@@ -300,7 +235,7 @@ export class PopupsContainer extends Sprite {
         if (this.profileEditPopup) {
             return;
         }
-        dispatchEvent(new MessageEvent(GameEvents.SET_SCREEN_BLUR));
+        LobbyScreen.roomsListVisible = false;
         this.profileEditPopup = new ProfileEditPopup();
         this.addChild(this.profileEditPopup);
     }
@@ -309,7 +244,7 @@ export class PopupsContainer extends Sprite {
         if (!this.profileEditPopup) {
             return;
         }
-        dispatchEvent(new MessageEvent(GameEvents.CLEAR_SCREEN_BLUR));
+        LobbyScreen.roomsListVisible = true;
         await this.profileEditPopup.show(false);
         this.removeChild(this.profileEditPopup);
         this.profileEditPopup.destroy();
