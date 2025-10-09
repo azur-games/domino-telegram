@@ -1,9 +1,8 @@
 import {DominoCalculator} from "@azur-games/pixi-domino-core";
-import {Framework, FrameworkConfig, FrameworkLocalStorageNames, IGame, Language, LocalStorageService} from "@azur-games/pixi-vip-framework";
+import {Environment, Framework, FrameworkConfig, FrameworkLocalStorageNames, GameConfig, IGame, Language, LocalStorageService} from "@azur-games/pixi-vip-framework";
 import {BlurFilter} from "@pixi/filter-blur";
 import {Linear, TweenMax} from "gsap";
-import * as PIXI from "pixi.js";
-import {InteractionManager, Loader, SimpleRope} from "pixi.js";
+import {Application, InteractionManager, Loader, SimpleRope} from "pixi.js";
 import {Camera} from "pixi3d";
 import {PlatformName} from "../../pixi-domino-core/src/types/PlatformName";
 import {ActiveData} from "./data/ActiveData";
@@ -24,7 +23,7 @@ import {Settings3D} from "./utils/Settings3D";
 
 export class DominoGame implements IGame {
     private isPortraitMode: boolean = true;
-    app: PIXI.Application;
+    app: Application;
     appDiv: HTMLElement;
     private progressDiv: HTMLElement;
     private _progressDivBackgroundPosition: number = 0;
@@ -64,8 +63,8 @@ export class DominoGame implements IGame {
         // let windowWidth: number = Device.info.device.type == "smartphone" ? screen.width : window.innerWidth;
         // let windowHeight: number = Device.info.device.type == "smartphone" ? screen.height : window.innerHeight;
 
-        let windowWidth = window.innerWidth;
-        let windowHeight = window.innerHeight;
+        let windowWidth = Math.max(window.innerWidth, 0.01);
+        let windowHeight = Math.max(window.innerHeight, 0.01);
         let transform = `rotate(${DominoGame.instance.isPortraitMode ? "0" : "90"}deg)`;
         document.documentElement.style.setProperty('transform', transform);
 
@@ -129,9 +128,9 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 0.0.48");
+        console.log("version 0.0.51");
         SentryService.init();
-        DominoGame.instance.app = new PIXI.Application({
+        DominoGame.instance.app = new Application({
             autoDensity: true,
             //backgroundColor: 0x0,
             // res
@@ -167,7 +166,7 @@ export class DominoGame implements IGame {
         await DynamicData.init();
         await DominoGame.instance.root.screens.gameSync(DynamicData.socketGameRequest);
         DominoGame.instance.hideMainPreloader();
-        LilGui.init();
+        GameConfig.environment == Environment.DEV && LilGui.init();
         LazyLoader.loadLazyResources();
         MetricaService.sendEvent(MetricaEvents.APP_LOADED);
 

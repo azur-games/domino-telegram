@@ -19,6 +19,8 @@ export class LobbyScreen extends BaseScreen {
     private settingsTween: TweenMax;
     private onShowSettingsBindThis: (e: MessageEvent) => void;
 
+    static roomsListVisible: boolean = true;
+
     constructor() {
         super(ScreenType.LOBBY);
         this.createChildren();
@@ -51,7 +53,8 @@ export class LobbyScreen extends BaseScreen {
     }
 
     onShowSettings(e: MessageEvent): void {
-        let show = e.data;
+        const show = e.data;
+        LobbyScreen.roomsListVisible = !show;
         this.settingsTween?.kill();
         this.settingsTween = TweenMax.to(this.settings, {
             duration: .4,

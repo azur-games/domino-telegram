@@ -1031,7 +1031,7 @@ export class DominoesTable extends Sprite3D {
         otherItems.forEach(dominoItem => dominoItem.setVisible(false));
         dominoItems.sort(this.sortFunction);
         fast || await Timeout.seconds(1);
-        SoundsPlayer.play("distribution");
+        SoundsPlayer.currentlyPlayingSound != "distribution" && SoundsPlayer.play("distribution");
         if (!fast) {
             let promises: Promise<void>[] = dominoItems.map((dominoItem: DominoItem, index: number) => new Promise<void>(async outerResolve => {
                 dominoItem.setVisible(true);

@@ -38,6 +38,7 @@ export class LobbySettings extends Sprite {
         this.createChildren();
         this.addChildren();
         this.initChildren();
+        this.background.interactive = this.background.interactiveChildren = true;
     }
 
     createChildren(): void {

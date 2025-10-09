@@ -17,7 +17,7 @@ export class MetricaService {
         const params: (string | number | Object)[] = [MetricaService.yandexMetricaID, 'reachGoal', event];
         order_price && params.push({order_price, currency: "USD"});
 
-        window.ym(...params);
+        window.ym && window.ym(...params);
     }
 
 }
