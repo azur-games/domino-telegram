@@ -32,6 +32,7 @@ export class LobbyRooms extends DraggableObject {
         this.addChildren();
         this.onMouseWheelBindThis = this.onWheel.bind(this);
         addEventListener(FrameworkEvents.MOUSE_WHEEL, this.onMouseWheelBindThis);
+        this.bgContainer.interactive = this.bgContainer.interactiveChildren = false;
     }
 
     magnetizeToCoor(coor: number) {
@@ -40,26 +41,15 @@ export class LobbyRooms extends DraggableObject {
             y: coor,
             ease: Power1.easeOut,
         });
-        if (this.y === -120) {
-            return;
-        }
-        this.bgContainer.visible = true;
+        
         this.bgContainerAlphaTween?.kill();
+        const listGoUp = this.y < -130;
         this.bgContainerAlphaTween = TweenMax.to(this.bgContainer, .1, {
-            alpha: 1,
-            ease: Power2.easeOut
-        });
-        if (this.y < -170) {
-            return;
-        }
-        this.bgContainerAlphaTween?.kill();
-        this.bgContainerAlphaTween = TweenMax.to(this.bgContainer, .3, {
-            alpha: 0,
+            alpha: listGoUp ? 1 : 0,
+            y: listGoUp ? 0 : -50,
             ease: Sine.easeOut,
-            onComplete: () => {
-                this.bgContainer.visible = false;
-            }
         });
+
     }
 
     changeListHeight(progress: number): void {
@@ -134,7 +124,7 @@ export class LobbyRooms extends DraggableObject {
     }
 
     addChildren(): void {
-        this.addChild(this.bgContainer).visible = false;
+        this.addChild(this.bgContainer).alpha = 0;
         this.bgContainer.addChild(this.background);
         this.bgContainer.addChild(this.bgGradient);
         this.addChild(this.header);
@@ -149,9 +139,11 @@ export class LobbyRooms extends DraggableObject {
 
         Pivot.center(this.bgGradient);
         Pivot.center(this.background);
+        this.bgContainer.alpha = 0;
+        this.bgContainer.y = -50;
 
         this.y = -DominoGame.instance.screenH / 2 + 840;
-        this.bgGradient.y = -this.bgGradient.height / 2 - 40;
+        this.bgGradient.y = -this.bgGradient.height / 2 - 68;
         this.background.y = this.background.height / 2 - 70;
         this.roomsList.y = 70;
     }
