@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import {Sine, TweenMax} from "gsap/gsap-core";
-import {Container, Filter, InteractionEvent, Point} from "pixi.js";
+import {Container, Filter, InteractionEvent, Point, filters} from "pixi.js";
 import {Camera, Mesh3D, PickingHitArea, Sprite3D} from "pixi3d";
 import {DominoGame} from "../../../../../app";
 import {WindowFocusController} from "@azur-games/pixi-vip-framework";
@@ -17,6 +17,7 @@ import {GameEvents} from "../../../../../GameEvents";
 import {SocketService} from "../../../../../services/SocketService";
 import {Settings3D} from "../../../../../utils/Settings3D";
 import {DominoLogic} from "../DominoLogic";
+import {DominoMaterial} from "../DominoMaterial";
 import {CoorsAndCorner} from "./CoorsAndCorner";
 import {Direction} from "./Direction";
 import {PositionDirectionPairs} from "./domino_item/PositionDirectionPairs";
