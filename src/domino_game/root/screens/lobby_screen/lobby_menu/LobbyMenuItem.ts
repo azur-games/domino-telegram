@@ -22,6 +22,8 @@ export class LobbyMenuItem extends Button {
         this.icon.tint = isFaded ? 0x314B8E : 0xffffff;
         this.languageText.tint = isFaded ? 0x314B8E : 0xffffff;
         this.setBackgroundCorners(isFaded ? 30 : 45);
+        this.props.bgSizes.y = isFaded ? 156 : 170;
+        this.backgroundImage.y = isFaded ? 0 : 15;
         this.changeBackgroundImage("lobby/menu_button_bg" + (isFaded ? "_disable" : ""));
     }
 }

@@ -398,7 +398,22 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../sources_belot/common/currency_soft_crown.png</key>
+            <key type="filename">../sources_belot/common/currency_hard.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>23,29,45,57</rect>
+                <key>scale9Paddings</key>
+                <rect>23,29,45,57</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sources_belot/common/currency_soft.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
@@ -1141,7 +1156,7 @@
                 <key>scale9Enabled</key>
                 <true/>
                 <key>scale9Borders</key>
-                <rect>23,620,138,15</rect>
+                <rect>23,623,138,12</rect>
                 <key>scale9Paddings</key>
                 <rect>1,480,1,960</rect>
                 <key>scale9FromFile</key>
@@ -1367,9 +1382,9 @@
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
-                <true/>
+                <false/>
                 <key>scale9Borders</key>
-                <rect>40,39,2,2</rect>
+                <rect>40,39,9,2</rect>
                 <key>scale9Paddings</key>
                 <rect>20,20,40,40</rect>
                 <key>scale9FromFile</key>
@@ -1462,6 +1477,21 @@
                 <rect>2,2,94,96</rect>
                 <key>scale9Paddings</key>
                 <rect>25,25,50,50</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sources_belot/lobby/rooms_list_bg.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>100,129,0,96</rect>
+                <key>scale9Paddings</key>
+                <rect>270,75,540,150</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

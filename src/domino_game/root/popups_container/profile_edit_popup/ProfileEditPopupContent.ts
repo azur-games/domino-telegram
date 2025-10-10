@@ -34,6 +34,7 @@ export class ProfileEditPopupContent extends StageResizeListening {
 
         this.onAvatarChooseBindThis = this.onAvatarChoose.bind(this);
         addEventListener(GameEvents.CHOOSE_AVATAR, this.onAvatarChooseBindThis);
+        this.background.interactive = this.background.interactiveChildren = true;
     }
 
     createChildren(): void {
