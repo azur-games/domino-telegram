@@ -41,9 +41,9 @@ export class LobbyRooms extends DraggableObject {
             y: coor,
             ease: Power1.easeOut,
         });
-        
+
         this.bgContainerAlphaTween?.kill();
-        const listGoUp = this.y < -130;
+        const listGoUp = coor < -130;
         this.bgContainerAlphaTween = TweenMax.to(this.bgContainer, .1, {
             alpha: listGoUp ? 1 : 0,
             y: listGoUp ? 0 : -50,
