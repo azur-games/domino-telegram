@@ -2,6 +2,7 @@ import {Button, DisplayObjectFactory, LanguageText, Pivot, PlatformService, Tele
 import {NineSlicePlane, Sprite} from "pixi.js";
 import {DominoGame} from "../../../../app";
 import {GameEvents} from "../../../../GameEvents";
+import {NotificationService} from "../../../../services/NotificationService";
 import {LobbySettingsItem} from "./lobby_settings/LobbySettingsItem";
 
 
@@ -105,7 +106,13 @@ export class LobbySettings extends Sprite {
     };
 
     onWalletClick() {
-        (PlatformService.platformApi as TelegramApi).openModal();
+        const tgApi = (PlatformService.platformApi as TelegramApi);
+        if (tgApi.isWalletConnected()) {
+            let walletName = (tgApi.walletInfo() as any).appName == "telegram-wallet" ? "Telegram Wallet" : (tgApi.walletInfo() as any).appName;
+            NotificationService.showWalletInfo(walletName, tgApi.walletInfo().account.address);
+        } else {
+            tgApi.openModal();
+        }
     }
 
     onCloseButtonClick(): void {

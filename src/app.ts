@@ -128,7 +128,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 0.0.63");
+        console.log("version 0.0.64");
         SentryService.init();
         DominoGame.instance.app = new Application({
             autoDensity: true,
@@ -169,7 +169,6 @@ export class DominoGame implements IGame {
         GameConfig.environment == Environment.DEV && LilGui.init();
         LazyLoader.loadLazyResources();
         MetricaService.sendEvent(MetricaEvents.APP_LOADED);
-
     }
 
     async frameworkInit(): Promise<void> {

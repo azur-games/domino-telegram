@@ -1,5 +1,6 @@
 import {Sprite, NineSlicePlane, Graphics} from "pixi.js";
 import {DisplayObjectFactory, LanguageText, Button, Pivot} from "@azur-games/pixi-vip-framework";
+import {StringUtils} from "../../../../../../utils/StringUtils";
 import {QRCodeOverlay} from "./QRCodeOverlay";
 
 
@@ -81,10 +82,7 @@ export class QRCodeBlock extends Sprite {
 
     applyData(address: string) {
         this.address = address;
-        const truncatedAddress = this.address.length > 30
-            ? `${this.address.substring(0, 15)}${this.address.substring(this.address.length - 15)}`
-            : this.address;
-        this.addressText.changeText(truncatedAddress);
+        this.addressText.changeText(StringUtils.truncAddress(address));
         Pivot.center(this.addressText);
         this.qrOverlay.createQRCode(address);
     }
