@@ -15,20 +15,20 @@ export class LobbySettings extends Sprite {
     private infoConfigs: any[] = [
         {
             callback: this.onNewsClick.bind(this),
-            titleKey: "Domino King News",
-            descriptionKey: "t.me/DominoKingRoom",
+            titleKey: "LobbyMore.News.Title",
+            descriptionKey: "LobbyMore.News.Description",
             iconTextureName: "lobby/tg_icon"
         },
         {
             callback: this.onChatClick.bind(this),
-            titleKey: "Chat with us",
-            descriptionKey: "Support, Partnership, etc",
+            titleKey: "LobbyMore.Chat.Title",
+            descriptionKey: "LobbyMore.Chat.Description",
             iconTextureName: "lobby/chat_icon"
         },
         {
             callback: this.onAgreementClick.bind(this),
-            titleKey: "User agreement",
-            descriptionKey: "Last updated: 2023-10-16",
+            titleKey: "LobbyMore.Agreement.Title",
+            descriptionKey: "LobbyMore.Agreement.Description",
             iconTextureName: "lobby/agreement_icon"
         },
     ];
@@ -44,7 +44,7 @@ export class LobbySettings extends Sprite {
     createChildren(): void {
         this.background = DisplayObjectFactory.createNineSlicePlane("lobby/settings_bg", 2, 2, 2, 2);
         this.title = new LanguageText({
-            key: "More",
+            key: "More.Title",
             fontSize: 56,
             fontWeight: "500",
         });
@@ -56,7 +56,7 @@ export class LobbySettings extends Sprite {
             ({callback, titleKey, descriptionKey, iconTextureName}) => new LobbySettingsItem(callback, titleKey, descriptionKey, iconTextureName)
         );
 
-        this.walletTitle = new LanguageText({key: "Withdraw wallets", fontSize: 56, fontWeight: "500"});
+        this.walletTitle = new LanguageText({key: "LobbyMore.Wallets.Title", fontSize: 56, fontWeight: "500"});
         this.walletItem = new LobbySettingsItem(this.onWalletClick.bind(this), "USDT", "TON", "deposit/ton_symbol");
     }
 

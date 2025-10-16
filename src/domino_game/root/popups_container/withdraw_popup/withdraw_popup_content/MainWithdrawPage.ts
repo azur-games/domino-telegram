@@ -20,13 +20,13 @@ export class MainWithdrawPage extends Sprite {
 
     createChildren() {
         this.titleText = new LanguageText({
-            key: "Withdraw",
+            key: "Withdraw.Title",
             fontSize: 56,
             fontWeight: "500",
             fill: 0xF1F3FF
         });
         this.subtitleText = new LanguageText({
-            key: "Please select withdrawal currency:",
+            key: "Withdraw.SelectCurrency",
             fontSize: 32,
             fontWeight: "400",
             fill: 0x7BA2FF

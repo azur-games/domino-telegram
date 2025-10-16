@@ -47,9 +47,9 @@ export class AddressBlock extends Sprite {
 
     private async copyToClipboard() {
         await navigator.clipboard.writeText(this.address);
-        this.copyButton.languageText.changeText("Copied!");
+        this.copyButton.languageText.changeText("Deposit.Copied");
         setTimeout(() => {
-            this.copyButton.languageText.changeText("Copy address");
+            this.copyButton.languageText.changeText("Deposit.CopyAddress");
         }, 1500);
     }
 

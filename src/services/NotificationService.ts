@@ -8,9 +8,9 @@ export class NotificationService {
     static showDepositSuccess(txData: TxData) {
         const data: DialogPopupData = {
             resolve: () => dispatchEvent(new MessageEvent(GameEvents.CLOSE_DIALOG_POPUP)),
-            titleText: "Success!",
+            titleText: "Notification.Success",
             content: new DepositSuccessContent(txData.nanotons),
-            yesText: "Ok",
+            yesText: "Notification.Ok",
             okButtonOnly: true,
             noText: "",
         };
@@ -18,11 +18,11 @@ export class NotificationService {
     }
 
     static showNoTxFound() {
-        dispatchEvent(new MessageEvent(GameEvents.OPEN_INFO_POPUP, {data: {titleText: "Result", infoText: "New transactions not found"}}));
+        dispatchEvent(new MessageEvent(GameEvents.OPEN_INFO_POPUP, {data: {titleText: "Notification.Result", infoText: "Notification.NoTxFound.Description"}}));
     }
 
     static showWithdrawSubmitted() {
-        dispatchEvent(new MessageEvent(GameEvents.OPEN_INFO_POPUP, {data: {titleText: "Result", infoText: "Withdraw request is submitted"}}));
+        dispatchEvent(new MessageEvent(GameEvents.OPEN_INFO_POPUP, {data: {titleText: "Notification.Result", infoText: "Notification.WithdrawSubmitted.Description"}}));
     }
 
 }

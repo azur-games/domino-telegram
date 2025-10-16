@@ -37,10 +37,10 @@ export class DepositCurrencyPage extends Sprite {
         this.qrCodeBlock = new QRCodeBlock();
         this.addressBlock = new AddressBlock();
         this.input = new DepositCurrencyInput(this.onInput.bind(this));
-        this.minAmount = new DepositCurrencyInfo("Minimum amount:");
+        this.minAmount = new DepositCurrencyInfo("Deposit.MinAmount");
 
         this.divider = DisplayObjectFactory.createNineSlicePlane("deposit/currency_item_divider", 1, 1, 1, 1);
-        this.estimatedRate = new DepositCurrencyInfo("Estimated rate:");
+        this.estimatedRate = new DepositCurrencyInfo("Deposit.EstimatedRate");
     }
 
     addChildren() {
@@ -102,7 +102,7 @@ export class DepositCurrencyPage extends Sprite {
         this.rates = rates;
         this.currencyIcon.texture = LoaderService.getTexture(`deposit/${currencyName}_symbol`);
         this.currencyTitle.changeText(currencyName.toUpperCase(), false);
-        this.warningText.changeText(`Send only ${currencyName.toUpperCase()} to this address, otherwise, you may lose your funds.`,);
+        this.warningText.changeText("Deposit.Attention");
         this.input.applyData(rates);
         this.qrCodeBlock.applyData(rates.addr);
         this.addressBlock.applyData(rates.addr);

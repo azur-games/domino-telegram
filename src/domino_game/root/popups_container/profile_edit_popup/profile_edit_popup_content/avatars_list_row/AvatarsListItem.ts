@@ -56,7 +56,7 @@ export class AvatarsListItem extends ScrollItem {
     }
 
     async tryToMakeSelected(avatar: string): Promise<void> {
-        this.cacheAsBitmap = false;
+        // this.cacheAsBitmap = false;
         let selected: boolean = avatar == this.avatar;
 
         this.alphaIconTween?.kill();
@@ -65,7 +65,7 @@ export class AvatarsListItem extends ScrollItem {
             onComplete: resolve
         }));
         this.background.texture = LoaderService.getTexture("edit_profile/avatar_bg" + (selected ? "_active" : ""));
-        Device.info.os.name === "Android" || (this.cacheAsBitmap = true);
+        // Device.info.os.name === "Android" || (this.cacheAsBitmap = true);
     }
 
     onAvatarChoose(e: MessageEvent): void {
@@ -78,7 +78,7 @@ export class AvatarsListItem extends ScrollItem {
     }
 
     destroy(): void {
-        this.cacheAsBitmap = false;
+        // this.cacheAsBitmap = false;
 
         removeEventListener(GameEvents.CHOOSE_AVATAR, this.onAvatarChooseBindThis);
         this.onAvatarChooseBindThis = null;

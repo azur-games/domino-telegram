@@ -43,10 +43,10 @@ export class ProfileEditPopupContent extends StageResizeListening {
             callback: this.onClose.bind(this),
             iconTextureName: "deposit/right_arrow_icon"
         });
-        this.title = new LanguageText({key: "My Profile", fontSize: 56, fontWeight: "500"});
+        this.title = new LanguageText({key: "EditProfile.Title", fontSize: 56, fontWeight: "500"});
         this.input = new ProfileNameInput(this.onNameChanged.bind(this));
         this.info = new ProfileEditInfo();
-        this.avatarsTitle = new LanguageText({key: "Choose your avatar", fontSize: 40, fill: 0xF1F3FF, fontWeight: "500"});
+        this.avatarsTitle = new LanguageText({key: "EditProfile.ChooseAvatar", fontSize: 40, fill: 0xF1F3FF, fontWeight: "500"});
         this.avatars = new AvatarsList();
         this.bottomGradient = DisplayObjectFactory.createNineSlicePlane("edit_profile/bottom_gradient", 1, 1, 1, 1);
         this.updateButton = new Button({
@@ -54,7 +54,7 @@ export class ProfileEditPopupContent extends StageResizeListening {
             bgTextureName: "common/green_button",
             bgSizes: new Point(366, 94),
             bgCornersSize: 34,
-            textKey: "UPDATE",
+            textKey: "EditProfile.ButtonTitle",
             fontSize: 40,
             fontWeight: "500",
             fontColor: 0xF1F3FF,

@@ -60,7 +60,7 @@ export class WithdrawPopupContent extends StageResizeListening {
             bgTextureName: "common/green_button",
             bgSizes: new Point(960, 94),
             bgCornersSize: 34,
-            textKey: "Review withdrawal",
+            textKey: "Withdraw.ButtonTitle",
             fontSize: 40,
             fontWeight: "400",
             textPosition: new Point(0, -6),
@@ -120,8 +120,6 @@ export class WithdrawPopupContent extends StageResizeListening {
     }
 
     async onReviewWithdrawalButtonClick() {
-        console.log("this.inputAmount", this.inputAmountInCoins);
-        console.log("onReviewWithdrawalButtonClick");
         if (this.currentStage == "main") {
             this.currentStage = "address";
             this.changeStage();

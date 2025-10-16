@@ -17,9 +17,9 @@ export class DepositSteps extends Sprite {
     createChildren() {
         this.frame = DisplayObjectFactory.createNineSlicePlane("deposit/deposit_stages_frame", 30, 30, 30, 30);
         this.steps = [
-            new DepositStepDescription("1", "Choose currency"),
-            new DepositStepDescription("2", "Send assets to provided deposit address"),
-            new DepositStepDescription("3", "Wait the balance update")
+            new DepositStepDescription("1", "Deposit.Steps.1"),
+            new DepositStepDescription("2", "Deposit.Steps.2"),
+            new DepositStepDescription("3", "Deposit.Steps.3")
         ];
 
     }

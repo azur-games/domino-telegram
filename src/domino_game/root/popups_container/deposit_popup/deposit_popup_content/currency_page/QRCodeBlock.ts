@@ -30,7 +30,7 @@ export class QRCodeBlock extends Sprite {
 
         this.showQRButton = new Button({callback: this.showQR.bind(this)});
         this.showQRButtonGradient = DisplayObjectFactory.createNineSlicePlane("deposit/qr_gradient", 1, 1, 1, 1);
-        this.showQRButtonText = new LanguageText({key: "Show QR", fontSize: 36, fill: 0x35F583, fontWeight: "500"});
+        this.showQRButtonText = new LanguageText({key: "Deposit.ShowQR", fontSize: 36, fill: 0x35F583, fontWeight: "500"});
 
         // Create a simple QR-like icon using graphics
         this.qrIcon = DisplayObjectFactory.createSprite("deposit/qr_icon");

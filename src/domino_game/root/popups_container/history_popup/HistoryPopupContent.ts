@@ -24,7 +24,7 @@ export class HistoryPopupContent extends StageResizeListening {
             callback: this.onClose.bind(this),
             iconTextureName: "deposit/right_arrow_icon"
         });
-        this.title = new LanguageText({key: "History", fontSize: 56, fontWeight: "500"});
+        this.title = new LanguageText({key: "History.Title", fontSize: 56, fontWeight: "500"});
         this.historyList = new TxHistoryList();
     }
 
@@ -71,7 +71,7 @@ export class HistoryPopupContent extends StageResizeListening {
         this.backButton = null;
         this.title = null;
         this.historyList = null;
-        
+
         super.destroy();
     }
 }

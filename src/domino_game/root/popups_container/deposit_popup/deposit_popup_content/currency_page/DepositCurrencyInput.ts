@@ -1,4 +1,4 @@
-import {DisplayObjectFactory, Pivot, Button, PlatformService, TonRates, TelegramApi} from "@azur-games/pixi-vip-framework";
+import {DisplayObjectFactory, Pivot, Button, PlatformService, TonRates, TelegramApi, LanguageService} from "@azur-games/pixi-vip-framework";
 import {TextInput} from "pixi-textinput-v5";
 import {NineSlicePlane, Point, Sprite, Text} from "pixi.js";
 import {Settings} from "../../../../../../Settings";
@@ -63,7 +63,7 @@ export class DepositCurrencyInput extends Sprite {
 
     initChildren(): void {
         //@ts-ignore
-        this.input.placeholder = "Enter amount";
+        this.input.placeholder = LanguageService.getTextByKey("Deposit.InputPlaceholder");
         this.input._placeholderColor = 0x38508C;
         this.background.width = this.focusBackground.width = 960;
         this.background.height = this.focusBackground.height = 94;

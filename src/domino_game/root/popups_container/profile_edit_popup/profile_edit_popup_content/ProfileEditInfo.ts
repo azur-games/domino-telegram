@@ -1,3 +1,4 @@
+import {LanguageService} from "@azur-games/pixi-vip-framework";
 import {Sprite} from "pixi.js";
 import {ProfileEditInfoItem} from "./ProfileEditInfoItem";
 
@@ -14,9 +15,9 @@ export class ProfileEditInfo extends Sprite {
 
     createChildren(): void {
         this.items = [
-            "The nickname must be 3-13 characters long.",
-            "Only letters and numbers can be used.",
-            "No special characters, spaces or symbols."
+            LanguageService.getTextByKey("EditProfile.Requirements1"),
+            LanguageService.getTextByKey("EditProfile.Requirements2"),
+            LanguageService.getTextByKey("EditProfile.Requirements3")
         ].map((text) => new ProfileEditInfoItem(text));
 
     }

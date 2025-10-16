@@ -18,7 +18,7 @@ export class WarningBlock extends Sprite {
         this.background = DisplayObjectFactory.createNineSlicePlane("deposit/red_bg", 20, 20, 20, 20);
         this.warningIcon = DisplayObjectFactory.createSprite("deposit/attention_sign"); // Will be styled as warning icon
         this.warningText = new LanguageText({
-            key: "This is a temporary deposit address and it will be expired in 180 mins",
+            key: "Deposit.Attention2",
             fontSize: 26,
             fill: 0xF1F3FF,
             fontWeight: "400"

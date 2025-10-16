@@ -18,9 +18,9 @@ export class LobbyMenu extends Sprite {
     }
 
     createChildren(): void {
-        this.cashButton = new LobbyMenuItem(this.onCashButtonClicked.bind(this), "lobby/menu_dollar_icon", "Cash");
-        this.freeButton = new LobbyMenuItem(this.onFreeButtonClicked.bind(this), "lobby/menu_free_icon", "Free");
-        this.moreButton = new LobbyMenuItem(this.onMoreButtonClicked.bind(this), "lobby/menu_more_icon", "More");
+        this.cashButton = new LobbyMenuItem(this.onCashButtonClicked.bind(this), "lobby/menu_dollar_icon", "Lobby.Cash");
+        this.freeButton = new LobbyMenuItem(this.onFreeButtonClicked.bind(this), "lobby/menu_free_icon", "Lobby.Free");
+        this.moreButton = new LobbyMenuItem(this.onMoreButtonClicked.bind(this), "lobby/menu_more_icon", "Lobby.More");
     }
 
     addChildren(): void {

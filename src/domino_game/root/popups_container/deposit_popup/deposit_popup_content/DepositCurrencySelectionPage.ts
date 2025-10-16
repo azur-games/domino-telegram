@@ -19,9 +19,9 @@ export class DepositCurrencySelectionPage extends Sprite {
     }
 
     createChildren() {
-        this.title = new LanguageText({key: "Deposit", fontSize: 56, fontWeight: "500", fill: 0xF1F3FF});
+        this.title = new LanguageText({key: "Deposit.Title", fontSize: 56, fontWeight: "500", fill: 0xF1F3FF});
         this.stepsDescription = new DepositSteps();
-        this.methodsText = new LanguageText({key: "Main methods:", fontSize: 40, fill: 0xF1F3FF, fontWeight: "500"});
+        this.methodsText = new LanguageText({key: "Deposit.Methods.Title", fontSize: 40, fill: 0xF1F3FF, fontWeight: "500"});
 
         const currencyConfigs = [
             {name: CurrencyName.TON, rates: this.rates},

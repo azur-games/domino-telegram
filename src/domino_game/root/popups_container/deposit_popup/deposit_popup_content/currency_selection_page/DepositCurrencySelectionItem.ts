@@ -33,7 +33,7 @@ export class DepositCurrencySelectionItem extends Button {
         this.divider = DisplayObjectFactory.createNineSlicePlane("deposit/currency_item_divider", 1, 1, 1, 1);
         this.currencyIcon = DisplayObjectFactory.createSprite(`deposit/${this.currencyName}_symbol`);
         this.currencyNameText = new LanguageText({key: this.currencyName.toUpperCase(), fontSize: 40});
-        this.minAmount = new CurrencyItemDetail("Min deposit: ", "$" + this.rates.minTransactionUsd);
+        this.minAmount = new CurrencyItemDetail("Deposit.min", "$" + this.rates.minTransactionUsd);
         this.arrowIcon = DisplayObjectFactory.createSprite("deposit/right_arrow_icon");
     }
 

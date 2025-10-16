@@ -43,7 +43,7 @@ export class LobbyHeader extends Sprite {
             bgTextureName: "lobby/round_green_button",
             iconTextureName: "lobby/deposit_icon",
             iconPosition: new Point(0, -3),
-            textKey: "Deposit",
+            textKey: "Lobby.Deposit",
             fontSize: 32,
             fontWeight: "400",
             fontColor: 0x7BA2FF,
@@ -54,7 +54,7 @@ export class LobbyHeader extends Sprite {
             bgTextureName: "lobby/round_green_button",
             iconTextureName: "lobby/withdraw_icon",
             iconPosition: new Point(0, -3),
-            textKey: "Withdraw",
+            textKey: "Lobby.Withdraw",
             fontSize: 32,
             fontWeight: "400",
             fontColor: 0x7BA2FF,
@@ -65,7 +65,7 @@ export class LobbyHeader extends Sprite {
             bgTextureName: "lobby/round_green_button",
             iconTextureName: "lobby/history_icon",
             iconPosition: new Point(0, -3),
-            textKey: "History",
+            textKey: "Lobby.History",
             fontSize: 32,
             fontWeight: "400",
             fontColor: 0x7BA2FF,
@@ -106,7 +106,7 @@ export class LobbyHeader extends Sprite {
     }
 
     updateBalance(): void {
-        this.balance.setBalance(CurrencyService.isHardModeNow ? NumberUtils.shortPriceFormat(CurrencyConverter.coinsToUSD(DynamicData.myProfile.coins)) : DynamicData.myProfile.softCoins.toString());
+        this.balance.setBalance(CurrencyService.isHardModeNow ? NumberUtils.shortPriceFormat(CurrencyConverter.coinsToUSD(DynamicData.myProfile.coins), 2) : DynamicData.myProfile.softCoins.toString());
 
     }
 

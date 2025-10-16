@@ -26,7 +26,7 @@ export class RoomsHeader extends Container {
         this.sitNowToggle = new Button({
             callback: this.onSitNowToggle.bind(this),
             bgTextureName: "lobby/selector_off",
-            textKey: "Sit now:",
+            textKey: "Lobby.SitNow",
             fontSize: 28,
             fontWeight: "400",
             textPosition: new Point(-130, 0),

@@ -51,7 +51,7 @@ export class CheckTxButton extends Button {
             this.icon.x = -60;
         } else {
             window.clearInterval(this.intervalId);
-            this.languageText.changeText("Check TX");
+            this.languageText.changeText("Deposit.CheckTX");
             this.changeIcon("deposit/renew_icon");
             this.enabled = true;
             this.languageText.x = 40;
