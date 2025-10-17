@@ -44,9 +44,8 @@ export class LobbyRooms extends DraggableObject {
 
         this.bgContainerAlphaTween?.kill();
         const listGoUp = coor < -130;
-        this.bgContainerAlphaTween = TweenMax.to(this.bgContainer, .1, {
-            alpha: listGoUp ? 1 : 0,
-            y: listGoUp ? 0 : -50,
+        this.bgContainerAlphaTween = TweenMax.to(this.bgContainer, .2, {
+            y: listGoUp ? 0 : 250,
             ease: Sine.easeOut,
         });
 
@@ -124,9 +123,9 @@ export class LobbyRooms extends DraggableObject {
     }
 
     addChildren(): void {
-        this.addChild(this.bgContainer).alpha = 0;
-        this.bgContainer.addChild(this.background);
+        this.addChild(this.bgContainer);
         this.bgContainer.addChild(this.bgGradient);
+        this.bgContainer.addChild(this.background);
         this.addChild(this.header);
         this.addChild(this.roomsList);
     }
@@ -139,12 +138,11 @@ export class LobbyRooms extends DraggableObject {
 
         Pivot.center(this.bgGradient);
         Pivot.center(this.background);
-        this.bgContainer.alpha = 0;
-        this.bgContainer.y = -50;
+        this.bgContainer.y = 250;
 
         this.y = -DominoGame.instance.screenH / 2 + 840;
-        this.bgGradient.y = -this.bgGradient.height / 2 - 68;
-        this.background.y = this.background.height / 2 - 70;
+        this.bgGradient.y = -this.bgGradient.height / 2 - 67;
+        this.background.y = this.background.height / 2 - 71;
         this.roomsList.y = 70;
     }
 

@@ -128,7 +128,7 @@ export class DominoGame implements IGame {
     };
 
     private appCreate(): void {
-        console.log("version 0.0.65");
+        console.log("version 0.0.66");
         SentryService.init();
         DominoGame.instance.app = new Application({
             autoDensity: true,
