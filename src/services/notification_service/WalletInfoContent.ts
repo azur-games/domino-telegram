@@ -15,8 +15,8 @@ export class WalletInfoContent extends Sprite {
     }
 
     createChildren(): void {
-        this.walletNameText = new LanguageText({key: this.walletName, fontSize: 42, fill: 0x83A1F8});
-        this.addressText = new LanguageText({key: StringUtils.truncAddress(this.address), fontSize: 28});
+        this.walletNameText = new LanguageText({key: this.walletName, fontSize: 46, fill: 0x83A1F8});
+        this.addressText = new LanguageText({key: StringUtils.truncAddress(this.address), fontSize: 35});
     }
 
     addChildren(): void {

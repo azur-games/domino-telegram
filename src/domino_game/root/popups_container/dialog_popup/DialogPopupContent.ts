@@ -36,16 +36,16 @@ export class DialogPopupContent extends Sprite {
     createChildren(): void {
         this.background = DisplayObjectFactory.createNineSlicePlane("common/notification_bg", 47, 47, 47, 47);
         this.titleBackground = DisplayObjectFactory.createNineSlicePlane("common/notification_header_bg", 50, 50, 50, 50);
-        this.title = new LanguageText({key: this.data.titleText, fontSize: 56, fill: 0xffffff, autoFitWidth: 550});
+        this.title = new LanguageText({key: this.data.titleText, fontSize: 67, fill: 0xF1F3FF, autoFitWidth: 640});
         this.content = this.data.content;
         this.yesButton = new Button({
             callback: this.onConfirm.bind(this),
             textKey: this.data.yesText,
             bgTextureName: "common/green_button",
             bgCornersSize: 34,
-            bgSizes: new Point(203, 96),
-            fontSize: 40,
-            fontWeight: "400",
+            bgSizes: new Point(244, 115),
+            fontSize: 48,
+            fontWeight: "700",
             textPosition: new Point(0, -6),
             autoFitWidth: 180
         });
@@ -73,19 +73,19 @@ export class DialogPopupContent extends Sprite {
     }
 
     initChildren(): void {
-        this.background.width = 600;
-        this.background.height = 530;
-        this.titleBackground.width = 600;
-        this.titleBackground.height = 112;
+        this.background.width = 720;
+        this.background.height = 636;
+        this.titleBackground.width = 720;
+        this.titleBackground.height = 135;
 
         Pivot.center(this.background);
         Pivot.center(this.titleBackground);
         Pivot.center(this.title);
         Pivot.center(this.content);
 
-        this.titleBackground.y = this.title.y = -208;
+        this.titleBackground.y = this.title.y = -248;
 
-        this.yesButton.y = 200;
+        this.yesButton.y = 220;
         this.yesButton.backgroundImage.width = Math.max(this.yesButton.languageText.width + 40, this.yesButton.backgroundImage.width);
         Pivot.center(this.yesButton.backgroundImage);
 
@@ -95,7 +95,7 @@ export class DialogPopupContent extends Sprite {
 
         this.yesButton.x = -this.noButton.backgroundImage.width / 2 - 20;
 
-        this.noButton.y = 200;
+        this.noButton.y = 220;
         this.noButton.languageText.style.stroke = 0xca2058;
         this.noButton.languageText.style.strokeThickness = 6;
         this.noButton.backgroundImage.width = Math.max(this.noButton.languageText.width + 40, this.noButton.backgroundImage.width);

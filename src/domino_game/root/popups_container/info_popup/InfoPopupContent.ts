@@ -26,8 +26,8 @@ export class InfoPopupContent extends Sprite {
     createChildren(): void {
         this.background = DisplayObjectFactory.createNineSlicePlane("common/notification_bg", 47, 47, 47, 47);
         this.titleBackground = DisplayObjectFactory.createNineSlicePlane("common/notification_header_bg", 50, 50, 50, 50);
-        this.title = new LanguageText({key: this.data.titleText, fontSize: 56, fill: 0xffffff, autoFitWidth: 550});
-        this.info = new LanguageText({key: this.data.infoText, fontSize: 40, fill: 0x83A1F8, autoFitWidth: 550});
+        this.title = new LanguageText({key: this.data.titleText, fontSize: 67, fill: 0xF1F3FF, autoFitWidth: 640});
+        this.info = new LanguageText({key: this.data.infoText, fontSize: 44, fill: 0x83A1F8, autoFitWidth: 640});
     }
 
     addChildren(): void {
@@ -38,17 +38,17 @@ export class InfoPopupContent extends Sprite {
     }
 
     initChildren(): void {
-        this.background.width = 600;
-        this.background.height = 530;
-        this.titleBackground.width = 600;
-        this.titleBackground.height = 112;
+        this.background.width = 720;
+        this.background.height = 636;
+        this.titleBackground.width = 720;
+        this.titleBackground.height = 135;
 
         Pivot.center(this.background);
         Pivot.center(this.titleBackground);
         Pivot.center(this.title);
         Pivot.center(this.info);
 
-        this.titleBackground.y = this.title.y = -208;
+        this.titleBackground.y = this.title.y = -248;
 
         this.info.y = 56 - (this.info.height);
     }
