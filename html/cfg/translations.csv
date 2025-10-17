@@ -29,7 +29,7 @@ Key :: EN [en]:
 :Deposit.Methods.Title :: Main methods::
 :Deposit.min :: Min deposit: ${text}:
 :Deposit.Attention :: Send only TON to this address, otherwise, you may lose your funds.:
-:Deposit.Attention2 :: This is temporary deposit a address and it will be expired in 180 mins:
+:Deposit.Attention2 :: This is a temporary deposit address:
 :Deposit.ShowQR :: Show QR:
 :Deposit.CopyAddress :: Copy address:
 :Deposit.CheckTX :: Check TX:

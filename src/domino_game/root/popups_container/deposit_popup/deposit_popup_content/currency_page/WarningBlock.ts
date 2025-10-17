@@ -32,22 +32,15 @@ export class WarningBlock extends Sprite {
     }
 
     initChildren() {
-        // Setup background
         this.background.width = 960;
         this.background.height = 133;
         Pivot.center(this.background);
-
-        // Style warning icon (rotate to make it look like an exclamation or warning symbol)
         Pivot.center(this.warningIcon);
-        this.warningIcon.x = -400;
-        this.warningIcon.y = 0;
+        Pivot.center(this.warningText,);
 
-        // Position warning text
-        Pivot.center(this.warningText, false);
-        this.warningText.x = -350;
-        this.warningText.y = -15;
+        this.warningIcon.x = -260;
+        this.warningIcon.y = 5;
 
-        // Enable word wrapping for long text
         this.warningText.style.wordWrap = true;
         this.warningText.style.wordWrapWidth = 700;
     }
