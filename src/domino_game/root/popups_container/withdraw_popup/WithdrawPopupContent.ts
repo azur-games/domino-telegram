@@ -123,6 +123,7 @@ export class WithdrawPopupContent extends StageResizeListening {
         if (this.currentStage == "main") {
             this.currentStage = "address";
             this.changeStage();
+            this.addressPage.pasteConnectedWalletAddress();
         } else {
             await SocketService.tonPayout(parseInt(this.inputAmountInCoins), this.addressValue);
             this.reset();

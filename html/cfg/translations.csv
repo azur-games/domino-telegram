@@ -1,4 +1,4 @@
-Key :: EN [en] :: IN [in]:
+Key :: English [en] :: Indonesia [id]:
 :Lobby.Deposit :: Deposit :: :
 :Lobby.Withdraw :: Withdraw :: :
 :Lobby.History :: History :: :
@@ -42,6 +42,8 @@ Key :: EN [en] :: IN [in]:
 :Withdraw.MinAmount :: Min amount: ${text} :: :
 :Withdraw.Max :: MAX: ${text} :: :
 :Withdraw.ButtonTitle :: Review withdrawal :: :
+:Withdraw.AddressTitle :: Add your TON address for withdrawal: :: :
+:Withdraw.AddressPlaceholder :: Enter your address :: :
 :History.Title :: History :: :
 :History.Today :: Today :: :
 :History.Yesterday :: Yesterday :: :
@@ -50,6 +52,7 @@ Key :: EN [en] :: IN [in]:
 :EditProfile.Requirements2 :: Only letters and numbers can be used. :: :
 :EditProfile.Requirements3 :: No special characters, spaces or symbols :: :
 :EditProfile.ChooseAvatar :: Choose your avatar :: :
+:EditProfile.EnterYourName :: Enter your name :: :
 :EditProfile.ButtonTitle :: UPDATE :: :
 :Notification.Success :: Success! :: :
 :Notification.Ok :: Ok :: :

@@ -91,11 +91,11 @@ export class DepositCurrencyPage extends Sprite {
 
     onInput(inputValue: number) {
         if (!inputValue) {
-            this.estimatedRate.applyData("0 coins");
+            this.estimatedRate.applyData("$ 0");
             return;
         }
-        const rate = (inputValue * this.rates.inUsdtToCoin).toFixed(0);
-        this.estimatedRate.applyData(rate + " coins");
+        const rate = NumberUtils.shortPriceFormat(inputValue * this.rates.inUsdtToCoin / 100, 2);
+        this.estimatedRate.applyData("$ " + rate);
     }
 
     applyData(currencyName: CurrencyNameValues, rates: TonRates) {
@@ -106,8 +106,8 @@ export class DepositCurrencyPage extends Sprite {
         this.input.applyData(rates);
         this.qrCodeBlock.applyData(rates.addr);
         this.addressBlock.applyData(rates.addr);
-        this.minAmount.applyData("$" + this.rates.minTransactionUsd);
-        this.estimatedRate.applyData("0 coins");
+        this.minAmount.applyData("$" + NumberUtils.shortPriceFormat(this.rates.minTransactionUsd, 2));
+        this.estimatedRate.applyData("$ 0");
         this.initChildren();
     }
 

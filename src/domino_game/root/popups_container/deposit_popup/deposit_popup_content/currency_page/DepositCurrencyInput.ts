@@ -1,4 +1,4 @@
-import {DisplayObjectFactory, Pivot, Button, PlatformService, TonRates, TelegramApi, LanguageService} from "@azur-games/pixi-vip-framework";
+import {DisplayObjectFactory, Pivot, Button, PlatformService, TonRates, TelegramApi, LanguageService, LanguageText} from "@azur-games/pixi-vip-framework";
 import {TextInput} from "pixi-textinput-v5";
 import {NineSlicePlane, Point, Sprite, Text} from "pixi.js";
 import {Settings} from "../../../../../../Settings";
@@ -10,6 +10,7 @@ export class DepositCurrencyInput extends Sprite {
     private rates: TonRates;
     background: NineSlicePlane;
     focusBackground: NineSlicePlane;
+    private dollarSign: LanguageText;
     input: TextInput;
     depositButton: Button;
 
@@ -23,6 +24,7 @@ export class DepositCurrencyInput extends Sprite {
     createChildren(): void {
         this.background = DisplayObjectFactory.createNineSlicePlane("deposit/deposit_input_bg", 30, 30, 30, 30);
         this.focusBackground = DisplayObjectFactory.createNineSlicePlane("deposit/deposit_stages_frame", 30, 30, 30, 30);
+        this.dollarSign = new LanguageText({key: "$", fontWeight: "500", fontSize: 40});
         this.input = new TextInput({
             multiline: false,
             input: {
@@ -31,7 +33,7 @@ export class DepositCurrencyInput extends Sprite {
                 fontFamily: Settings.COMMISSIONER,
                 fontWeight: "400",
                 padding: "40px",
-                width: "900px",
+                width: "860px",
                 color: "#ffffff",
                 height: "0px",
                 textAlign: "left",
@@ -57,6 +59,7 @@ export class DepositCurrencyInput extends Sprite {
     addChildren(): void {
         this.addChild(this.background);
         this.addChild(this.focusBackground);
+        this.addChild(this.dollarSign);
         this.addChild(this.input);
         this.addChild(this.depositButton);
     }
@@ -69,7 +72,11 @@ export class DepositCurrencyInput extends Sprite {
         this.background.height = this.focusBackground.height = 94;
         Pivot.center(this.background);
         Pivot.center(this.focusBackground);
+        Pivot.center(this.dollarSign, false);
         Pivot.center(this.input);
+        this.dollarSign.x = -450;
+        this.dollarSign.y = -2;
+        this.input.x = 20;
         this.depositButton.y = 130;
     }
 
@@ -116,17 +123,20 @@ export class DepositCurrencyInput extends Sprite {
         this.removeChild(this.input);
         this.removeChild(this.depositButton);
         this.removeChild(this.focusBackground);
+        this.removeChild(this.dollarSign);
 
         this.background.destroy();
         this.input.destroy();
         this.depositButton.destroy();
         this.focusBackground.destroy();
+        this.dollarSign.destroy();
 
         this.background = null;
         this.input = null;
         this.depositButton = null;
         this.focusBackground = null;
         this.rates = null;
+        this.dollarSign = null;
     }
 
 }

@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-async function deployToSFTP() {
+async function deployToSFTP(environment = 'prod') {
     const sftp = new Client();
 
     // Configuration from environment variables
@@ -21,7 +21,7 @@ async function deployToSFTP() {
     console.log(config);
 
     const localPath = path.resolve(__dirname, 'dist');
-    const remotePath = "/opt/domino_web/dev"
+    const remotePath = environment === 'dev' ? "/opt/domino_web/dev" : "/opt/domino_web"
 
     try {
         console.log('🔐 Connecting to SFTP server...');
@@ -56,4 +56,13 @@ if (!fs.existsSync('dist')) {
     process.exit(1);
 }
 
-deployToSFTP();
+// Get environment from command line argument or default to 'prod'
+const environment = process.argv[2] || 'prod';
+
+if (!['dev', 'prod'].includes(environment)) {
+    console.error('❌ Invalid environment. Use "dev" or "prod"');
+    process.exit(1);
+}
+
+console.log(`🚀 Deploying to ${environment} environment...`);
+deployToSFTP(environment);

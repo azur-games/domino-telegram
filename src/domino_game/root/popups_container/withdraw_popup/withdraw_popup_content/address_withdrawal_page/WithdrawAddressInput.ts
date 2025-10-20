@@ -1,4 +1,4 @@
-import {DisplayObjectFactory, Pivot, LanguageText, TonRates, NumberUtils, Button, PlatformService, TelegramApi} from "@azur-games/pixi-vip-framework";
+import {DisplayObjectFactory, Pivot, Button, PlatformService, TelegramApi} from "@azur-games/pixi-vip-framework";
 import {TextInput} from "pixi-textinput-v5";
 import {NineSlicePlane, Sprite, Text} from "pixi.js";
 import {WithdrawInputAddressChange} from "../../../../../../game_events/WithdrawInputAddressChange";
@@ -7,7 +7,7 @@ import {Settings} from "../../../../../../Settings";
 
 export class WithdrawAddressInput extends Sprite {
     private background: NineSlicePlane;
-    private input: TextInput;
+    input: TextInput;
     private qrButton: Button;
 
     constructor() {
@@ -53,7 +53,7 @@ export class WithdrawAddressInput extends Sprite {
 
     initChildren(): void {
         //@ts-ignore
-        this.input.placeholder = "Enter your address";
+        this.input.placeholder = "Withdraw.AddressPlaceholder";
         this.input._placeholderColor = 0x38508C;
         this.input.focus();
 

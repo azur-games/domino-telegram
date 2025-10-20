@@ -10,6 +10,8 @@
     "build": "webpack --mode production && npm run cleanup",
     "build-dev": "webpack --mode development && npm run cleanup",
     "deploy": "npm run build && node deploy.js",
+    "deploy:dev": "npm run build && node deploy.js dev",
+    "deploy:prod": "npm run build && node deploy.js prod",
     "cleanup": "find dist -name '.DS_Store' -type f -delete"
   },
   "keywords": [],

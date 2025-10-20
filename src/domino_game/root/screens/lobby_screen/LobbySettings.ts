@@ -89,10 +89,6 @@ export class LobbySettings extends Sprite {
         this.walletItem.y = 940;
     }
 
-    onAffiliateClick() {
-
-    }
-
     onNewsClick() {
 
     }
@@ -108,8 +104,7 @@ export class LobbySettings extends Sprite {
     onWalletClick() {
         const tgApi = (PlatformService.platformApi as TelegramApi);
         if (tgApi.isWalletConnected()) {
-            let walletName = (tgApi.walletInfo() as any).appName == "telegram-wallet" ? "Telegram Wallet" : (tgApi.walletInfo() as any).appName;
-            NotificationService.showWalletInfo(walletName, tgApi.walletInfo().account.address);
+            NotificationService.showWalletInfo(tgApi.walletInfo.name, tgApi.walletInfo.address);
         } else {
             tgApi.openModal();
         }

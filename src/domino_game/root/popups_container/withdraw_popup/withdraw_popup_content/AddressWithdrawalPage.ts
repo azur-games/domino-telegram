@@ -1,5 +1,5 @@
 import {Sprite} from "pixi.js";
-import {LanguageText, Pivot} from "@azur-games/pixi-vip-framework";
+import {LanguageText, Pivot, PlatformService, TelegramApi} from "@azur-games/pixi-vip-framework";
 import {DominoGame} from "../../../../../app";
 import {WithdrawAddressInput} from "./address_withdrawal_page/WithdrawAddressInput";
 
@@ -17,7 +17,7 @@ export class AddressWithdrawalPage extends Sprite {
 
     createChildren(): void {
         this.titleText = new LanguageText({
-            key: "Add your TON address for withdrawal:",
+            key: "Withdraw.AddressTitle",
             fontSize: 56,
             fontWeight: "500",
             fill: 0xF1F3FF,
@@ -36,6 +36,13 @@ export class AddressWithdrawalPage extends Sprite {
         Pivot.center(this.titleText);
         this.titleText.y = -DominoGame.instance.screenH / 2 + 110;
         this.addressInput.y = -DominoGame.instance.screenH / 2 + 300;
+    }
+
+    pasteConnectedWalletAddress(): void {
+        let address = (PlatformService.platformApi as TelegramApi).walletInfo.address;
+        //@ts-ignore
+        this.addressInput.input.text = address;
+        this.addressInput.tryToInput(address);
     }
 
     destroy(): void {
