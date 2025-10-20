@@ -1,120 +1,126 @@
-Key :: EN [en]:
-:Lobby.Deposit :: Deposit:
-:Lobby.Withdraw :: Withdraw:
-:Lobby.History :: History:
-:Lobby.Cash :: Cash:
-:Lobby.Free :: Free:
-:Lobby.More :: More:
-:Lobby.Low :: Low:
-:Lobby.Mid :: Mid:
-:Lobby.High :: High:
-:Lobby.VIP :: VIP:
-:Lobby.SitNow :: Sit now:
-:Lobby.Bet :: Bet:
-:Lobby.Sit :: Sit:
-:LobbyMore.Title :: More:
-:LobbyMore.News.Title :: Domino King News:
-:LobbyMore.News.Description :: t.me/DominoKingRoom:
-:LobbyMore.Chat.Title :: Chat with us:
-:LobbyMore.Chat.Description :: Support, Partnership, etc.:
-:LobbyMore.Agreement.Title :: User agreement:
-:LobbyMore.Agreement.Description :: Last updated: 2023-10-16:
-:LobbyMore.Wallets.Title :: Withdraw wallets:
-:USDT :: USDT:
-:TON :: TON:
-:Deposit.Title :: Deposit:
-:Deposit.Steps.1 :: Choose currency:
-:Deposit.Steps.2 :: Send assets to provided deposit address:
-:Deposit.Steps.3 :: Wait the balance update:
-:Deposit.Methods.Title :: Main methods::
-:Deposit.min :: Min deposit: ${text}:
-:Deposit.Attention :: Send only TON to this address, otherwise, you may lose your funds.:
-:Deposit.Attention2 :: This is a temporary deposit address:
-:Deposit.ShowQR :: Show QR:
-:Deposit.CopyAddress :: Copy address:
-:Deposit.CheckTX :: Check TX:
-:Deposit.InputPlaceholder :: Enter amount:
-:Deposit.MinAmount :: Minimum amount:
-:Deposit.EstimatedRate :: Estimated rate:
-:Coins :: coins:
-:Withdraw.Title :: Withdraw:
-:Withdraw.SelectCurrency :: Please select withdrawal currency::
-:Withdraw.MinAmount :: Min amount: ${text}:
-:Withdraw.Max :: MAX: ${text}:
-:Withdraw.ButtonTitle :: Review withdrawal:
-:History.Title :: History:
-:History.Today :: Today:
-:History.Yesterday :: Yesterday:
-:EditProfile.Title :: My Profile:
-:EditProfile.Requirements1 :: The nickname must be 3-13 characters long.:
-:EditProfile.Requirements2 :: Only letters and numbers can be used.:
-:EditProfile.Requirements3 :: No special characters, spaces or symbols:
-:EditProfile.ChooseAvatar :: Choose your avatar:
-:EditProfile.ButtonTitle :: UPDATE:
-:Notification.Success :: Success!:
-:Notification.Ok :: Ok:
-:Notification.OK :: OK:
-:Notification.Result :: Result:
-:Notification.NoTxFound.Description :: New transactions not found:
-:Notification.WithdrawSubmitted.Description :: Withdraw request is submitted:
-:Notification.ConnectedWallet :: Connected Wallet:
-:Back/GameMode/CLASSIC :: CLASSIC:
-:Back/GameMode/BLOCK :: BLOCK:
-:Back/GameMode/FIVES :: FIVES:
-:Back/GameMode/PRO :: KING MODE:
-:Lobby/GameMode/CLASSIC :: CLASSIC${text}:
-:Lobby/GameMode/BLOCK :: BLOCK${text}:
-:Lobby/GameMode/FIVES :: FIVES${text}:
-:Lobby/GameMode/PRO :: KING MODE${text}:
-:Lobby/Ante :: ANTE:
-:LoginWindow/facebook :: Continue with Facebook:
-:LoginWindow/apple :: Sign in with Apple:
-:LoginWindow/google :: Sign in with Google:
-:LoginWindow/guest :: Continue as a Guest:
-:We are looking for players :: We're looking for players:
-:QuitWindow/title :: Leave:
-:QuitWindow/are-you-sure :: Are you sure?:
-:QuitWindow/you-will-lose :: You'll lose::
-:QuitWindow/ok :: LEAVE:
-:QuitWindow/cancel :: PLAY ON!:
-:Boneyard/title :: BONEYARD: ${text}:
-:TableMessages/AFK :: OUT OF TIME:
-:TableMessages/LowCoins :: LOW COINS:
-:TableMessages/HighCoins :: HIGH COINS:
-:TableMessages/Spinner :: SPINNER!:
-:TableMessages/YouStart :: YOU START:
-:TableMessages/OpponentStarts :: OPPONENT STARTS:
-:TableMessages/TargetReached :: TARGET REACHED:
-:TableMessages/RoundWon :: ROUND WON:
-:TableMessages/RoundLost :: ROUND LOST:
-:TableMessages/RoundDraw :: ROUND DRAW:
-:TableMessages/GameResigned :: GAME RESIGNED:
-:TableMessages/Factor1 :: BOARD BLOCKED:
-:TableMessages/Factor2 :: Double:
-:TableMessages/Factor3 :: Triple:
-:TableMessages/Factor4 :: Quartet:
-:TableMessages/Factor5 :: Quintet:
-:LevelUpWindow/title :: LEVEL UP!:
-:LevelUpWindow/reward :: Reward:
-:Maintenance.attention :: Attention!:
-:Maintenance.starts-in :: There will be a server update in ${text}:
-:Maintenance.in-progress-message :: Technical maintenance is underway.:
-:Maintenance.in-progress-submessage :: Thanks for waiting!:
-:Spectator/HandText :: You'll start the game from the next round:
-:CHAT :: CHAT:
-:text-chat.button.cu :: See you soon!:
-:text-chat.button.hi :: Hello!:
-:text-chat.button.nice :: Well done!:
-:text-chat.button.sry :: Sorry...:
-:text-chat.button.thx :: Thank you!:
-:text-chat.button.u2 :: You too!:
-:text-chat.message.cu :: See you soon!:
-:text-chat.message.hi :: Hello!:
-:text-chat.message.nice :: Well done!:
-:text-chat.message.sry :: Sorry...:
-:text-chat.message.thx :: Thank you!:
-:text-chat.message.u2 :: You too!:
-:EndGameWindow/summary :: Summary:
-:EndGameWindow/new-game :: NEW GAME:
-:PlayerAvatarStatus/winner :: WINNER:
-:tap to continue :: Tap to Continue
+Key :: EN [en] :: IN [in]:
+:Lobby.Deposit :: Deposit :: :
+:Lobby.Withdraw :: Withdraw :: :
+:Lobby.History :: History :: :
+:Lobby.Cash :: Cash :: :
+:Lobby.Free :: Free :: :
+:Lobby.More :: More :: :
+:Lobby.Low :: Low :: :
+:Lobby.Mid :: Mid :: :
+:Lobby.High :: High :: :
+:Lobby.VIP :: VIP :: :
+:Lobby.SitNow :: Sit now :: :
+:Lobby.Bet :: Bet :: :
+:Lobby.Sit :: Sit :: :
+:LobbyMore.Title :: More :: :
+:LobbyMore.News.Title :: Domino King News :: :
+:LobbyMore.News.Description :: t.me/DominoKingRoom :: :
+:LobbyMore.Chat.Title :: Chat with us :: :
+:LobbyMore.Chat.Description :: Support, Partnership, etc. :: :
+:LobbyMore.Agreement.Title :: User agreement :: :
+:LobbyMore.Agreement.Description :: Last updated: 2023-10-16 :: :
+:LobbyMore.Wallets.Title :: Withdraw wallets :: :
+:USDT :: USDT :: :
+:TON :: TON :: :
+:Deposit.Title :: Deposit :: :
+:Deposit.Steps.1 :: Choose currency :: :
+:Deposit.Steps.2 :: Send assets to provided deposit address :: :
+:Deposit.Steps.3 :: Wait the balance update :: :
+:Deposit.Methods.Title :: Main methods: :: :
+:Deposit.min :: Min deposit: ${text} :: :
+:Deposit.Attention :: Send only TON to this address, otherwise, you may lose your funds. :: :
+:Deposit.Attention2 :: This is a temporary deposit address :: :
+:Deposit.ShowQR :: Show QR :: :
+:Deposit.CopyAddress :: Copy address :: :
+:Deposit.CheckTX :: Check TX :: :
+:Deposit.InputPlaceholder :: Enter amount :: :
+:Deposit.MinAmount :: Minimum amount :: :
+:Deposit.EstimatedRate :: Estimated rate :: :
+:Coins :: coins :: :
+:Withdraw.Title :: Withdraw :: :
+:Withdraw.SelectCurrency :: Please select withdrawal currency: :: :
+:Withdraw.MinAmount :: Min amount: ${text} :: :
+:Withdraw.Max :: MAX: ${text} :: :
+:Withdraw.ButtonTitle :: Review withdrawal :: :
+:History.Title :: History :: :
+:History.Today :: Today :: :
+:History.Yesterday :: Yesterday :: :
+:EditProfile.Title :: My Profile :: :
+:EditProfile.Requirements1 :: The nickname must be 3-13 characters long. :: :
+:EditProfile.Requirements2 :: Only letters and numbers can be used. :: :
+:EditProfile.Requirements3 :: No special characters, spaces or symbols :: :
+:EditProfile.ChooseAvatar :: Choose your avatar :: :
+:EditProfile.ButtonTitle :: UPDATE :: :
+:Notification.Success :: Success! :: :
+:Notification.Ok :: Ok :: :
+:Notification.OK :: OK :: :
+:Notification.Result :: Result :: :
+:Notification.NoTxFound.Description :: New transactions not found :: :
+:Notification.WithdrawSubmitted.Description :: Withdraw request is submitted :: :
+:Notification.ConnectedWallet :: Connected Wallet :: :
+:Back/GameMode/CLASSIC :: CLASSIC :: :
+:Back/GameMode/BLOCK :: BLOCK :: :
+:Back/GameMode/FIVES :: FIVES :: :
+:Back/GameMode/PRO :: KING MODE :: :
+:Lobby/GameMode/CLASSIC :: CLASSIC${text} :: :
+:Lobby/GameMode/BLOCK :: BLOCK${text} :: :
+:Lobby/GameMode/FIVES :: FIVES${text} :: :
+:Lobby/GameMode/PRO :: KING MODE${text} :: :
+:Lobby/Ante :: ANTE :: :
+:LoginWindow/facebook :: Continue with Facebook :: :
+:LoginWindow/apple :: Sign in with Apple :: :
+:LoginWindow/google :: Sign in with Google :: :
+:LoginWindow/guest :: Continue as a Guest :: :
+:We are looking for players :: We're looking for players :: :
+:QuitWindow/title :: Leave :: :
+:QuitWindow/are-you-sure :: Are you sure? :: :
+:QuitWindow/you-will-lose :: You'll lose: :: :
+:QuitWindow/ok :: LEAVE :: :
+:QuitWindow/cancel :: PLAY ON! :: :
+:Boneyard/title :: BONEYARD: ${text} :: :
+:TableMessages/AFK :: OUT OF TIME :: :
+:TableMessages/LowCoins :: LOW COINS :: :
+:TableMessages/HighCoins :: HIGH COINS :: :
+:TableMessages/Spinner :: SPINNER! :: :
+:TableMessages/YouStart :: YOU START :: :
+:TableMessages/OpponentStarts :: OPPONENT STARTS :: :
+:TableMessages/TargetReached :: TARGET REACHED :: :
+:TableMessages/RoundWon :: ROUND WON :: :
+:TableMessages/RoundLost :: ROUND LOST :: :
+:TableMessages/RoundDraw :: ROUND DRAW :: :
+:TableMessages/GameResigned :: GAME RESIGNED :: :
+:TableMessages/Factor1 :: BOARD BLOCKED :: :
+:TableMessages/Factor2 :: Double :: :
+:TableMessages/Factor3 :: Triple :: :
+:TableMessages/Factor4 :: Quartet :: :
+:TableMessages/Factor5 :: Quintet :: :
+:TableSettingsWindow/leave :: Leave :: :
+:TableSettingsWindow/music :: Music: ${text} :: :
+:TableSettingsWindow/sound :: Sound: ${text} :: :
+:TableSettingsWindow/vibration :: Vibration: ${text} :: :
+:TableSettingsWindow/on :: ON :: :
+:TableSettingsWindow/off :: OFF :: :
+:LevelUpWindow/title :: LEVEL UP! :: :
+:LevelUpWindow/reward :: Reward :: :
+:Maintenance.attention :: Attention! :: :
+:Maintenance.starts-in :: There will be a server update in ${text} :: :
+:Maintenance.in-progress-message :: Technical maintenance is underway. :: :
+:Maintenance.in-progress-submessage :: Thanks for waiting! :: :
+:Spectator/HandText :: You'll start the game from the next round :: :
+:CHAT :: CHAT :: :
+:text-chat.button.cu :: See you soon! :: :
+:text-chat.button.hi :: Hello! :: :
+:text-chat.button.nice :: Well done! :: :
+:text-chat.button.sry :: Sorry... :: :
+:text-chat.button.thx :: Thank you! :: :
+:text-chat.button.u2 :: You too! :: :
+:text-chat.message.cu :: See you soon! :: :
+:text-chat.message.hi :: Hello! :: :
+:text-chat.message.nice :: Well done! :: :
+:text-chat.message.sry :: Sorry... :: :
+:text-chat.message.thx :: Thank you! :: :
+:text-chat.message.u2 :: You too! :: :
+:EndGameWindow/summary :: Summary :: :
+:EndGameWindow/new-game :: NEW GAME :: :
+:PlayerAvatarStatus/winner :: WINNER :: :
+:tap to continue :: Tap to Continue :: 
